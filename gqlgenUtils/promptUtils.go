@@ -54,7 +54,7 @@ func promptGetYesOrNoInput(pc promptContent) string {
 }
 
 func promptGetSelect(pc promptContent) string {
-	items := []string{"ID", "int", "string"}
+	items := []string{"int", "string"}
 	index := -1
 	var result string
 	var err error

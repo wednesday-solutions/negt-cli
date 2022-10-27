@@ -85,9 +85,31 @@ singularModel,
 			}
 			defer openFile.Close()
 
+			var intFlag, stringFlag bool
+
+			for idx, fieldType := range fieldTypes {
+				if fieldType == "int" {
+					fieldTypes[idx] = "GraphQLInt"
+					intFlag = true
+				}
+				if fieldType == "string" {
+					fieldTypes[idx] = "GraphQLString"
+					stringFlag = true
+				}
+			}
+
 			// Write some text line-by-line to openFile.
 			_, err = openFile.WriteString(fmt.Sprintf(`import { getNode } from '@server/gql/node';
-import { GraphQLID, GraphQLNonNull, GraphQLObjectType, GraphQLString } from 'graphql';
+import { GraphQLID, GraphQLNonNull, GraphQLObjectType`))
+
+			if intFlag {
+				_, err = openFile.WriteString(`, GraphQLInt`)
+			}
+			if stringFlag {
+				_, err = openFile.WriteString(`, GraphQLString`)
+			}
+
+			_, err = openFile.WriteString(fmt.Sprintf(` } from 'graphql';
 import { getQueryFields, TYPE_ATTRIBUTES } from '@server/utils/gqlFieldUtils';
 
 const { nodeInterface } = getNode();
@@ -96,15 +118,6 @@ export const %sFields = {
 	id: { type: new GraphQLNonNull(GraphQLID) }`, singularModel))
 			if err != nil {
 				return err
-			}
-
-			for idx, fieldType := range fieldTypes {
-				if fieldType == "int" {
-					fieldTypes[idx] = "GraphQLInt"
-				}
-				if fieldType == "string" {
-					fieldTypes[idx] = "GraphQLString"
-				}
 			}
 
 			for idx, field := range fields {
@@ -116,7 +129,8 @@ export const %sFields = {
 					return err
 				}
 			}
-			_, err = openFile.WriteString(fmt.Sprintf(`};
+			_, err = openFile.WriteString(fmt.Sprintf(`
+};
 
 export const GraphQL%s = new GraphQLObjectType({
 	name: '%s',
