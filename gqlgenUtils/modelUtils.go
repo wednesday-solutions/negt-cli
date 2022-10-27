@@ -11,7 +11,7 @@ import (
 
 type promptContent struct {
 	errorMsg string
-	label string
+	label    string
 }
 
 func CreateNewModel() {
@@ -60,15 +60,15 @@ func promptGetInput(pc promptContent) string {
 		return nil
 	}
 	templates := &promptui.PromptTemplates{
-		Prompt: "{{ . }}",
-		Valid: "{{ . | green }}",
+		Prompt:  "{{ . }}",
+		Valid:   "{{ . | green }}",
 		Invalid: "{{ . | red }}",
 		Success: "{{ . | bold }}",
 	}
 	prompt := promptui.Prompt{
-		Label: pc.label,
+		Label:     pc.label,
 		Templates: templates,
-		Validate: validate,
+		Validate:  validate,
 	}
 	result, err := prompt.Run()
 	if err != nil {
@@ -86,8 +86,8 @@ func promptGetSelect(pc promptContent) string {
 
 	for index < 0 {
 		prompt := promptui.SelectWithAdd{
-			Label: pc.label,
-			Items: items,
+			Label:    pc.label,
+			Items:    items,
 			AddLabel: "Other",
 		}
 		index, result, err = prompt.Run()
@@ -131,10 +131,9 @@ func MakeGqlModel(modelName string) error {
 	}
 	TestFiles := []string{
 		"index.test.js",
-		"model.test.js",
-		"query.test.js",
-		"list.test.js",
 		"mutation.test.js",
+		"query.test.js",
+		"pagination.test.js",
 	}
 	path = fmt.Sprintf("%s/%s", path, "tests")
 	for _, file := range TestFiles {

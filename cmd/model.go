@@ -1,6 +1,3 @@
-/*
-Copyright © 2022 NAME HERE <EMAIL ADDRESS>
-*/
 package cmd
 
 import (
@@ -9,18 +6,19 @@ import (
 	"github.com/spf13/cobra"
 )
 
-// newCmd represents the new command
+// modelCmd represents the model command
 var modelCmd = &cobra.Command{
 	Use:   "model",
 	Short: "model for creating new graphql model",
-	Long: `A longer description model command for creating new graphql model. For example:
+	Long: `model command for creating new graphql model. For example:
 
-Create gqlmodel by this command, gqlgen model.`,
+Create gqlmodel by this command, gqlgen model. then provide the 
+appropriate answers for the questions.`,
 	Run: func(cmd *cobra.Command, args []string) {
 		gqlgenUtils.CreateNewModel()
 	},
 }
 
 func init() {
-	rootCmd.AddCommand(modelCmd)
+	gqlgenCmd.AddCommand(modelCmd)
 }
