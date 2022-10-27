@@ -10,7 +10,7 @@ For running this application
     
   For seeing the command options in this cli,
   
-       negt gqlgen
+    negt gqlgen
     
  Then for initializing GraphQL models
  
