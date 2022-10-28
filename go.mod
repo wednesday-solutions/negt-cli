@@ -7,6 +7,8 @@ require (
 	github.com/spf13/cobra v1.6.1
 )
 
+require github.com/aymerick/raymond v2.0.2+incompatible // indirect
+
 require (
 	github.com/chzyer/readline v1.5.1 // indirect
 	github.com/gertd/go-pluralize v0.2.1

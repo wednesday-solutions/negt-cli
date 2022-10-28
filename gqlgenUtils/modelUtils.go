@@ -79,20 +79,20 @@ func CreateNewModel() {
 
 	err := CreateGqlModel(modelName, files, testFiles)
 	if err != nil {
-		fmt.Printf("%s already exists!", modelName)
+		fmt.Printf("Error while creating files, %s", err)
 		os.Exit(1)
 	}
 
 	err = WriteModelFiles(modelName, fields, fieldTypes, files)
 	if err != nil {
-		fmt.Printf("%s already exists!", modelName)
+		fmt.Printf("Error while writing into files, %s", err)
 		os.Exit(1)
 	}
 	err = WriteModelTestFiles(modelName, testFiles)
 	if err != nil {
-		fmt.Printf("%s already exists!", modelName)
+		fmt.Printf("Error while writing into test files, %s", err)
 		os.Exit(1)
 	}
 
-	fmt.Printf("New GraphQL model '%s' created", modelName)
+	fmt.Printf("New GraphQL model %s created!", modelName)
 }

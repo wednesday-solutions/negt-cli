@@ -14,4 +14,3 @@ export const studentQueries = StudentQueries;
 
 // exporting mutations of student
 export const studentMutations = studentMutation;
-
