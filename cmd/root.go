@@ -11,7 +11,6 @@ var rootCmd = &cobra.Command{
 	Use:   "negt",
 	Short: "NodeJS-Express-GraphQL-Template",
 	Long: `
-
 NodeJS-Express-GraphQL-Template. 
 
 It can auto generate graphql models and resolvers by your requirements.. For example:
