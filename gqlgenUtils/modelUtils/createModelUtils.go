@@ -2,6 +2,7 @@ package modelUtils
 
 import (
 	"fmt"
+	"os"
 	"path/filepath"
 	"strings"
 
@@ -12,16 +13,27 @@ func CreateGqlModelFiles(modelName, dirName string, files, testFiles []string) e
 
 	path, _ := filepath.Abs(".")
 	if dirName != "gql/models" {
+
 		directories := strings.Split(dirName, "/")
 		if len(directories) > 0 {
+			
 			for _, dir := range directories {
-				fileUtils.MakeDirectory(path, dir)
+
+				_, err := os.Stat(fmt.Sprintf("%s/%s", path, dir))
+				if os.IsNotExist(err) {
+					fileUtils.MakeDirectory(path, dir)
+				}
 				path = fmt.Sprintf("%s/%s", path, dir)
 			}
+			
 		} else {
-			fileUtils.MakeDirectory(path, dirName)
+			_, err := os.Stat(fmt.Sprintf("%s/%s", path, directories[0]))
+			if os.IsNotExist(err) {
+				fileUtils.MakeDirectory(path, dirName)
+			}
 			path = fmt.Sprintf("%s/%s", path, directories[0])
 		}
+
 	} else {
 		path = fmt.Sprintf("%s/%s", path, dirName)
 	}

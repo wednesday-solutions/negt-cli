@@ -14,12 +14,7 @@ const {{titleSingularModel}}Connection = {{singularModel}}Connection;
 const {{singularModel}}Queries = {{titleSingularModel}}Queries;
 const {{singularModel}}Mutations = {{singularModel}}Mutation;
 
-export {
-	{{titleSingularModel}},
-	{{titleSingularModel}}Connection,
-	{{singularModel}}Queries,
-	{{singularModel}}Mutations
-};
+export { {{titleSingularModel}}, {{titleSingularModel}}Connection, {{singularModel}}Queries, {{singularModel}}Mutations };
 `
 	tpl, err := GenerateTemplate(source, ctx)
 	if err != nil {

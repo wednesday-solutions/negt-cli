@@ -26,7 +26,7 @@ describe('{{singularModel}} graphQL-server-DB mutation tests', () => {
 			{{this}}{{/each}}
 		}
 	}
-%s;
+	%s;
 	it('should have a mutation to create a new {{singularModel}}', async () => {
 		jest.spyOn(dbClient.models.{{pluralModel}}, 'create');
 		await getResponse(create{{titleSingularModel}}Mutation).then(response => {

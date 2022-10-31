@@ -23,37 +23,33 @@ func WriteModelFiles(modelName, dirName string, fields, fieldTypes, files []stri
 			if err != nil {
 				return err
 			}
-		}
 
 		// Writing into model.js file.
-		if file == "model.js" {
+		} else if file == "model.js" {
 
 			err := hbs.ModelSource(modelName, path, file, ctx)
 			if err != nil {
 				return err
 			}
-		}
 
 		// Writing into list.js file.
-		if file == "list.js" {
+		} else if file == "list.js" {
 
 			err := hbs.ListSource(modelName, path, file, ctx)
 			if err != nil {
 				return err
 			}
-		}
 
 		// writing into query.js file.
-		if file == "query.js" {
+		} else if file == "query.js" {
 
 			err := hbs.QuerySource(modelName, path, file, ctx)
 			if err != nil {
 				return err
 			}
-		}
 
 		// writing into mutation.js file.
-		if file == "mutation.js" {
+		} else if file == "mutation.js" {
 
 			err := hbs.MutationSource(modelName, path, file, ctx)
 			if err != nil {

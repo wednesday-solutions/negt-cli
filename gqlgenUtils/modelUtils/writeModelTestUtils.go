@@ -25,33 +25,28 @@ func WriteModelTestFiles(
 			if err != nil {
 				return err
 			}
-		}
 
-		if file == "query.test.js" {
+		} else if file == "query.test.js" {
 
 			err := hbs.QueryTestSource(modelName, path, file, ctx)
 			if err != nil {
 				return err
 			}
-		}
 
-		if file == "pagination.test.js" {
+		} else if file == "pagination.test.js" {
 
 			err := hbs.PaginationTestSource(modelName, path, file, ctx)
 			if err != nil {
 				return err
 			}
-		}
 
-		if file == "mutation.test.js" {
+		} else if file == "mutation.test.js" {
 
 			err := hbs.MutationTestSource(modelName, path, file, ctx)
 			if err != nil {
 				return err
 			}
 		}
-
 	}
-
 	return nil
 }
