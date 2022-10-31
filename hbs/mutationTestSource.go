@@ -20,7 +20,7 @@ describe('{{singularModel}} graphQL-server-DB mutation tests', () => {
   });
 	const create{{titleSingularModel}}Mutation = %s
 	mutation {
-		create{{titleSingularModel}} ({{inputStringFieldsWithoutID fields fieldTypes pluralModel}}
+		create{{titleSingularModel}} ({{{inputStringFieldsWithoutID fields fieldTypes pluralModel}}}
 		) {
 			id{{#each fields}}
 			{{this}}{{/each}}
@@ -40,7 +40,7 @@ describe('{{singularModel}} graphQL-server-DB mutation tests', () => {
 	const update{{titleSingularModel}}Mutation = %s
 	mutation {
 		update{{titleSingularModel}} (
-			id: ${{openingBrace}}{{pluralModel}}Table[0].id}{{inputStringFieldsWithID fields fieldTypes pluralModel}}
+			id: ${{openingBrace}}{{pluralModel}}Table[0].id}{{{inputStringFieldsWithID fields fieldTypes pluralModel}}}
 		) {
 			id
 		}
@@ -88,13 +88,6 @@ describe('{{singularModel}} graphQL-server-DB mutation tests', () => {
 	if err != nil {
 		return err
 	}
-
-	testSource := `{{inputStringFieldsWithoutID fields fieldTypes pluralModel}}`
-	testTpl, err := GenerateTemplate(testSource, ctx)
-	if err != nil {
-		return err
-	}
-	fmt.Println("Test TPL : ", testTpl)
 
 	fileUtils.WriteToFile(path, file, tpl)
 

@@ -2,7 +2,7 @@ package cmd
 
 import (
 	"fmt"
-	"log"
+	"os"
 	"path/filepath"
 
 	"github.com/ijasMohamad/cobra-cli/gqlgenUtils/fileUtils"
@@ -19,11 +19,28 @@ var initCmd = &cobra.Command{
 		path, _ := filepath.Abs(".")
 		err := fileUtils.MakeDirectory(path, "gql")
 		if err != nil {
-			log.Fatal(err)
+			if os.IsExist(err) {
+				err = fileUtils.MakeDirectory(path+"/gql", "models")
+				if err != nil {
+					if os.IsExist(err) {
+						fmt.Println("Already initialized.")
+					}
+					fmt.Println("try 'negt gqlgen help'.")
+					os.Exit(1)
+				}
+				fmt.Println("New directory 'gql/models' created.")
+				return
+			}
+			fmt.Println("try 'negt gqlgen help'.")
+			os.Exit(1)
 		}
 		err = fileUtils.MakeDirectory(path+"/gql", "models")
 		if err != nil {
-			log.Fatal(err)
+			if os.IsExist(err) {
+				fmt.Println("Already initialized.")
+			}
+			fmt.Println("try 'negt gqlgen help'.")
+			os.Exit(1)
 		}
 		fmt.Println("New directory 'gql/models' created.")
 	},
