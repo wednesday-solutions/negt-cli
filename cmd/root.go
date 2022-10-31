@@ -10,10 +10,15 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "negt",
 	Short: "NodeJS-Express-GraphQL-Template",
-	Long: `NodeJS-Express-GraphQL-Template. It can auto generate graphql models and resolvers by your requirements.. For example:
+	Long: `
 
+NodeJS-Express-GraphQL-Template. 
+
+It can auto generate graphql models and resolvers by your requirements.. For example:
 If you want to make graphql models and it's resolvers please provide the details for the questions.
-It will auto generate graphql schema and resolvers by itself.`,
+It will auto generate graphql schema and resolvers by itself.
+
+Wednesday Solutions`,
 }
 
 // Execute adds all child commands to the root command and sets flags appropriately.

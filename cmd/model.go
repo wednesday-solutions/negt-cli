@@ -8,7 +8,7 @@ import (
 // modelCmd represents the model command
 var modelCmd = &cobra.Command{
 	Use:   "model",
-	Short: "model for creating new graphql model",
+	Short: "Create new graphql model",
 	Long: `model command for creating new graphql model. For example:
 
 Create gqlmodel by this command, gqlgen model. then provide the 

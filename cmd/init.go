@@ -12,7 +12,7 @@ import (
 // initCmd represents the init command
 var initCmd = &cobra.Command{
 	Use:   "init",
-	Short: "Creating directory gql/models",
+	Short: "Create directory gql/models",
 	Long:  `This command gqlgen init will create directory for storing gql models`,
 	Run: func(cmd *cobra.Command, args []string) {
 
