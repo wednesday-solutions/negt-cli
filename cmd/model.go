@@ -1,8 +1,7 @@
 package cmd
 
 import (
-	"github.com/ijasMohamad/cobra-cli/gqlgenUtils"
-
+	"github.com/ijasMohamad/cobra-cli/gqlgenUtils/modelUtils"
 	"github.com/spf13/cobra"
 )
 
@@ -15,7 +14,7 @@ var modelCmd = &cobra.Command{
 Create gqlmodel by this command, gqlgen model. then provide the 
 appropriate answers for the questions.`,
 	Run: func(cmd *cobra.Command, args []string) {
-		gqlgenUtils.CreateNewModel()
+		modelUtils.CreateNewModel()
 	},
 }
 

@@ -5,7 +5,7 @@ import (
 	"log"
 	"path/filepath"
 
-	"github.com/ijasMohamad/cobra-cli/gqlgenUtils"
+	"github.com/ijasMohamad/cobra-cli/gqlgenUtils/fileUtils"
 	"github.com/spf13/cobra"
 )
 
@@ -17,11 +17,11 @@ var initCmd = &cobra.Command{
 	Run: func(cmd *cobra.Command, args []string) {
 
 		path, _ := filepath.Abs(".")
-		err := gqlgenUtils.MakeDirectory(path, "gql")
+		err := fileUtils.MakeDirectory(path, "gql")
 		if err != nil {
 			log.Fatal(err)
 		}
-		err = gqlgenUtils.MakeDirectory(path+"/gql", "models")
+		err = fileUtils.MakeDirectory(path+"/gql", "models")
 		if err != nil {
 			log.Fatal(err)
 		}
