@@ -88,11 +88,6 @@ func CreateNewModel() {
 			nullFields = append(nullFields, nullField)
 		}
 	}
-	fmt.Printf("Directory Name: %s\n", dirName)
-	fmt.Printf("Model Name: %s\n", modelName)
-	fmt.Printf("Fields: %s\n", fields)
-	fmt.Printf("Field Types: %s\n", fieldTypes)
-	fmt.Printf("Null Fields: %v\n", nullFields)
 
 	files := []string{
 		"index.js",
@@ -102,9 +97,9 @@ func CreateNewModel() {
 		"mutation.js",
 	}
 	testFiles := []string{
-		"mutation.test.js",
 		"query.test.js",
 		"pagination.test.js",
+		"mutation.test.js",
 	}
 	testFiles = append(testFiles, fmt.Sprintf("%s.test.js", modelName))
 

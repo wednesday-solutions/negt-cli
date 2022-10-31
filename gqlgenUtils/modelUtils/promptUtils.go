@@ -96,15 +96,15 @@ func promptGetSelectPath(pc promptContent) string {
 		}
 		index, result, err = prompt.Run()
 
-		if result == "gql/models" {
-			status := fileUtils.DirExists(result)
-			if !status {
-				fmt.Println("gql/models directory is not exists, do 'negt gqlgen init'")
-				os.Exit(1)
-			}
-		}
 		if index == -1 {
 			items = append(items, result)
+		}
+	}
+	if result == "gql/models" {
+		status := fileUtils.DirExists(result)
+		if !status {
+			fmt.Println("gql/models directory is not exists, do 'negt gqlgen init'")
+			os.Exit(1)
 		}
 	}
 	if err != nil {

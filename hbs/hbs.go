@@ -30,7 +30,7 @@ func init() {
 		if len(testFields) == 0 {
 			for _, field := range fields {
 				testFields = append(testFields, fmt.Sprintf(`,
-				%s: %sTable[0].%s`, field, modelName, field))
+					%s: %sTable[0].%s`, field, modelName, field))
 			}
 		}
 		return testFields
@@ -69,7 +69,6 @@ func init() {
 					if fieldTypes[idx] == "GraphQLString" {
 						stringFieldsWithoutID = append(stringFieldsWithoutID, fmt.Sprintf(`
 			%s: "${%sTable[0].%s}"`, field, modelName, field))
-	
 					} else {
 						stringFieldsWithoutID = append(stringFieldsWithoutID, fmt.Sprintf(`
 			%s: ${%sTable[0].%s}`, field, modelName, field))
@@ -85,7 +84,12 @@ func init() {
 				}
 			}
 		}
+		fmt.Println("StringFieldsWithoutID : ", stringFieldsWithoutID)
 		return stringFieldsWithoutID
+	})
+
+	raymond.RegisterHelper("test", func(fields []string) []string {
+		return fields
 	})
 }
 
@@ -103,3 +107,5 @@ func GenerateTemplate(source string, ctx map[string]interface{}) (string, error)
 	}
 	return result, nil
 }
+
+

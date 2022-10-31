@@ -6,7 +6,6 @@ import (
 	"github.com/ijasMohamad/cobra-cli/gqlgenUtils/fileUtils"
 )
 
-
 func MutationTestSource(modelName, path, file string, ctx map[string]interface{}) error {
 
 	source := fmt.Sprintf(`import get from 'lodash/get';
@@ -85,12 +84,19 @@ describe('{{singularModel}} graphQL-server-DB mutation tests', () => {
 });
 	`, "`", "`", "`", "`", "`", "`")
 
-	data, err := GenerateTemplate(source, ctx)
+	tpl, err := GenerateTemplate(source, ctx)
 	if err != nil {
-		fmt.Println("Mutation", err)
 		return err
 	}
-	fileUtils.WriteToFile(path, file, data)
+
+	testSource := `{{inputStringFieldsWithoutID fields fieldTypes pluralModel}}`
+	testTpl, err := GenerateTemplate(testSource, ctx)
+	if err != nil {
+		return err
+	}
+	fmt.Println("Test TPL : ", testTpl)
+
+	fileUtils.WriteToFile(path, file, tpl)
 
 	return nil
 }

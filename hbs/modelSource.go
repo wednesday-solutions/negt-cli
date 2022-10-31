@@ -7,6 +7,7 @@ func ModelSource(modelName, path, file string, ctx map[string]interface{})  erro
 	source := `import { getNode }  from '@server/gql/node';
 import { GraphQLID, GraphQLNonNull, GraphQLObjectType{{#if graphqlInt}}, {{graphqlInt}}{{/if}}{{#if graphqlString}}, {{graphqlString}}{{/if}} } from 'graphql';
 import { getQueryFields, TYPE_ATTRIBUTES } from '@server/utils/gqlFieldUtils';
+import { timestamps } from '@gqlFields/timestamps';
 
 const { nodeInterface } = getNode();
 
@@ -18,15 +19,16 @@ export const GraphQL{{titleSingularModel}} = new GraphQLObjectType({
 	name: '{{titleSingularModel}}',
 	interfaces: [nodeInterface],
 	fields: () => ({
-		...getQueryFields({{singularModel}}Fields, TYPE_ATTRIBUTES.isNonNull)
+		...getQueryFields({{singularModel}}Fields, TYPE_ATTRIBUTES.isNonNull),
+		...timestamps
 	})
 });
 `
-	data, err := GenerateTemplate(source, ctx)
+	tpl, err := GenerateTemplate(source, ctx)
 	if err != nil {
 		return err
 	}
-	fileUtils.WriteToFile(path, file, data)
+	fileUtils.WriteToFile(path, file, tpl)
 
 	return nil
 }

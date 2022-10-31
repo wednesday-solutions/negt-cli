@@ -58,12 +58,11 @@ describe('{{titleSingularModel}} graphql-server-DB pagination tests', () => {
 });
 	`, "`", "`")
 
-	data, err := GenerateTemplate(source, ctx)
+	tpl, err := GenerateTemplate(source, ctx)
 	if err != nil {
-		fmt.Println("Pagination", err)
 		return err
 	}
-	fileUtils.WriteToFile(path, file, data)
+	fileUtils.WriteToFile(path, file, tpl)
 
 	return nil
 }

@@ -21,11 +21,11 @@ export {
 	{{singularModel}}Mutations
 };
 `
-	data, err := GenerateTemplate(source, ctx)
+	tpl, err := GenerateTemplate(source, ctx)
 	if err != nil {
 		return err
 	}
-	fileUtils.WriteToFile(path, file, data)
+	fileUtils.WriteToFile(path, file, tpl)
 
 	return nil
 }

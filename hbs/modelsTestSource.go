@@ -47,12 +47,11 @@ describe('{{titleSingularModel}} introspection tests', () => {
 });
 `, "`", "`")
 
-	data, err := GenerateTemplate(source, ctx)
+	tpl, err := GenerateTemplate(source, ctx)
 	if err != nil {
-		fmt.Println("Models")
 		return err
 	}
-	fileUtils.WriteToFile(path, file, data)
+	fileUtils.WriteToFile(path, file, tpl)
 
 	return nil
 }
