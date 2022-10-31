@@ -4,23 +4,25 @@ For running this application
     
     go build negt.go
      
- After that run,
+After that run,
  
     cp negt /usr/local/bin
     
-  For seeing the command options in this cli,
+For seeing the command options in this cli,
+  
+    negt
   
     negt gqlgen
     
- Then for initializing GraphQL models
+Then for initializing GraphQL models
  
     negt gqlgen init
     
-  It will create directories for gql and models.
+It will create directories 'gql/models'.
   
-  Then for creating new GraphQL model 
+Then for creating new GraphQL model 
   
     negt gqlgen model
     
-  After this, please provide the details for the questions.
-  It will create GraphQL Model files in gql/models
+You will get some questions, please provide the details for the questions.
+It will create GraphQL Model files in gql/models
