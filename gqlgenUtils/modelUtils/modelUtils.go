@@ -54,10 +54,13 @@ func CreateNewModel() {
 		fmt.Sprint("Do you want to add more fields? "),
 	}
 
-	yesOrNo := true
-	var fields []string
-	var fieldTypes []string
-	var nullFields []bool
+	var (
+		fields,
+		fieldTypes []string
+		yesOrNo    bool
+		nullFields []bool
+	)
+	yesOrNo = true
 	fields = append(fields, field)
 	fieldTypes = append(fieldTypes, fieldType)
 	nullFields = append(nullFields, nullField)
@@ -89,6 +92,12 @@ func CreateNewModel() {
 		}
 	}
 
+	customMutationPromptContent := promptContent{
+		fmt.Sprintf("Do you want to make custom resolvers for your %s model? ", modelName),
+		fmt.Sprintf("Do you need custom resolvers for your new %s model? ", modelName),
+	}
+	customMutation := promptGetYesOrNoInput(customMutationPromptContent)
+
 	files := []string{
 		"index.js",
 		"model.js",
@@ -97,11 +106,13 @@ func CreateNewModel() {
 		"mutation.js",
 	}
 	testFiles := []string{
+		"index.test.js",
+		"model.test.js",
 		"query.test.js",
+		"list.test.js",
 		"pagination.test.js",
 		"mutation.test.js",
 	}
-	testFiles = append(testFiles, fmt.Sprintf("%s.test.js", modelName))
 
 	err := CreateGqlModelFiles(modelName, dirName, files, testFiles)
 	if err != nil {
@@ -109,15 +120,54 @@ func CreateNewModel() {
 		os.Exit(1)
 	}
 
-	err = WriteModelFiles(modelName, dirName, fields, fieldTypes, files, nullFields)
+	err = WriteModelFiles(modelName, dirName, fields, fieldTypes, files, nullFields, customMutation)
 	if err != nil {
 		fmt.Printf("Error while writing into files, %s", err)
 		os.Exit(1)
 	}
-	
-	err = WriteModelTestFiles(modelName, dirName, fields, fieldTypes, testFiles, nullFields)
+
+	err = WriteModelTestFiles(modelName, dirName, fields, fieldTypes, testFiles, nullFields, customMutation)
 	if err != nil {
 		fmt.Printf("Error while writing into test files, %s", err)
+		os.Exit(1)
+	}
+
+	if customMutation {
+		resolverFiles := []string {
+			"customCreateMutation.js",
+			"customUpdateMutation.js",
+			"customDeleteMutation.js",
+		}
+		resolverTestFiles := []string {
+			"customCreateMutation.test.js",
+			"customUpdateMutation.test.js",
+			"customDeleteMutation.test.js",
+		}
+		err := CreateCustomResolverFiles(modelName, dirName, resolverFiles, resolverTestFiles)
+		if err != nil {
+			fmt.Printf("Error while creating files, %s", err)
+			os.Exit(1)
+		}
+		err = WriteCustomResolvers(modelName, dirName, fields, fieldTypes, resolverFiles, nullFields, customMutation)
+		if err != nil {
+			fmt.Printf("Error while writing into custom resolvers, %s", err)
+			os.Exit(1)
+		}
+		err = WriteTestCustomResolvers(modelName, dirName, fields, fieldTypes, resolverTestFiles, nullFields, customMutation)
+		if err != nil {
+			fmt.Printf("Error while writing into test custom resolvers, %s", err)
+			os.Exit(1)
+		}
+	}
+
+	if customMutation {
+
+
+	}
+
+	err = WriteMockData(modelName, fields, fieldTypes, nullFields, customMutation)
+	if err != nil {
+		fmt.Printf("Error while writing into test custom resolvers, %s", err)
 		os.Exit(1)
 	}
 

@@ -59,7 +59,7 @@ func promptGetYesOrNoInput(pc promptContent) bool {
 }
 
 func promptGetSelect(pc promptContent) string {
-	items := []string{"ID", "Int", "Float", "String", "Boolean"}
+	items := []string{"ID", "Int", "Float", "String", "Boolean", "DateTime"}
 	index := -1
 	var result string
 	var err error
@@ -90,8 +90,8 @@ func promptGetSelectPath(pc promptContent) string {
 	var err error
 	for index < 0 {
 		prompt := promptui.SelectWithAdd{
-			Label: pc.label,
-			Items: items,
+			Label:    pc.label,
+			Items:    items,
 			AddLabel: "Other",
 		}
 		index, result, err = prompt.Run()

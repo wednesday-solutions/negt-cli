@@ -6,10 +6,9 @@ func QuerySource(modelName, path, file string, ctx map[string]interface{})  erro
 
 	source := `import { GraphQLInt, GraphQLNonNull } from 'graphql';
 import { GraphQL{{titleSingularModel}} } from './model';
-import { {{singularModel}}Connection } from './list';
 import db from '@database/models';
 
-export const {{titleSingularModel}}Queries = {
+export const {{singularModel}}Query = {
 	args: {
 		id: {
 			type: new GraphQLNonNull(GraphQLInt)
@@ -17,12 +16,6 @@ export const {{titleSingularModel}}Queries = {
 	},
 	query: {
 		type: GraphQL{{titleSingularModel}}
-	},
-	list: {
-		...{{singularModel}}Connection,
-		resolve: {{singularModel}}Connection.resolve,
-		type: {{singularModel}}Connection.connectionType,
-		args: {{singularModel}}Connection.connectionArgs
 	},
 	model: db.{{pluralModel}}
 };

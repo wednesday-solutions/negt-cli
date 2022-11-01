@@ -20,6 +20,16 @@ export const {{singularModel}}Connection = createConnection({
 	},
 	...totalConnectionFields
 });
+
+export const {{singularModel}}List = {
+	list: {
+		...{{singularModel}}Connection,
+		resolve: {{singularModel}}Connection.resolve,
+		type: {{singularModel}}Connection.connectionType,
+		args: {{singularModel}}Connection.connectionArgs
+	},
+	model: db.{{pluralModel}}
+};
 `
 	tpl, err := GenerateTemplate(source, ctx)
 	if err != nil {

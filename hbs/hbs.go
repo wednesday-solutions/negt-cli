@@ -30,7 +30,7 @@ func init() {
 		if len(testFields) == 0 {
 			for _, field := range fields {
 				testFields = append(testFields, fmt.Sprintf(`,
-					%s: %sTable[0].%s`, field, modelName, field))
+				%s: %sTable[0].%s`, field, modelName, field))
 			}
 		}
 		return testFields
@@ -47,7 +47,7 @@ func init() {
 	raymond.RegisterHelper("inputStringFieldsWithID", func(fields, fieldTypes []string, modelName string) []string {
 
 		if len(stringFields) == 0 {
-			for idx, field := range fields  {
+			for idx, field := range fields {
 				if fieldTypes[idx] == "GraphQLString" {
 					stringFields = append(stringFields, fmt.Sprintf(`,
 			%s: "${%sTable[0].%s}"`, field, modelName, field))
@@ -84,12 +84,65 @@ func init() {
 				}
 			}
 		}
-		fmt.Println("StringFieldsWithoutID : ", stringFieldsWithoutID)
 		return stringFieldsWithoutID
 	})
 
 	raymond.RegisterHelper("test", func(fields []string) []string {
 		return fields
+	})
+
+	var customMutationImports string
+	raymond.RegisterHelper("customMutationImports", func(customMutation bool) string {
+		if customMutation {
+			if customMutationImports == "" {
+				customMutationImports = `
+import { customCreateMutation } from './customCreateMutation';  
+import { customUpdateMutation } from './customUpdateMutation';  
+import { customDeleteMutation } from './customDeleteMutation';`
+			}
+			return customMutationImports
+		}
+		return ""
+	})
+
+	var customMutations string
+	raymond.RegisterHelper("customMutations", func(customMutation bool) string {
+		if customMutation {
+			if customMutations == "" {
+				customMutations = `,
+	customCreateResolver: customCreateMutation,
+	customUpdateResolver: customUpdateMutation,
+	customDeleteResolver: customDeleteMutation`
+			}
+			return customMutations
+		}
+		return ""
+	})
+
+	var mockFields []string
+	raymond.RegisterHelper("mockFields", func(fields, fieldTypes []string) []string {
+		if len(mockFields) == 0 {
+			for idx, field := range fields {
+				var fieldType string
+				if fieldTypes[idx] == "GraphQLID" {
+					fieldType = "(index + 1)"
+				} else if fieldTypes[idx] == "GraphQLInt" {
+					fieldType = "10"
+				} else if fieldTypes[idx] == "GraphQLString" {
+					fieldType = "faker.name.firstName()"
+				} else if fieldTypes[idx] == "GraphQLFloat" {
+					fieldType = "15.54"
+				} else if fieldTypes[idx] == "GraphQLBoolean" {
+					fieldType = "true"
+				} else if fieldTypes[idx] == "GraphQLDateTime" {
+					fieldType = "2022-02-02"
+				}
+
+				mockFields = append(mockFields, fmt.Sprintf(`,
+	%s: %s`, field, fieldType))
+			}
+		}
+		return mockFields
 	})
 }
 
@@ -107,5 +160,3 @@ func GenerateTemplate(source string, ctx map[string]interface{}) (string, error)
 	}
 	return result, nil
 }
-
-
