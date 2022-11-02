@@ -6,6 +6,7 @@ import (
 	"strings"
 
 	pluralize "github.com/gertd/go-pluralize"
+	"github.com/iancoleman/strcase"
 )
 
 type promptContent struct {
@@ -28,6 +29,7 @@ func CreateNewModel() {
 
 	// Making modelName into lowercase and plural.
 	modelName = strings.ToLower(modelName)
+	modelName = strcase.ToLowerCamel(modelName)
 	pluralize := pluralize.NewClient()
 	modelName = pluralize.Plural(modelName)
 
