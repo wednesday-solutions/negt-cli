@@ -7,7 +7,7 @@ import (
 )
 
 func MakeDirectory(path string, dirName string) error {
-	err := os.Mkdir(path + "/" + dirName, 0755)
+	err := os.Mkdir(path+"/"+dirName, 0755)
 	if err != nil {
 		return err
 	}

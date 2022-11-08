@@ -1,19 +1,20 @@
 package modelUtils
 
 import (
-	"strings"
-
 	pluralize "github.com/gertd/go-pluralize"
+	"golang.org/x/text/cases"
+	"golang.org/x/text/language"
 )
 
 func FieldUtils(modelName string, fields, fieldTypes []string, nullFields []bool, customMutation bool) map[string]interface{} {
 
 	pluralize := pluralize.NewClient()
+	caser := cases.Title(language.English)
 
 	singularModel := pluralize.Singular(modelName)
 	pluralModel := pluralize.Plural(modelName)
-	titleSingularModel := strings.Title(singularModel)
-	titlePluralModel := strings.Title(pluralModel)
+	titleSingularModel := caser.String(singularModel)
+	titlePluralModel := caser.String(pluralModel)
 
 	var (
 		graphqlID,

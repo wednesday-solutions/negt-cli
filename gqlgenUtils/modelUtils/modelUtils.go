@@ -52,8 +52,8 @@ func CreateNewModel() {
 	nullField := promptGetYesOrNoInput(nullabilitylPromptContent)
 
 	yesOrNoPromptContent := promptContent{
-		fmt.Sprint("Do you want to add more fields to your model? "),
-		fmt.Sprint("Do you want to add more fields? "),
+		"Do you want to add more fields to your model? ",
+		"Do you want to add more fields? ",
 	}
 
 	var (
@@ -135,12 +135,12 @@ func CreateNewModel() {
 	}
 
 	if customMutation {
-		resolverFiles := []string {
+		resolverFiles := []string{
 			"customCreateMutation.js",
 			"customUpdateMutation.js",
 			"customDeleteMutation.js",
 		}
-		resolverTestFiles := []string {
+		resolverTestFiles := []string{
 			"customCreateMutation.test.js",
 			"customUpdateMutation.test.js",
 			"customDeleteMutation.test.js",
@@ -160,11 +160,6 @@ func CreateNewModel() {
 			fmt.Printf("Error while writing into test custom resolvers, %s", err)
 			os.Exit(1)
 		}
-	}
-
-	if customMutation {
-
-
 	}
 
 	err = WriteMockData(modelName, fields, fieldTypes, nullFields, customMutation)
