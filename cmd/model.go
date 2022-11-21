@@ -1,7 +1,7 @@
 package cmd
 
 import (
-	"github.com/ijasMohamad/cobra-cli/gqlgenUtils/modelUtils"
+	"github.com/ijasMohamad/cliApp/gqlgenUtils/modelUtils"
 	"github.com/spf13/cobra"
 )
 

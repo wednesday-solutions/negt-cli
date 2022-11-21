@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"path/filepath"
 
-	"github.com/ijasMohamad/cobra-cli/gqlgenUtils/fileUtils"
+	"github.com/ijasMohamad/cliApp/gqlgenUtils/fileUtils"
 )
 
 func TestingFunction() {

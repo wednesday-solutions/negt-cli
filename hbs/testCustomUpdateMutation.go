@@ -3,7 +3,7 @@ package hbs
 import (
 	"fmt"
 
-	"github.com/ijasMohamad/cobra-cli/gqlgenUtils/fileUtils"
+	"github.com/ijasMohamad/cliApp/gqlgenUtils/fileUtils"
 )
 
 func CustomUpdateMutationTestSource(modelName, path, file string, ctx map[string]interface{}) error {
@@ -28,14 +28,15 @@ mutation {
 	}
 }
 %s;
-it('should have a mutation to update a new {{singularModel}}', async () => {
-	jest.spyOn(dbClient.models.{{pluralModel}}, 'update');
-	await getResponse(update{{titleSingularModel}}Mutation).then(response => {
-		const result = get(response, 'body.data.update{{titleSingularModel}}');
-		expect(result).toBeTruthy();
-		expect(dbClient.models.{{pluralModel}}.update.mock.calls.length).toBe(1);
-		expect(dbClient.models.{{pluralModel}}.update.mock.calls[0][0]).toEqual({
-			id: {{pluralModel}}Table[0].id.toString(){{testFieldsWithID fields pluralModel}}
+	it('should have a mutation to update a new {{singularModel}}', async () => {
+		jest.spyOn(dbClient.models.{{pluralModel}}, 'update');
+		await getResponse(update{{titleSingularModel}}Mutation).then(response => {
+			const result = get(response, 'body.data.update{{titleSingularModel}}');
+			expect(result).toBeTruthy();
+			expect(dbClient.models.{{pluralModel}}.update.mock.calls.length).toBe(1);
+			expect(dbClient.models.{{pluralModel}}.update.mock.calls[0][0]).toEqual({
+				id: {{pluralModel}}Table[0].id.toString(){{testFieldsWithID fields pluralModel}}
+			});
 		});
 	});
 });

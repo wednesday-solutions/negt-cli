@@ -1,4 +1,4 @@
-module github.com/ijasMohamad/cobra-cli
+module github.com/ijasMohamad/cliApp
 
 go 1.19
 

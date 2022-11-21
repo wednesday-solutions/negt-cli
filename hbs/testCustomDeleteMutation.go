@@ -3,7 +3,7 @@ package hbs
 import (
 	"fmt"
 
-	"github.com/ijasMohamad/cobra-cli/gqlgenUtils/fileUtils"
+	"github.com/ijasMohamad/cliApp/gqlgenUtils/fileUtils"
 )
 
 func CustomDeleteMutationTestSource(modelName, path, file string, ctx map[string]interface{}) error {

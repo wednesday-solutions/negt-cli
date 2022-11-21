@@ -1,6 +1,6 @@
 package hbs
 
-import "github.com/ijasMohamad/cobra-cli/gqlgenUtils/fileUtils"
+import "github.com/ijasMohamad/cliApp/gqlgenUtils/fileUtils"
 
 func ListSource(modelName, path, file string, ctx map[string]interface{})  error {
 	source := `import { createConnection } from 'graphql-sequelize';

@@ -6,7 +6,7 @@ import (
 	"path/filepath"
 	"strings"
 
-	"github.com/ijasMohamad/cobra-cli/gqlgenUtils/fileUtils"
+	"github.com/ijasMohamad/cliApp/gqlgenUtils/fileUtils"
 )
 
 func CreateGqlModelFiles(modelName, dirName string, files, testFiles []string) error {

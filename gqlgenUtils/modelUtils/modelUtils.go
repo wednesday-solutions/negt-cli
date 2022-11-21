@@ -3,6 +3,7 @@ package modelUtils
 import (
 	"fmt"
 	"os"
+	"os/exec"
 	"strings"
 
 	pluralize "github.com/gertd/go-pluralize"
@@ -166,6 +167,11 @@ func CreateNewModel() {
 	if err != nil {
 		fmt.Printf("Error while writing into test custom resolvers, %s", err)
 		os.Exit(1)
+	}
+
+	err = exec.Command("yarn", "lint").Run()
+	if err != nil {
+		fmt.Println("Error while executing script file", err)
 	}
 
 	fmt.Printf("New GraphQL model %s created!", modelName)

@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"path/filepath"
 
-	"github.com/ijasMohamad/cobra-cli/hbs"
+	"github.com/ijasMohamad/cliApp/hbs"
 )
 
 func WriteModelFiles(modelName, dirName string, fields, fieldTypes, files []string, nullFields []bool, customMutation bool) error {

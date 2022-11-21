@@ -3,7 +3,7 @@ package hbs
 import (
 	"fmt"
 
-	"github.com/ijasMohamad/cobra-cli/gqlgenUtils/fileUtils"
+	"github.com/ijasMohamad/cliApp/gqlgenUtils/fileUtils"
 )
 
 

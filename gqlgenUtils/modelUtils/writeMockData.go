@@ -4,8 +4,8 @@ import (
 	"fmt"
 	"path/filepath"
 
-	"github.com/ijasMohamad/cobra-cli/gqlgenUtils/fileUtils"
-	"github.com/ijasMohamad/cobra-cli/hbs"
+	"github.com/ijasMohamad/cliApp/gqlgenUtils/fileUtils"
+	"github.com/ijasMohamad/cliApp/hbs"
 )
 
 func WriteMockData(modelName string, fields, fieldTypes []string, nullFields []bool, customMutation bool) error {

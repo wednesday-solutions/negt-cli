@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"path/filepath"
 
-	"github.com/ijasMohamad/cobra-cli/hbs"
+	"github.com/ijasMohamad/cliApp/hbs"
 )
 
 func WriteTestCustomResolvers(
