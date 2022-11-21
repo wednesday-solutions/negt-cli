@@ -7,7 +7,7 @@ import (
 // gqlgenCmd represents the gqlgen command
 var gqlgenCmd = &cobra.Command{
 	Use:   "gqlgen",
-	Short: "It is for generating graphql models",
+	Short: "Generate graphql models",
 	Long: `It is for generating graphql models.
 	
 If you want to make graphql models and it's resolvers please provide the details for the questions.

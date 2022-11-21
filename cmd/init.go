@@ -2,29 +2,50 @@ package cmd
 
 import (
 	"fmt"
-	"log"
+	"os"
 	"path/filepath"
 
-	"github.com/ijasMohamad/cobra-cli/gqlgenUtils"
+	"github.com/ijasMohamad/cliApp/gqlgenUtils/fileUtils"
 	"github.com/spf13/cobra"
 )
 
 // initCmd represents the init command
 var initCmd = &cobra.Command{
 	Use:   "init",
-	Short: "Creating directory gql/models",
+	Short: "Create directory gql/models",
 	Long:  `This command gqlgen init will create directory for storing gql models`,
 	Run: func(cmd *cobra.Command, args []string) {
 
 		path, _ := filepath.Abs(".")
-		err := gqlgenUtils.MakeDirectory(path, "gql")
+		err := fileUtils.MakeDirectory(path, "gql")
 		if err != nil {
-			log.Fatal(err)
+			if os.IsExist(err) {
+
+				err = fileUtils.MakeDirectory(path+"/gql", "models")
+				if err != nil {
+					if os.IsExist(err) {
+						fmt.Println("Already initialized.")
+					}
+					fmt.Println("try 'negt gqlgen help'.")
+					os.Exit(1)
+				}
+
+				fmt.Println("New directory 'gql/models' created.")
+				return
+			}
+			fmt.Println("try 'negt gqlgen help'.")
+			os.Exit(1)
 		}
-		err = gqlgenUtils.MakeDirectory(path+"/gql", "models")
+
+		err = fileUtils.MakeDirectory(path+"/gql", "models")
 		if err != nil {
-			log.Fatal(err)
+			if os.IsExist(err) {
+				fmt.Println("Already initialized.")
+			}
+			fmt.Println("try 'negt gqlgen help'.")
+			os.Exit(1)
 		}
+
 		fmt.Println("New directory 'gql/models' created.")
 	},
 }
