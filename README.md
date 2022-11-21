@@ -1,6 +1,10 @@
 # CLI-App
 
-For running this application 
+CLI-App can auto generate graphql models and resolvers by your requirements.. <br>
+For example :- If you want to make graphql models and it's resolvers please provide the details for the questions.<br>
+It will auto generate graphql schema and resolvers by itself.
+
+For running this application,
     
     go build negt.go
      
