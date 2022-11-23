@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"path/filepath"
 
-	"github.com/ijasMohamad/cliApp/hbs"
+	"github.com/ijasMohamad/cliApp/negt/hbs"
 )
 
 func WriteModelFiles(modelName, dirName string, fields, fieldTypes, files []string, nullFields []bool, customMutation bool) error {
@@ -24,7 +24,7 @@ func WriteModelFiles(modelName, dirName string, fields, fieldTypes, files []stri
 				return err
 			}
 
-		// Writing into model.js file.
+			// Writing into model.js file.
 		} else if file == "model.js" {
 
 			err := hbs.ModelSource(modelName, path, file, ctx)
@@ -32,7 +32,7 @@ func WriteModelFiles(modelName, dirName string, fields, fieldTypes, files []stri
 				return err
 			}
 
-		// Writing into list.js file.
+			// Writing into list.js file.
 		} else if file == "list.js" {
 
 			err := hbs.ListSource(modelName, path, file, ctx)
@@ -40,7 +40,7 @@ func WriteModelFiles(modelName, dirName string, fields, fieldTypes, files []stri
 				return err
 			}
 
-		// writing into query.js file.
+			// writing into query.js file.
 		} else if file == "query.js" {
 
 			err := hbs.QuerySource(modelName, path, file, ctx)
@@ -48,7 +48,7 @@ func WriteModelFiles(modelName, dirName string, fields, fieldTypes, files []stri
 				return err
 			}
 
-		// writing into mutation.js file.
+			// writing into mutation.js file.
 		} else if file == "mutation.js" {
 
 			err := hbs.MutationSource(modelName, path, file, ctx)

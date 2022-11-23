@@ -3,9 +3,8 @@ package hbs
 import (
 	"fmt"
 
-	"github.com/ijasMohamad/cliApp/gqlgenUtils/fileUtils"
+	"github.com/ijasMohamad/cliApp/negt/gqlgenUtils/fileUtils"
 )
-
 
 func PaginationTestSource(modelName, path, file string, ctx map[string]interface{}) error {
 

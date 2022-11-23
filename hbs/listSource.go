@@ -1,8 +1,8 @@
 package hbs
 
-import "github.com/ijasMohamad/cliApp/gqlgenUtils/fileUtils"
+import "github.com/ijasMohamad/cliApp/negt/gqlgenUtils/fileUtils"
 
-func ListSource(modelName, path, file string, ctx map[string]interface{})  error {
+func ListSource(modelName, path, file string, ctx map[string]interface{}) error {
 	source := `import { createConnection } from 'graphql-sequelize';
 import db from '@database/models';
 import { GraphQL{{titleSingularModel}} } from './model';

@@ -1,8 +1,8 @@
 package hbs
 
-import "github.com/ijasMohamad/cliApp/gqlgenUtils/fileUtils"
+import "github.com/ijasMohamad/cliApp/negt/gqlgenUtils/fileUtils"
 
-func ModelSource(modelName, path, file string, ctx map[string]interface{})  error {
+func ModelSource(modelName, path, file string, ctx map[string]interface{}) error {
 
 	source := `import { getNode }  from '@server/gql/node';
 import { GraphQLID, GraphQLNonNull, GraphQLObjectType{{#if graphqlInt}}, {{graphqlInt}}{{/if}}{{#if graphqlString}}, {{graphqlString}}{{/if}}{{#if graphqlFloat}}, {{graphqlFloat}}{{/if}}{{#if graphqlBoolean}}, {{graphqlBoolean}}{{/if}}{{#if graphqlDateTime}}, {{graphqlDateTime}}{{/if}} } from 'graphql';

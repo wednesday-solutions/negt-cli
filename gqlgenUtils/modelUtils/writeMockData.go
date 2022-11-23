@@ -4,8 +4,8 @@ import (
 	"fmt"
 	"path/filepath"
 
-	"github.com/ijasMohamad/cliApp/gqlgenUtils/fileUtils"
-	"github.com/ijasMohamad/cliApp/hbs"
+	"github.com/ijasMohamad/cliApp/negt/gqlgenUtils/fileUtils"
+	"github.com/ijasMohamad/cliApp/negt/hbs"
 )
 
 func WriteMockData(modelName string, fields, fieldTypes []string, nullFields []bool, customMutation bool) error {
@@ -30,7 +30,7 @@ func WriteMockData(modelName string, fields, fieldTypes []string, nullFields []b
 		return err
 	}
 
-	ctx :=  FieldUtils(modelName, fields, fieldTypes, nullFields, customMutation)
+	ctx := FieldUtils(modelName, fields, fieldTypes, nullFields, customMutation)
 
 	err = hbs.MockDataSource(modelName, path, file, ctx)
 	if err != nil {

@@ -1,9 +1,9 @@
 package hbs
 
-import "github.com/ijasMohamad/cliApp/gqlgenUtils/fileUtils"
+import "github.com/ijasMohamad/cliApp/negt/gqlgenUtils/fileUtils"
 
 func CustomCreateMutationSource(modelName, path, file string, ctx map[string]interface{}) error {
-	
+
 	source := `export const customCreateMutation = (model, args, context) => {
 	return {}
 }

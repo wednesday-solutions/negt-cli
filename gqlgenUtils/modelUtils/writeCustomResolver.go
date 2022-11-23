@@ -4,13 +4,13 @@ import (
 	"fmt"
 	"path/filepath"
 
-	"github.com/ijasMohamad/cliApp/hbs"
+	"github.com/ijasMohamad/cliApp/negt/hbs"
 )
 
 func WriteCustomResolvers(
-	modelName, dirName string, 
-	fields, fieldTypes, resolverFiles []string, 
-	nullFields []bool, 
+	modelName, dirName string,
+	fields, fieldTypes, resolverFiles []string,
+	nullFields []bool,
 	customMutation bool) error {
 
 	path, _ := filepath.Abs(".")

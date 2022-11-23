@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/ijasMohamad/cliApp/gqlgenUtils/fileUtils"
+	"github.com/ijasMohamad/cliApp/negt/gqlgenUtils/fileUtils"
 	"github.com/manifoldco/promptui"
 )
 

@@ -1,4 +1,4 @@
-module github.com/ijasMohamad/cliApp
+module github.com/ijasMohamad/cliApp/negt
 
 go 1.19
 
@@ -18,3 +18,7 @@ require (
 	golang.org/x/sys v0.2.0 // indirect
 	gopkg.in/yaml.v2 v2.4.0 // indirect
 )
+
+retract [v0.1.0, v0.1.1]
+retract v0.1.2
+retract v1.0.0

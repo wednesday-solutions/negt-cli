@@ -4,12 +4,12 @@ import (
 	"fmt"
 	"path/filepath"
 
-	"github.com/ijasMohamad/cliApp/hbs"
+	"github.com/ijasMohamad/cliApp/negt/hbs"
 )
 
 func WriteModelTestFiles(
-	modelName, dirName string, 
-	fields, fieldTypes, testFiles []string, 
+	modelName, dirName string,
+	fields, fieldTypes, testFiles []string,
 	nullFields []bool,
 	customMutation bool) error {
 

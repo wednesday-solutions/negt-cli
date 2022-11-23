@@ -1,8 +1,8 @@
 package hbs
 
-import "github.com/ijasMohamad/cliApp/gqlgenUtils/fileUtils"
+import "github.com/ijasMohamad/cliApp/negt/gqlgenUtils/fileUtils"
 
-func QuerySource(modelName, path, file string, ctx map[string]interface{})  error {
+func QuerySource(modelName, path, file string, ctx map[string]interface{}) error {
 
 	source := `import { GraphQLInt, GraphQLNonNull } from 'graphql';
 import { GraphQL{{titleSingularModel}} } from './model';

@@ -1,9 +1,9 @@
 package hbs
 
-import "github.com/ijasMohamad/cliApp/gqlgenUtils/fileUtils"
+import "github.com/ijasMohamad/cliApp/negt/gqlgenUtils/fileUtils"
 
 func CustomDeleteMutationSource(modelName, path, file string, ctx map[string]interface{}) error {
-	
+
 	source := `export const customDeleteMutation = (model, args, context) => {
 	return {}
 }
