@@ -9,17 +9,17 @@ It will auto generate graphql schema and resolvers by itself.
 
 1. <a href="https://golang.org/doc/tutorial/create-module">Initailise a new go module</a>
 
-    mkdir example
-    cd example
-    go mod init example
+        mkdir example
+        cd example
+        go mod init example
 
 2. Add negt package to your module.
     
-    go get github.com/ijasMohamad/negt@latest
+        go get github.com/ijasMohamad/negt@latest
      
 3. For installing negt,
  
-    go install github.com/ijasMohamad/negt@latest
+        go install github.com/ijasMohamad/negt@latest
 
 This will install the `negt` command to your `$GOPATH/bin` directory.
 
@@ -27,21 +27,21 @@ This will install the `negt` command to your `$GOPATH/bin` directory.
     
 1. For seeing the command options in the terminal,
   
-    negt
+        negt
 
-    negt help
+        negt help
   
-    negt gqlgen
+        negt gqlgen
     
 2. Then for initializing GraphQL models
  
-    negt gqlgen init
+        negt gqlgen init
     
 It will create directories 'gql/models'.
   
 3. Then for creating new GraphQL model 
   
-    negt gqlgen model
+        negt gqlgen model
     
 You will get some questions, please provide the details for the questions.<br>
 It will create GraphQL Model files in "gql/models/<modelName>".
