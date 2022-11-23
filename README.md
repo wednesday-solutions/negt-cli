@@ -1,10 +1,10 @@
 # negt
 
+<br>
 CLI-App can auto generate graphql models and resolvers by your requirements.. <br>
 For example :- If you want to make graphql models and it's resolvers please provide the details for the questions.<br>
 It will auto generate graphql schema and resolvers by itself.
 
-<br>
 <h2><b>Quick Start</b></h2>
 
 1. <a href="https://golang.org/doc/tutorial/create-module">Initailise a new go module</a>
@@ -23,7 +23,6 @@ It will auto generate graphql schema and resolvers by itself.
 
 This will install the `negt` command to your `$GOPATH/bin` directory.
 
-<br>
 <h2><b>Usage</b></h2>
     
 1. For seeing the command options in the terminal,
