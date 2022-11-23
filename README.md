@@ -37,14 +37,16 @@ This will install the `negt` command to your `$GOPATH/bin` directory.
 
         negt gqlgen init
 
-It will create directories 'gql/models'.
+If you are using Node-Express-GraphQL-Template, it will create directories `server/gql/models` otherwise `gql/models`.
 
 3.  Then for creating new GraphQL model
 
         negt gqlgen model
 
 You will get some questions, please provide the details for the questions.<br>
-It will create GraphQL Model files in `gql/models/<modelName>`
+If you are using Node-Express-GraphQL-Template, then select `server/gql/models` otherwise `gql/models`.<br>
+It will create GraphQL Model files in `gql/models/<modelName>`.<br>
+Or if you want to make in different directory, select `Others`.
 
     Files :-
         1. index.js                 - It contains all relations of the gql model.
