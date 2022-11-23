@@ -1,6 +1,6 @@
 package main
 
-import "github.com/ijasMohamad/cliApp/negt/cmd"
+import "github.com/ijasMohamad/negt/cmd"
 
 func main() {
 	cmd.Execute()

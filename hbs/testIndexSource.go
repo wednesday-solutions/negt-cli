@@ -1,7 +1,7 @@
 package hbs
 
 import (
-	"github.com/ijasMohamad/cliApp/negt/gqlgenUtils/fileUtils"
+	"github.com/ijasMohamad/negt/gqlgenUtils/fileUtils"
 )
 
 func IndexTestSource(modelName, path, file string, ctx map[string]interface{}) error {

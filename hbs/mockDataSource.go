@@ -1,6 +1,6 @@
 package hbs
 
-import "github.com/ijasMohamad/cliApp/negt/gqlgenUtils/fileUtils"
+import "github.com/ijasMohamad/negt/gqlgenUtils/fileUtils"
 
 func MockDataSource(modelName, path, file string, ctx map[string]interface{}) error {
 

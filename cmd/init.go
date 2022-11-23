@@ -5,7 +5,7 @@ import (
 	"os"
 	"path/filepath"
 
-	"github.com/ijasMohamad/cliApp/negt/gqlgenUtils/fileUtils"
+	"github.com/ijasMohamad/negt/gqlgenUtils/fileUtils"
 	"github.com/spf13/cobra"
 )
 

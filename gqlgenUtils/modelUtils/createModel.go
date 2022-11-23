@@ -6,7 +6,7 @@ import (
 	"path/filepath"
 	"strings"
 
-	"github.com/ijasMohamad/cliApp/negt/gqlgenUtils/fileUtils"
+	"github.com/ijasMohamad/negt/gqlgenUtils/fileUtils"
 )
 
 func CreateGqlModelFiles(modelName, dirName string, files, testFiles []string) error {

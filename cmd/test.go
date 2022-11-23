@@ -3,7 +3,7 @@ package cmd
 import (
 	"fmt"
 
-	"github.com/ijasMohamad/cliApp/negt/hbs"
+	"github.com/ijasMohamad/negt/hbs"
 	"github.com/spf13/cobra"
 )
 

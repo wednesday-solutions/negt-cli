@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"path/filepath"
 
-	"github.com/ijasMohamad/cliApp/negt/hbs"
+	"github.com/ijasMohamad/negt/hbs"
 )
 
 func WriteModelTestFiles(

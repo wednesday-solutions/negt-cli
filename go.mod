@@ -1,4 +1,4 @@
-module github.com/ijasMohamad/cliApp/negt
+module github.com/ijasMohamad/negt
 
 go 1.19
 
@@ -20,5 +20,7 @@ require (
 )
 
 retract [v0.1.0, v0.1.1]
+
 retract v0.1.2
-retract v1.0.0
+
+retract [v1.0.0, v1.0.1]

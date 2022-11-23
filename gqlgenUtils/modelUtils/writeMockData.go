@@ -4,8 +4,8 @@ import (
 	"fmt"
 	"path/filepath"
 
-	"github.com/ijasMohamad/cliApp/negt/gqlgenUtils/fileUtils"
-	"github.com/ijasMohamad/cliApp/negt/hbs"
+	"github.com/ijasMohamad/negt/gqlgenUtils/fileUtils"
+	"github.com/ijasMohamad/negt/hbs"
 )
 
 func WriteMockData(modelName string, fields, fieldTypes []string, nullFields []bool, customMutation bool) error {
