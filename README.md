@@ -31,7 +31,7 @@ Then for creating new GraphQL model
     negt gqlgen model
     
 You will get some questions, please provide the details for the questions.<br>
-It will create GraphQL Model files in gql/models.
+It will create GraphQL Model files in "gql/models/<modelName>".
 
     Files :-
         1. index.js :- It contains all relations of the gql model.
@@ -44,6 +44,7 @@ It will create GraphQL Model files in gql/models.
         7. customUpdateMutation.js :- It contains the custom update mutation object.
         8. customDeleteMutation.js :- It contains the custom delete mutation object.
     
+It will create its test files also in "gql/models/<modelName>/tests",
     
     Test files :-
         1. index.test.js :- It contains the test cases of index.js file. It checks the importing is working properly.
