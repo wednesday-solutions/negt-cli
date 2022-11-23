@@ -9,7 +9,7 @@ import (
 	"github.com/wednesday-solutions/negt/gqlgenUtils/fileUtils"
 )
 
-func promptGetInput(pc promptContent) string {
+func PromptGetInput(pc PromptContent) string {
 	validate := func(input string) error {
 		if len(input) <= 1 {
 			return errors.New(pc.errorMsg)
@@ -35,7 +35,7 @@ func promptGetInput(pc promptContent) string {
 	return result
 }
 
-func PromptGetYesOrNoInput(pc promptContent) bool {
+func PromptGetYesOrNoInput(pc PromptContent) bool {
 
 	items := []string{"Yes", "No"}
 	var index = -1
@@ -58,7 +58,7 @@ func PromptGetYesOrNoInput(pc promptContent) bool {
 	}
 }
 
-func promptGetSelect(pc promptContent) string {
+func PromptGetSelect(pc PromptContent) string {
 	items := []string{"ID", "Int", "Float", "String", "Boolean", "DateTime"}
 	index := -1
 	var result string
@@ -83,7 +83,7 @@ func promptGetSelect(pc promptContent) string {
 	return result
 }
 
-func promptGetSelectPath(pc promptContent) string {
+func PromptGetSelectPath(pc PromptContent) string {
 	items := []string{"gql/models", "server/gql/models"}
 	index := -1
 	var result string

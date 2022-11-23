@@ -1,4 +1,4 @@
-# negt
+# github.com/wednesday-solutions/negt
 
 <br>
 CLI-App can auto generate graphql models and resolvers by your requirements.. <br>

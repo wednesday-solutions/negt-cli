@@ -10,23 +10,23 @@ import (
 	"github.com/iancoleman/strcase"
 )
 
-type promptContent struct {
+type PromptContent struct {
 	errorMsg string
 	label    string
 }
 
 func CreateNewModel() {
-	dirNamePromptContent := promptContent{
+	dirNamePromptContent := PromptContent{
 		"In which directory you want to create GraphQL model? ",
 		"Select directory? (If you are using Node-Express-GraphQL-Template, select 'server/gql/models') ",
 	}
-	dirName := promptGetSelectPath(dirNamePromptContent)
+	dirName := PromptGetSelectPath(dirNamePromptContent)
 
-	modelNamePromptContent := promptContent{
+	modelNamePromptContent := PromptContent{
 		"What is the name of your GraphQL Model? ",
 		"Enter GraphQL Model name? ",
 	}
-	modelName := promptGetInput(modelNamePromptContent)
+	modelName := PromptGetInput(modelNamePromptContent)
 
 	// Making modelName into lowercase and plural.
 	modelName = strings.ToLower(modelName)
@@ -34,25 +34,25 @@ func CreateNewModel() {
 	pluralize := pluralize.NewClient()
 	modelName = pluralize.Plural(modelName)
 
-	filedPromptContent := promptContent{
+	filedPromptContent := PromptContent{
 		fmt.Sprintf("Which is the field would you like to add to %s model? ", modelName),
 		fmt.Sprintf("Please provide field for your model %s? ", modelName),
 	}
-	field := promptGetInput(filedPromptContent)
+	field := PromptGetInput(filedPromptContent)
 
-	typePromptContent := promptContent{
+	typePromptContent := PromptContent{
 		fmt.Sprintf("Please provide the type for %s ", field),
 		fmt.Sprintf("What is the type of the field %s? ", field),
 	}
-	fieldType := promptGetSelect(typePromptContent)
+	fieldType := PromptGetSelect(typePromptContent)
 
-	nullabilitylPromptContent := promptContent{
+	nullabilitylPromptContent := PromptContent{
 		fmt.Sprintf("If the %s field is Non-null, then select 'Yes', else select 'No'? ", field),
 		fmt.Sprintf("Do you want to make this %s field as Non null? ", field),
 	}
 	nullField := PromptGetYesOrNoInput(nullabilitylPromptContent)
 
-	yesOrNoPromptContent := promptContent{
+	yesOrNoPromptContent := PromptContent{
 		"Do you want to add more fields to your model? ",
 		"Do you want to add more fields? ",
 	}
@@ -71,19 +71,19 @@ func CreateNewModel() {
 	for yesOrNo {
 		yesOrNo = PromptGetYesOrNoInput(yesOrNoPromptContent)
 		if yesOrNo {
-			filedPromptContent := promptContent{
+			filedPromptContent := PromptContent{
 				fmt.Sprintf("Which is the another field would you like to add to %s model? ", modelName),
 				fmt.Sprintf("Please provide another field for model %s? ", modelName),
 			}
-			field := promptGetInput(filedPromptContent)
+			field := PromptGetInput(filedPromptContent)
 
-			typePromptContent := promptContent{
+			typePromptContent := PromptContent{
 				fmt.Sprintf("Please provide the type for %s ", field),
 				fmt.Sprintf("What is the type of the field %s? ", field),
 			}
-			fieldType := promptGetSelect(typePromptContent)
+			fieldType := PromptGetSelect(typePromptContent)
 
-			nullabilitylPromptContent := promptContent{
+			nullabilitylPromptContent := PromptContent{
 				fmt.Sprintf("If the %s field is Non-null, then select 'Yes', else select 'No'? ", field),
 				fmt.Sprintf("Do you want to make this %s field as Non null? ", field),
 			}
@@ -95,7 +95,7 @@ func CreateNewModel() {
 		}
 	}
 
-	customMutationPromptContent := promptContent{
+	customMutationPromptContent := PromptContent{
 		fmt.Sprintf("Do you want to make custom resolvers for your %s model? ", modelName),
 		fmt.Sprintf("Do you need custom resolvers for your new %s model? ", modelName),
 	}
