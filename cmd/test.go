@@ -3,8 +3,8 @@ package cmd
 import (
 	"fmt"
 
-	"github.com/ijasMohamad/negt/hbs"
 	"github.com/spf13/cobra"
+	"github.com/wednesday-solutions/negt/hbs"
 )
 
 // testCmd represents the test command

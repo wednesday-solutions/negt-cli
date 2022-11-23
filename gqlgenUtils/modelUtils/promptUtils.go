@@ -5,8 +5,8 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/ijasMohamad/negt/gqlgenUtils/fileUtils"
 	"github.com/manifoldco/promptui"
+	"github.com/wednesday-solutions/negt/gqlgenUtils/fileUtils"
 )
 
 func promptGetInput(pc promptContent) string {

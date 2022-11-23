@@ -3,8 +3,8 @@ package modelUtils
 import (
 	"fmt"
 
-	"github.com/ijasMohamad/negt/gqlgenUtils/fileUtils"
-	"github.com/ijasMohamad/negt/hbs"
+	"github.com/wednesday-solutions/negt/gqlgenUtils/fileUtils"
+	"github.com/wednesday-solutions/negt/hbs"
 )
 
 func WriteMockData(modelName, dirName string, fields, fieldTypes []string, nullFields []bool, customMutation bool) error {
@@ -19,7 +19,7 @@ func WriteMockData(modelName, dirName string, fields, fieldTypes []string, nullF
 		path = fmt.Sprintf("%s/%s", path, "server")
 		if !fileUtils.IsExists(path, dirName1) {
 			_ = fileUtils.MakeDirectory(path, dirName1)
-		}	
+		}
 		path = fmt.Sprintf("%s/%s", path, dirName1)
 		if !fileUtils.IsExists(path, dirName2) {
 			_ = fileUtils.MakeDirectory(path, dirName2)
@@ -31,13 +31,13 @@ func WriteMockData(modelName, dirName string, fields, fieldTypes []string, nullF
 			_ = fileUtils.MakeDirectory(path, dirName1)
 		}
 		path = fmt.Sprintf("%s/%s", path, dirName1)
-	
+
 		if !fileUtils.DirExists(fmt.Sprintf("%s/%s", dirName1, dirName2)) {
 			_ = fileUtils.MakeDirectory(path, dirName2)
 		}
-		path = fmt.Sprintf("%s/%s", path, dirName2)	
+		path = fmt.Sprintf("%s/%s", path, dirName2)
 	}
-	
+
 	err := fileUtils.MakeFile(path, file)
 	if err != nil {
 		return err

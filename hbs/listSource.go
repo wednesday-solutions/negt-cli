@@ -1,6 +1,6 @@
 package hbs
 
-import "github.com/ijasMohamad/negt/gqlgenUtils/fileUtils"
+import "github.com/wednesday-solutions/negt/gqlgenUtils/fileUtils"
 
 func ListSource(modelName, path, file string, ctx map[string]interface{}) error {
 	source := `import { createConnection } from 'graphql-sequelize';

@@ -5,15 +5,15 @@ import (
 	"os"
 	"path/filepath"
 
-	"github.com/ijasMohamad/negt/gqlgenUtils/fileUtils"
 	"github.com/spf13/cobra"
+	"github.com/wednesday-solutions/negt/gqlgenUtils/fileUtils"
 )
 
 // initCmd represents the init command
 var initCmd = &cobra.Command{
 	Use:   "init",
 	Short: "Create directory gql/models",
-	Long:  `This command gqlgen init will create directory for storing gql models
+	Long: `This command gqlgen init will create directory for storing gql models
 	
 If you are using Node-Express-GraphQL-Template, don't need this command.
 It will create gql directory in the root directory and the models directory inside of gql directory.
@@ -64,7 +64,7 @@ It will create gql directory in the root directory and the models directory insi
 
 		if flag {
 			fmt.Println("New directory 'server/gql/models' created.")
-			
+
 		} else {
 			fmt.Println("New directory 'gql/models' created.")
 		}

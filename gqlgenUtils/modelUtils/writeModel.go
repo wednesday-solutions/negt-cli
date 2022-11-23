@@ -3,8 +3,8 @@ package modelUtils
 import (
 	"fmt"
 
-	"github.com/ijasMohamad/negt/gqlgenUtils/fileUtils"
-	"github.com/ijasMohamad/negt/hbs"
+	"github.com/wednesday-solutions/negt/gqlgenUtils/fileUtils"
+	"github.com/wednesday-solutions/negt/hbs"
 )
 
 func WriteModelFiles(modelName, dirName string, fields, fieldTypes, files []string, nullFields []bool, customMutation bool) error {

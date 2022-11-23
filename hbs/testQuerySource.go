@@ -3,7 +3,7 @@ package hbs
 import (
 	"fmt"
 
-	"github.com/ijasMohamad/negt/gqlgenUtils/fileUtils"
+	"github.com/wednesday-solutions/negt/gqlgenUtils/fileUtils"
 )
 
 func QueryTestSource(modelName, path, file string, ctx map[string]interface{}) error {

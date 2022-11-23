@@ -7,19 +7,19 @@ It will auto generate graphql schema and resolvers by itself.
 
 <h2><b>Quick Start</b></h2>
 
-1. <a href="https://golang.org/doc/tutorial/create-module">Initailise a new go module</a>
+1.  <a href="https://golang.org/doc/tutorial/create-module">Initailise a new go module</a>
 
         mkdir example
         cd example
         go mod init example
 
-2. Add negt package to your module.
-    
-        go get github.com/ijasMohamad/negt@latest
-     
-3. For installing negt,
- 
-        go install github.com/ijasMohamad/negt@latest
+2.  Add negt package to your module.
+
+        go get github.com/wednesday-solutions/negt@latest
+
+3.  For installing negt,
+
+        go install github.com/wednesday-solutions/negt@latest
 
 This will install the `negt` command to your `$GOPATH/bin` directory.
 
@@ -30,19 +30,19 @@ This will install the `negt` command to your `$GOPATH/bin` directory.
         negt
 
         negt help
-  
+
         negt gqlgen
-    
-2. Then for initializing GraphQL models
- 
+
+2.  Then for initializing GraphQL models
+
         negt gqlgen init
-    
+
 It will create directories 'gql/models'.
-  
-3. Then for creating new GraphQL model 
-  
+
+3.  Then for creating new GraphQL model
+
         negt gqlgen model
-    
+
 You will get some questions, please provide the details for the questions.<br>
 It will create GraphQL Model files in `gql/models/<modelName>`
 
@@ -56,9 +56,9 @@ It will create GraphQL Model files in `gql/models/<modelName>`
            If you said yes, then it will create 3 custom resolver files. This file contains the custom create mutation object.
         7. customUpdateMutation.js  - It contains the custom update mutation object.
         8. customDeleteMutation.js  - It contains the custom delete mutation object.
-    
+
 It will create its test files also in `gql/models/<modelName>/tests`
-    
+
     Test files :-
         1. index.test.js                - It contains the test cases of index.js file. It checks the importing is working properly.
         2. models.test.js               - It contains the test case for type of the GraphQL model.
@@ -72,6 +72,5 @@ It will create its test files also in `gql/models/<modelName>/tests`
         9. customDeleteMutation.test.js - It contains the test case of custom delete mutation resolver.
 
 Also, it will create mockData file for the model in `utils/testUtils` directory.
-
 
 <h3>Wednesday Solutions &copy;</h3>

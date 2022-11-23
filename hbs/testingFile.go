@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"path/filepath"
 
-	"github.com/ijasMohamad/negt/gqlgenUtils/fileUtils"
+	"github.com/wednesday-solutions/negt/gqlgenUtils/fileUtils"
 )
 
 func TestingFunction() {

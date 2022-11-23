@@ -1,6 +1,6 @@
 package hbs
 
-import "github.com/ijasMohamad/negt/gqlgenUtils/fileUtils"
+import "github.com/wednesday-solutions/negt/gqlgenUtils/fileUtils"
 
 func MutationSource(modelName, path, file string, ctx map[string]interface{}) error {
 	source := `import { GraphQLID, GraphQLNonNull{{#if graphqlInt}}, {{graphqlInt}}{{/if}}{{#if graphqlString}}, {{graphqlString}}{{/if}}{{#if graphqlFloat}}, {{graphqlFloat}}{{/if}}{{#if graphqlBoolean}}, {{graphqlBoolean}}{{/if}}{{#if graphqlDateTime}}, {{graphqlDateTime}}{{/if}} } from 'graphql';

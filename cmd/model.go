@@ -1,8 +1,8 @@
 package cmd
 
 import (
-	"github.com/ijasMohamad/negt/gqlgenUtils/modelUtils"
 	"github.com/spf13/cobra"
+	"github.com/wednesday-solutions/negt/gqlgenUtils/modelUtils"
 )
 
 // modelCmd represents the model command

@@ -5,14 +5,14 @@ import (
 	"os"
 	"strings"
 
-	"github.com/ijasMohamad/negt/gqlgenUtils/fileUtils"
+	"github.com/wednesday-solutions/negt/gqlgenUtils/fileUtils"
 )
 
 func CreateGqlModelFiles(modelName, dirName string, files, testFiles []string) error {
 
 	path := fileUtils.FindDirectory(dirName)
 
-	if dirName != "gql/models" && dirName != "server/gql/models"{
+	if dirName != "gql/models" && dirName != "server/gql/models" {
 
 		directories := strings.Split(dirName, "/")
 		if len(directories) > 0 {
