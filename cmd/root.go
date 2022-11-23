@@ -18,6 +18,8 @@ It can auto generate graphql models and resolvers by your requirements.. For exa
 If you want to make graphql models and it's resolvers please provide the details for the questions.
 It will auto generate graphql schema and resolvers by itself.
 
+If you are using Node-Express-GraphQL-Template, select "server/gql/models" directory for creating GraphQL Models.
+
 Wednesday Solutions`,
 	Run: func(cmd *cobra.Command, args []string) {
 		fmt.Println(`
@@ -26,6 +28,8 @@ NodeJS-Express-GraphQL-Template.
 It can auto generate graphql models and resolvers by your requirements.. For example:
 If you want to make graphql models and it's resolvers please provide the details for the questions.
 It will auto generate graphql schema and resolvers by itself.
+
+If you are using Node-Express-GraphQL-Template, select "server/gql/models" directory for creating GraphQL Models.
 
 Wednesday Solutions`)
 	},

@@ -6,6 +6,14 @@ import (
 	"path/filepath"
 )
 
+func FindDirectory(dirName string) string {
+	path, _ := filepath.Abs(".")
+	if dirName == "server/gql/models" {
+		path, _ = filepath.Abs("..")
+	}
+	return path
+}
+
 func MakeDirectory(path string, dirName string) error {
 	err := os.Mkdir(path+"/"+dirName, 0755)
 	if err != nil {
@@ -24,6 +32,16 @@ func MakeFile(path string, fileName string) error {
 
 func DirExists(dirName string) bool {
 	path, _ := filepath.Abs(".")
+
+	if dirName == "server/gql/models" {
+		path, _ = filepath.Abs("..")
+	}
+	_, err := os.Stat(fmt.Sprintf("%s/%s", path, dirName))
+
+	return err == nil
+}
+
+func IsExists(path, dirName string) bool {
 	_, err := os.Stat(fmt.Sprintf("%s/%s", path, dirName))
 	return err == nil
 }

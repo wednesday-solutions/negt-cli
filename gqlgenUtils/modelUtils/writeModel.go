@@ -2,14 +2,15 @@ package modelUtils
 
 import (
 	"fmt"
-	"path/filepath"
 
+	"github.com/ijasMohamad/negt/gqlgenUtils/fileUtils"
 	"github.com/ijasMohamad/negt/hbs"
 )
 
 func WriteModelFiles(modelName, dirName string, fields, fieldTypes, files []string, nullFields []bool, customMutation bool) error {
 
-	path, _ := filepath.Abs(".")
+	path := fileUtils.FindDirectory(dirName)
+
 	path = fmt.Sprintf("%s/%s/%s", path, dirName, modelName)
 
 	ctx := FieldUtils(modelName, fields, fieldTypes, nullFields, customMutation)

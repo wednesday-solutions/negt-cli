@@ -18,7 +18,7 @@ type promptContent struct {
 func CreateNewModel() {
 	dirNamePromptContent := promptContent{
 		"In which directory you want to create GraphQL model? ",
-		"Select directory? ",
+		"Select directory? (If you are using Node-Express-GraphQL-Template, select 'server/gql/models') ",
 	}
 	dirName := promptGetSelectPath(dirNamePromptContent)
 
@@ -50,7 +50,7 @@ func CreateNewModel() {
 		fmt.Sprintf("If the %s field is Non-null, then select 'Yes', else select 'No'? ", field),
 		fmt.Sprintf("Do you want to make this %s field as Non null? ", field),
 	}
-	nullField := promptGetYesOrNoInput(nullabilitylPromptContent)
+	nullField := PromptGetYesOrNoInput(nullabilitylPromptContent)
 
 	yesOrNoPromptContent := promptContent{
 		"Do you want to add more fields to your model? ",
@@ -69,7 +69,7 @@ func CreateNewModel() {
 	nullFields = append(nullFields, nullField)
 
 	for yesOrNo {
-		yesOrNo = promptGetYesOrNoInput(yesOrNoPromptContent)
+		yesOrNo = PromptGetYesOrNoInput(yesOrNoPromptContent)
 		if yesOrNo {
 			filedPromptContent := promptContent{
 				fmt.Sprintf("Which is the another field would you like to add to %s model? ", modelName),
@@ -87,7 +87,7 @@ func CreateNewModel() {
 				fmt.Sprintf("If the %s field is Non-null, then select 'Yes', else select 'No'? ", field),
 				fmt.Sprintf("Do you want to make this %s field as Non null? ", field),
 			}
-			nullField := promptGetYesOrNoInput(nullabilitylPromptContent)
+			nullField := PromptGetYesOrNoInput(nullabilitylPromptContent)
 
 			fields = append(fields, field)
 			fieldTypes = append(fieldTypes, fieldType)
@@ -99,7 +99,7 @@ func CreateNewModel() {
 		fmt.Sprintf("Do you want to make custom resolvers for your %s model? ", modelName),
 		fmt.Sprintf("Do you need custom resolvers for your new %s model? ", modelName),
 	}
-	customMutation := promptGetYesOrNoInput(customMutationPromptContent)
+	customMutation := PromptGetYesOrNoInput(customMutationPromptContent)
 
 	files := []string{
 		"index.js",
@@ -163,7 +163,7 @@ func CreateNewModel() {
 		}
 	}
 
-	err = WriteMockData(modelName, fields, fieldTypes, nullFields, customMutation)
+	err = WriteMockData(modelName, dirName, fields, fieldTypes, nullFields, customMutation)
 	if err != nil {
 		fmt.Printf("Error while writing into test custom resolvers, %s", err)
 		os.Exit(1)

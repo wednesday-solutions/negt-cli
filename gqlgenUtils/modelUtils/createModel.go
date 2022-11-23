@@ -3,7 +3,6 @@ package modelUtils
 import (
 	"fmt"
 	"os"
-	"path/filepath"
 	"strings"
 
 	"github.com/ijasMohamad/negt/gqlgenUtils/fileUtils"
@@ -11,8 +10,9 @@ import (
 
 func CreateGqlModelFiles(modelName, dirName string, files, testFiles []string) error {
 
-	path, _ := filepath.Abs(".")
-	if dirName != "gql/models" {
+	path := fileUtils.FindDirectory(dirName)
+
+	if dirName != "gql/models" && dirName != "server/gql/models"{
 
 		directories := strings.Split(dirName, "/")
 		if len(directories) > 0 {
@@ -68,7 +68,8 @@ func CreateGqlModelFiles(modelName, dirName string, files, testFiles []string) e
 
 func CreateCustomResolverFiles(modelName, dirName string, resolverFiles, resolverTestFiles []string) error {
 
-	path, _ := filepath.Abs(".")
+	path := fileUtils.FindDirectory(dirName)
+
 	path = fmt.Sprintf("%s/%s/%s", path, dirName, modelName)
 
 	for _, file := range resolverFiles {

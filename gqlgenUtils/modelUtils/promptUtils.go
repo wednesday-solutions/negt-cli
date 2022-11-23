@@ -35,7 +35,7 @@ func promptGetInput(pc promptContent) string {
 	return result
 }
 
-func promptGetYesOrNoInput(pc promptContent) bool {
+func PromptGetYesOrNoInput(pc promptContent) bool {
 
 	items := []string{"Yes", "No"}
 	var index = -1
@@ -84,7 +84,7 @@ func promptGetSelect(pc promptContent) string {
 }
 
 func promptGetSelectPath(pc promptContent) string {
-	items := []string{"gql/models"}
+	items := []string{"gql/models", "server/gql/models"}
 	index := -1
 	var result string
 	var err error
@@ -104,6 +104,12 @@ func promptGetSelectPath(pc promptContent) string {
 		status := fileUtils.DirExists(result)
 		if !status {
 			fmt.Println("gql/models directory is not exists, do 'negt gqlgen init'")
+			os.Exit(1)
+		}
+	} else if result == "server/gql/models" {
+		status := fileUtils.DirExists(result)
+		if !status {
+			fmt.Println("server/gql/models directory is not exists, do 'negt gqlgen init'")
 			os.Exit(1)
 		}
 	}
