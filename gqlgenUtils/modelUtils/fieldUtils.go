@@ -52,7 +52,7 @@ func FieldUtils(modelName string, fields, fieldTypes []string, nullFields []bool
 			fieldTypes[idx] = graphqlDateTime
 
 		} else {
-			// From here we wan't to make relation of two graphql models
+			// From here we can make relation of two graphql models
 			graphqlCustom = string(fieldType[idx])
 		}
 	}

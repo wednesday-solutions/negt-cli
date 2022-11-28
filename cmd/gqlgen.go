@@ -4,20 +4,27 @@ import (
 	"github.com/spf13/cobra"
 )
 
-// gqlgenCmd represents the gqlgen command
-var gqlgenCmd = &cobra.Command{
-	Use:   "gqlgen",
-	Short: "Generate graphql models",
-	Long: `It is for generating graphql models.
-	
-If you want to make graphql models and it's resolvers please provide the details for the questions.
-It will auto generate graphql schema and resolvers by itself.
+var gqlgenCmd = GqlgenCmd()
 
-If you are using Node-Express-GraphQL-Template, select "server/gql/models" directory for creating GraphQL Models.
-`,
+// gqlgenCmd represents the gqlgen command
+func GqlgenCmd() *cobra.Command {
+
+	var gqlgenCmd = &cobra.Command{
+		Use:   "gqlgen",
+		Short: "Generate graphql models",
+		Long: `It is for generating graphql models.
+		
+	If you want to make graphql models and it's resolvers please provide the details for the questions.
+	It will auto generate graphql schema and resolvers by itself.
+	
+	If you are using Node-Express-GraphQL-Template, select "server/gql/models" directory for creating GraphQL Models.
+	`,
+	}
+	return gqlgenCmd
 }
 
 func init() {
+
 	rootCmd.AddCommand(gqlgenCmd)
 
 	// negt gqlgen only give suggestions

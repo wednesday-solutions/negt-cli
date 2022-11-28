@@ -6,37 +6,37 @@ import (
 	"github.com/manifoldco/promptui"
 )
 
-type promptContent struct{
-	errorMsg string
-	label string
+type PromptContent struct{
+	ErrorMsg string
+	Label string
 }
 
 func InitUtils() bool {
 
-	negtPromptContent := promptContent{
+	negtPromptContent := PromptContent{
 		"Are you using Node-Express-GraphQL-Template of Wednesday-solutions? ",
 		"Are you using Node-Express-GraphQL-Template? ",
 	}
 
-	flag := promptGetYesOrNoInput(negtPromptContent)
+	flag := PromptGetYesOrNoInput(negtPromptContent)
 	return flag
 }
 
 
-func promptGetYesOrNoInput(pc promptContent) bool {
+func PromptGetYesOrNoInput(pc PromptContent) bool {
 
 	items := []string{"Yes", "No"}
 	var index = -1
 	var result string
 	var err error
 	prompt := promptui.Select{
-		Label: pc.label,
+		Label: pc.Label,
 		Items: items,
 	}
 	for index < 0 {
 		index, result, err = prompt.Run()
 		if err != nil {
-			fmt.Println(pc.errorMsg)
+			fmt.Println(pc.ErrorMsg)
 		}
 	}
 	if result == "Yes" {

@@ -2,8 +2,6 @@ package modelUtils
 
 import (
 	"fmt"
-	"os"
-	"strings"
 
 	"github.com/wednesday-solutions/negt/gqlgenUtils/fileUtils"
 )
@@ -11,35 +9,11 @@ import (
 func CreateGqlModelFiles(modelName, dirName string, files, testFiles []string) error {
 
 	path := fileUtils.FindDirectory(dirName)
-
-	if dirName != "gql/models" && dirName != "server/gql/models" {
-
-		directories := strings.Split(dirName, "/")
-		if len(directories) > 0 {
-
-			for _, dir := range directories {
-
-				_, err := os.Stat(fmt.Sprintf("%s/%s", path, dir))
-				if os.IsNotExist(err) {
-					fileUtils.MakeDirectory(path, dir)
-				}
-				path = fmt.Sprintf("%s/%s", path, dir)
-			}
-
-		} else {
-			_, err := os.Stat(fmt.Sprintf("%s/%s", path, directories[0]))
-			if os.IsNotExist(err) {
-				fileUtils.MakeDirectory(path, dirName)
-			}
-			path = fmt.Sprintf("%s/%s", path, directories[0])
-		}
-
-	} else {
-		path = fmt.Sprintf("%s/%s", path, dirName)
-	}
+	path = fmt.Sprintf("%s/%s", path, dirName)
 
 	err := fileUtils.MakeDirectory(path, modelName)
 	if err != nil {
+		fmt.Println("Error in makeDir-createGql: ", err)
 		return err
 	}
 
@@ -47,6 +21,7 @@ func CreateGqlModelFiles(modelName, dirName string, files, testFiles []string) e
 	for _, file := range files {
 		err := fileUtils.MakeFile(path, file)
 		if err != nil {
+			fmt.Println("Error in makeFile-createGql")
 			return err
 		}
 	}

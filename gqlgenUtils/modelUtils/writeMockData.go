@@ -8,35 +8,22 @@ import (
 )
 
 func WriteMockData(modelName, dirName string, fields, fieldTypes []string, nullFields []bool, customMutation bool) error {
-
-	path := fileUtils.FindDirectory(dirName)
-
-	dirName1 := "utils"
-	dirName2 := "testUtils"
+	UTILS := "utils"
+	TESTUTILS := "testUtils"
 	file := fmt.Sprintf("%sMockData.js", modelName)
 
+	path := fileUtils.FindDirectory(dirName)
 	if dirName == "server/gql/models" {
 		path = fmt.Sprintf("%s/%s", path, "server")
-		if !fileUtils.IsExists(path, dirName1) {
-			_ = fileUtils.MakeDirectory(path, dirName1)
-		}
-		path = fmt.Sprintf("%s/%s", path, dirName1)
-		if !fileUtils.IsExists(path, dirName2) {
-			_ = fileUtils.MakeDirectory(path, dirName2)
-		}
-		path = fmt.Sprintf("%s/%s", path, dirName2)
-
-	} else {
-		if !fileUtils.DirExists(dirName1) {
-			_ = fileUtils.MakeDirectory(path, dirName1)
-		}
-		path = fmt.Sprintf("%s/%s", path, dirName1)
-
-		if !fileUtils.DirExists(fmt.Sprintf("%s/%s", dirName1, dirName2)) {
-			_ = fileUtils.MakeDirectory(path, dirName2)
-		}
-		path = fmt.Sprintf("%s/%s", path, dirName2)
 	}
+	if !fileUtils.IsExists(path, UTILS) {
+		_ = fileUtils.MakeDirectory(path, UTILS)
+	}
+	path = fmt.Sprintf("%s/%s", path, UTILS)
+	if !fileUtils.IsExists(path, TESTUTILS) {
+		_ = fileUtils.MakeDirectory(path, TESTUTILS)
+	}
+	path = fmt.Sprintf("%s/%s", path, TESTUTILS)
 
 	err := fileUtils.MakeFile(path, file)
 	if err != nil {
@@ -49,6 +36,5 @@ func WriteMockData(modelName, dirName string, fields, fieldTypes []string, nullF
 	if err != nil {
 		return err
 	}
-
 	return nil
 }

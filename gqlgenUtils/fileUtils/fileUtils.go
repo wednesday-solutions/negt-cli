@@ -8,9 +8,6 @@ import (
 
 func FindDirectory(dirName string) string {
 	path, _ := filepath.Abs(".")
-	if dirName == "server/gql/models" {
-		path, _ = filepath.Abs("..")
-	}
 	return path
 }
 
@@ -32,10 +29,6 @@ func MakeFile(path string, fileName string) error {
 
 func DirExists(dirName string) bool {
 	path, _ := filepath.Abs(".")
-
-	if dirName == "server/gql/models" {
-		path, _ = filepath.Abs("..")
-	}
 	_, err := os.Stat(fmt.Sprintf("%s/%s", path, dirName))
 
 	return err == nil
@@ -69,4 +62,12 @@ func WriteToFile(path, file, data string) error {
 	fmt.Printf("%s file updated successfully. \n", file)
 
 	return nil
+}
+
+func CurrentDirectory() string {
+	path, err := filepath.Abs(".")
+	if err != nil {
+		return ""
+	}
+	return path
 }

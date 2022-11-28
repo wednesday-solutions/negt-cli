@@ -1,7 +1,16 @@
 package main
 
-import "github.com/wednesday-solutions/negt/cmd"
+import (
+	"fmt"
+	"os"
+
+	"github.com/wednesday-solutions/negt/cmd"
+)
 
 func main() {
-	cmd.Execute()
+	err := cmd.Execute()
+	if err != nil {
+		fmt.Println("Something error happended: ", err)
+		os.Exit(1)
+	}
 }

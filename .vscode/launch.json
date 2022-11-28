@@ -1,0 +1,14 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Run cli-app locally",
+      "type": "go",
+      "request": "launch",
+      "mode": "auto",
+      "cwd": "./",
+      "program": "${cwd}",
+      "args": []
+    }
+  ]
+}

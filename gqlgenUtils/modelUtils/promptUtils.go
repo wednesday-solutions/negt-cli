@@ -4,18 +4,21 @@ import (
 	"errors"
 	"fmt"
 	"os"
+	"strings"
 
 	"github.com/manifoldco/promptui"
 	"github.com/wednesday-solutions/negt/gqlgenUtils/fileUtils"
 )
 
-func PromptGetInput(pc PromptContent) string {
-	validate := func(input string) error {
-		if len(input) <= 1 {
-			return errors.New(pc.errorMsg)
-		}
-		return nil
+func PromptValidate(input string) error {
+	if len(input) <= 2 {
+		return errors.New("Invalid input.")
 	}
+	return nil
+}
+
+func PromptGetInput(pc PromptContent) string {
+	validate := PromptValidate
 	templates := &promptui.PromptTemplates{
 		Prompt:  "{{ . }}",
 		Valid:   "{{ . | green }}",
@@ -23,7 +26,7 @@ func PromptGetInput(pc PromptContent) string {
 		Success: "{{ . | bold }}",
 	}
 	prompt := promptui.Prompt{
-		Label:     pc.label,
+		Label:     pc.Label,
 		Templates: templates,
 		Validate:  validate,
 	}
@@ -42,13 +45,13 @@ func PromptGetYesOrNoInput(pc PromptContent) bool {
 	var result string
 	var err error
 	prompt := promptui.Select{
-		Label: pc.label,
+		Label: pc.Label,
 		Items: items,
 	}
 	for index < 0 {
 		index, result, err = prompt.Run()
 		if err != nil {
-			fmt.Println(pc.errorMsg)
+			fmt.Println(pc.ErrorMsg)
 		}
 	}
 	if result == "Yes" {
@@ -66,7 +69,7 @@ func PromptGetSelect(pc PromptContent) string {
 
 	for index < 0 {
 		prompt := promptui.SelectWithAdd{
-			Label:    pc.label,
+			Label:    pc.Label,
 			Items:    items,
 			AddLabel: "Other",
 		}
@@ -90,27 +93,34 @@ func PromptGetSelectPath(pc PromptContent) string {
 	var err error
 	for index < 0 {
 		prompt := promptui.SelectWithAdd{
-			Label:    pc.label,
+			Label:    pc.Label,
 			Items:    items,
 			AddLabel: "Other",
 		}
 		index, result, err = prompt.Run()
 
+		fmt.Println("Index: ", index)
 		if index == -1 {
 			items = append(items, result)
 		}
 	}
-	if result == "gql/models" {
+	if result == "gql/models" || result == "server/gql/models" {
 		status := fileUtils.DirExists(result)
 		if !status {
 			fmt.Println("gql/models directory is not exists, do 'negt gqlgen init'")
 			os.Exit(1)
 		}
-	} else if result == "server/gql/models" {
+	} else {
 		status := fileUtils.DirExists(result)
 		if !status {
-			fmt.Println("server/gql/models directory is not exists, do 'negt gqlgen init'")
-			os.Exit(1)
+			directories := strings.Split(result, "/")
+			path := fileUtils.CurrentDirectory()
+			for _, dir := range directories {
+				if !fileUtils.IsExists(path, dir) {
+					fileUtils.MakeDirectory(path, dir)
+				}
+				path = fmt.Sprintf("%s/%s", path, dir)
+			}
 		}
 	}
 	if err != nil {
