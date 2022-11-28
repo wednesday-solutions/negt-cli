@@ -99,7 +99,6 @@ func PromptGetSelectPath(pc PromptContent) string {
 		}
 		index, result, err = prompt.Run()
 
-		fmt.Println("Index: ", index)
 		if index == -1 {
 			items = append(items, result)
 		}

@@ -13,7 +13,6 @@ func CreateGqlModelFiles(modelName, dirName string, files, testFiles []string) e
 
 	err := fileUtils.MakeDirectory(path, modelName)
 	if err != nil {
-		fmt.Println("Error in makeDir-createGql: ", err)
 		return err
 	}
 
@@ -21,7 +20,6 @@ func CreateGqlModelFiles(modelName, dirName string, files, testFiles []string) e
 	for _, file := range files {
 		err := fileUtils.MakeFile(path, file)
 		if err != nil {
-			fmt.Println("Error in makeFile-createGql")
 			return err
 		}
 	}

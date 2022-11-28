@@ -17,6 +17,7 @@ func init() {
 	raymond.RegisterHelper("customMutationImports", CustomMutationImports)
 	raymond.RegisterHelper("customMutations", CustomMutations)
 	raymond.RegisterHelper("mockFields", MockFields)
+	raymond.RegisterHelper("mockImports", MockImports)
 }
 
 var fieldsWithType []string
@@ -135,6 +136,15 @@ func MockFields(fields, fieldTypes []string) []string {
 	return mockFields
 }
 
+func MockImports(fieldTypes []string) string {
+	for _, fieldType := range fieldTypes {
+		if fieldType == "GraphQLString" {
+			mockImports := `import faker from 'faker';`
+			return mockImports
+		}
+	}
+	return ""
+}
 
 func OpeningBrace() string {
 	return "{"

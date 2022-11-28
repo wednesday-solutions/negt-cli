@@ -257,3 +257,59 @@ func TestPromptGetSelectPath(t *testing.T){
 		})
 	}
 }
+
+func TestPromptGetSelect(t *testing.T){
+	cases := []struct{
+		name string
+		err bool
+		req modelUtils.PromptContent
+		otherCase bool
+	}{
+		{
+			name: "Success",
+			err: false,
+			req: modelUtils.PromptContent{
+				ErrorMsg: "error msg",
+				Label:    "label",
+			},
+		},
+		{
+			name: "Fail",
+			err: true,
+			req: modelUtils.PromptContent{
+				ErrorMsg: "error msg",
+				Label:    "label",
+			},
+		},
+	}
+	for _, tt := range cases {
+		var prompt *promptui.SelectWithAdd
+		patchRun := gomonkey.ApplyMethod(
+			reflect.TypeOf(prompt),
+			"Run",
+			func(*promptui.SelectWithAdd)(int, string, error){
+				if tt.err {
+					return 1, "", fmt.Errorf("Error")
+				} else {
+					return 0, "result", nil 
+				}
+			},
+		)
+		defer patchRun.Reset()
+
+		patchExit := gomonkey.ApplyFunc(
+			os.Exit,
+			func(int) {},
+		)
+		defer patchExit.Reset()
+
+		t.Run(tt.name, func(t *testing.T){
+			response := modelUtils.PromptGetSelect(tt.req)
+			if response != "" {
+				assert.Equal(t, response, "result")
+			} else {
+				assert.Equal(t, true, response == "")
+			}
+		})
+	}
+}

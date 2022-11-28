@@ -1,11 +1,11 @@
-# github.com/wednesday-solutions/negt
+# negt
 
 <br>
 CLI-App can auto generate graphql models and resolvers by your requirements.. <br>
 For example :- If you want to make graphql models and it's resolvers please provide the details for the questions.<br>
-It will auto generate graphql schema and resolvers by itself.
+It will auto generate graphql schema and resolvers by itself.<br><br>
 
-<h2><b>Quick Start</b></h2>
+# Quick Start
 
 1.  <a href="https://golang.org/doc/tutorial/create-module">Initailise a new go module</a>
 
@@ -23,7 +23,11 @@ It will auto generate graphql schema and resolvers by itself.
 
 This will install the `negt` command to your `$GOPATH/bin` directory.
 
-<h2><b>Usage</b></h2>
+If you want use the `negt` command for `Nodejs-Express-GraphQL-Template`, just install negt by doing this (Before this you should make sure `Go` is already installed in your machine.),
+
+        go install github.com/wednesday-solutions/negt@latest
+
+# Usage
     
 1. For seeing the command options in the terminal,
   
@@ -43,10 +47,12 @@ If you are using Node-Express-GraphQL-Template, it will create directories `serv
 
         negt gqlgen model
 
-You will get some questions, please provide the details for the questions.<br>
+You will get some questions, please answer to the the questions.<br>
 If you are using Node-Express-GraphQL-Template, then select `server/gql/models` otherwise `gql/models`.<br>
 It will create GraphQL Model files in `gql/models/<modelName>`.<br>
 Or if you want to make in different directory, select `Others`.
+
+# Generating files
 
     Files :-
         1. index.js                 - It contains all relations of the gql model.
@@ -59,7 +65,7 @@ Or if you want to make in different directory, select `Others`.
         7. customUpdateMutation.js  - It contains the custom update mutation object.
         8. customDeleteMutation.js  - It contains the custom delete mutation object.
 
-It will create its test files also in `gql/models/<modelName>/tests`
+It will create its test files also in `gql/models/<modelName>/tests` directory.
 
     Test files :-
         1. index.test.js                - It contains the test cases of index.js file. It checks the importing is working properly.

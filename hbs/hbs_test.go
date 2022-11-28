@@ -258,3 +258,31 @@ func TestMockFields(t *testing.T){
 		assert.Equal(t, true, strings.Contains(response[0], ":"))
 	})
 }
+
+func TestMockImports(t *testing.T){
+	cases := []struct{
+		name string
+		req []string
+		graphqlType bool
+	}{
+		{
+			name: "Success",
+			req: []string{"GraphQLString"},
+			graphqlType: true,
+		},
+		{
+			name: "Success",
+			req: []string{"fieldType"},
+		},
+	}
+	for _, tt := range cases {
+		t.Run(tt.name, func(t *testing.T){
+			response := hbs.MockImports(tt.req)
+			if tt.graphqlType {
+				assert.Equal(t, true, strings.Contains(response, "import"))
+			} else {
+				assert.Equal(t, true, response == "")
+			}
+		})
+	}
+}

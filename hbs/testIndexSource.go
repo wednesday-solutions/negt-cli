@@ -11,7 +11,7 @@ import { {{singularModel}}List } from './list';
 import { {{singularModel}}Query } from './query';
 import { {{singularModel}}Mutation } from './mutation';
 	
-descibe('Checking importing is succesfull', () => {
+describe('Checking importing is succesfull', () => {
 	it('Should check imports', async () => {
 		expect(GraphQL{{titleSingularModel}}).toBeTruthy();
 		expect(Object.keys(GraphQL{{titleSingularModel}}).length > 0).toBe(true);
