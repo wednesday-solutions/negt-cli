@@ -1,7 +1,7 @@
 fail_fast: true
 repos:
   - repo: https://github.com/dnephin/pre-commit-golang
-    rev: v1.1.2
+    rev: master
     hooks: 
       - id: go-fmt
       - id: go-vet-mod
