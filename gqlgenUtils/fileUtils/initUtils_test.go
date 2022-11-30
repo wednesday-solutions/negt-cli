@@ -11,9 +11,9 @@ import (
 	"github.com/wednesday-solutions/negt/gqlgenUtils/fileUtils"
 )
 
-func TestInitUtils(t *testing.T){
+func TestInitUtils(t *testing.T) {
 
-	cases := []struct{
+	cases := []struct {
 		name string
 		flag bool
 	}{
@@ -41,7 +41,7 @@ func TestInitUtils(t *testing.T){
 		)
 		defer patchPromptGetYesOrNo.Reset()
 
-		t.Run(tt.name, func(t *testing.T){
+		t.Run(tt.name, func(t *testing.T) {
 			response := fileUtils.InitUtils()
 			if response {
 				assert.Equal(t, tt.flag, response)
@@ -52,28 +52,28 @@ func TestInitUtils(t *testing.T){
 	}
 }
 
-func TestPromptGetYesOrNoInput(t *testing.T){
+func TestPromptGetYesOrNoInput(t *testing.T) {
 
 	mockPC := fileUtils.PromptContent{"Yes", "msg"}
-	
-	cases := []struct{
-		name string
+
+	cases := []struct {
+		name   string
 		result bool
-		err bool
+		err    bool
 	}{
 		{
-			name: "Success-true",
+			name:   "Success-true",
 			result: true,
-			err: false,
+			err:    false,
 		},
 		{
-			name: "Success-false",
-			err: false,
+			name:   "Success-false",
+			err:    false,
 			result: false,
 		},
 		{
-			name: "Fail",
-			err: true,
+			name:   "Fail",
+			err:    true,
 			result: false,
 		},
 	}
@@ -83,7 +83,7 @@ func TestPromptGetYesOrNoInput(t *testing.T){
 		patchRun := gomonkey.ApplyMethod(
 			reflect.TypeOf(prompt),
 			"Run",
-			func(*promptui.Select)(int, string, error){
+			func(*promptui.Select) (int, string, error) {
 				if !tt.err {
 					if tt.result {
 						return 1, "Yes", nil
@@ -97,7 +97,7 @@ func TestPromptGetYesOrNoInput(t *testing.T){
 		)
 		defer patchRun.Reset()
 
-		t.Run(tt.name, func(t *testing.T){
+		t.Run(tt.name, func(t *testing.T) {
 			response := fileUtils.PromptGetYesOrNoInput(mockPC)
 			if response {
 				assert.Equal(t, true, response)

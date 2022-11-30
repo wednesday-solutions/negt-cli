@@ -156,16 +156,16 @@ func TestPromptGetYesOrNoInput(t *testing.T) {
 	}
 }
 
-func TestPromptGetSelectPath(t *testing.T){
-	cases := []struct{
-		name string
-		req modelUtils.PromptContent
-		err bool
+func TestPromptGetSelectPath(t *testing.T) {
+	cases := []struct {
+		name      string
+		req       modelUtils.PromptContent
+		err       bool
 		dirExists bool
 	}{
 		{
-			name: "Success",
-			err: false,
+			name:      "Success",
+			err:       false,
 			dirExists: true,
 			req: modelUtils.PromptContent{
 				ErrorMsg: "error msg",
@@ -173,8 +173,8 @@ func TestPromptGetSelectPath(t *testing.T){
 			},
 		},
 		{
-			name: "Faile-dirExists-false",
-			err: true,
+			name:      "Faile-dirExists-false",
+			err:       true,
 			dirExists: false,
 			req: modelUtils.PromptContent{
 				ErrorMsg: "error msg",
@@ -244,30 +244,30 @@ func TestPromptGetSelectPath(t *testing.T){
 		)
 		defer patchMakeDirectory.Reset()
 
-		t.Run(tt.name, func(t *testing.T){
+		t.Run(tt.name, func(t *testing.T) {
 			response := modelUtils.PromptGetSelectPath(tt.req)
 			fmt.Println("Response: ", response)
 			if response == "" {
 				assert.Equal(t, true, response == "")
 			} else {
 				if tt.dirExists {
-					assert.Equal(t, response, "server/gql/models") 
+					assert.Equal(t, response, "server/gql/models")
 				}
 			}
 		})
 	}
 }
 
-func TestPromptGetSelect(t *testing.T){
-	cases := []struct{
-		name string
-		err bool
-		req modelUtils.PromptContent
+func TestPromptGetSelect(t *testing.T) {
+	cases := []struct {
+		name      string
+		err       bool
+		req       modelUtils.PromptContent
 		otherCase bool
 	}{
 		{
 			name: "Success",
-			err: false,
+			err:  false,
 			req: modelUtils.PromptContent{
 				ErrorMsg: "error msg",
 				Label:    "label",
@@ -275,7 +275,7 @@ func TestPromptGetSelect(t *testing.T){
 		},
 		{
 			name: "Fail",
-			err: true,
+			err:  true,
 			req: modelUtils.PromptContent{
 				ErrorMsg: "error msg",
 				Label:    "label",
@@ -287,11 +287,11 @@ func TestPromptGetSelect(t *testing.T){
 		patchRun := gomonkey.ApplyMethod(
 			reflect.TypeOf(prompt),
 			"Run",
-			func(*promptui.SelectWithAdd)(int, string, error){
+			func(*promptui.SelectWithAdd) (int, string, error) {
 				if tt.err {
 					return 1, "", fmt.Errorf("Error")
 				} else {
-					return 0, "result", nil 
+					return 0, "result", nil
 				}
 			},
 		)
@@ -303,7 +303,7 @@ func TestPromptGetSelect(t *testing.T){
 		)
 		defer patchExit.Reset()
 
-		t.Run(tt.name, func(t *testing.T){
+		t.Run(tt.name, func(t *testing.T) {
 			response := modelUtils.PromptGetSelect(tt.req)
 			if response != "" {
 				assert.Equal(t, response, "result")

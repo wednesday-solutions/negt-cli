@@ -29,7 +29,7 @@ describe('Checking importing is succesfull', () => {
 	if err != nil {
 		return err
 	}
-	fileUtils.WriteToFile(path, file, tpl)
+	fileUtils.WriteToFile(path, file, tpl) // nolint:errcheck
 
 	return nil
 }

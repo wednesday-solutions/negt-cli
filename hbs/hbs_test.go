@@ -118,36 +118,36 @@ func TestInitHbs(t *testing.T) {
 	}
 }
 
-func TestOpeningBrace(t *testing.T){
-	t.Run("Success", func(t *testing.T){
+func TestOpeningBrace(t *testing.T) {
+	t.Run("Success", func(t *testing.T) {
 		response := hbs.OpeningBrace()
 		assert.Equal(t, response, "{")
 	})
 }
 
-func TestClosingBrace(t *testing.T){
-	t.Run("Success", func(t *testing.T){
+func TestClosingBrace(t *testing.T) {
+	t.Run("Success", func(t *testing.T) {
 		response := hbs.ClosingBrace()
 		assert.Equal(t, response, "}")
 	})
 }
 
-func TestCustomMutations(t *testing.T){
-	cases := []struct{
+func TestCustomMutations(t *testing.T) {
+	cases := []struct {
 		name string
-		req bool
+		req  bool
 	}{
 		{
 			name: "Success",
-			req: true,
+			req:  true,
 		},
 		{
 			name: "Fail",
-			req: false,
+			req:  false,
 		},
 	}
 	for _, tt := range cases {
-		t.Run("Success", func(t *testing.T){
+		t.Run("Success", func(t *testing.T) {
 			response := hbs.CustomMutations(tt.req)
 			if tt.req {
 				assert.Equal(t, true, strings.Contains(response, "customCreateResolver"))
@@ -158,8 +158,8 @@ func TestCustomMutations(t *testing.T){
 	}
 }
 
-func TestFieldsWithType(t *testing.T){
-	t.Run("Success", func(t *testing.T){
+func TestFieldsWithType(t *testing.T) {
+	t.Run("Success", func(t *testing.T) {
 		response := hbs.FieldsWithType(
 			[]string{"field1", "field2"},
 			[]string{"fieldType2", "fieldType2"},
@@ -169,8 +169,8 @@ func TestFieldsWithType(t *testing.T){
 	})
 }
 
-func TestTestFieldsWithID(t *testing.T){
-	t.Run("Success", func(t *testing.T){
+func TestTestFieldsWithID(t *testing.T) {
+	t.Run("Success", func(t *testing.T) {
 		response := hbs.TestFieldsWithID(
 			[]string{"field1", "field2"},
 			"modelName",
@@ -179,8 +179,8 @@ func TestTestFieldsWithID(t *testing.T){
 	})
 }
 
-func TestInputStringFieldsWithID(t *testing.T){
-	t.Run("Success", func(t *testing.T){
+func TestInputStringFieldsWithID(t *testing.T) {
+	t.Run("Success", func(t *testing.T) {
 		response := hbs.InputStringFieldsWithID(
 			[]string{"field1", "field2"},
 			[]string{"GraphQLString", "fieldType2"},
@@ -190,22 +190,22 @@ func TestInputStringFieldsWithID(t *testing.T){
 	})
 }
 
-func TestInputStringFieldsWithoutID(t *testing.T){
-	cases := []struct{
+func TestInputStringFieldsWithoutID(t *testing.T) {
+	cases := []struct {
 		name string
-		req []string
+		req  []string
 	}{
 		{
 			name: "Success",
-			req: []string{"GraphQLString", "fieldType2", "GraphQLString", "fieldType2"},
+			req:  []string{"GraphQLString", "fieldType2", "GraphQLString", "fieldType2"},
 		},
 		{
 			name: "Success-else",
-			req: []string{"fieldType2", "GraphQLString", "fieldType2", "GraphQLString"},
+			req:  []string{"fieldType2", "GraphQLString", "fieldType2", "GraphQLString"},
 		},
 	}
 	for _, tt := range cases {
-		t.Run(tt.name, func(t *testing.T){
+		t.Run(tt.name, func(t *testing.T) {
 			response := hbs.InputStringFieldsWithoutID(
 				[]string{"field1", "field2", "field3", "field4"},
 				tt.req,
@@ -216,31 +216,31 @@ func TestInputStringFieldsWithoutID(t *testing.T){
 	}
 }
 
-func TestTest(t *testing.T){
-	t.Run("Success", func(t *testing.T){
+func TestTest(t *testing.T) {
+	t.Run("Success", func(t *testing.T) {
 		response := hbs.Test([]string{"field1", "field2"})
 		assert.Equal(t, true, strings.Contains(response[0], "field"))
 	})
 }
 
-func TestCustomMutationImports(t *testing.T){
-	cases := []struct{
-		name string
+func TestCustomMutationImports(t *testing.T) {
+	cases := []struct {
+		name           string
 		customMutation bool
 	}{
 		{
-			name: "Success-true",
+			name:           "Success-true",
 			customMutation: true,
 		},
 		{
-			name: "Success-false",
+			name:           "Success-false",
 			customMutation: false,
 		},
 	}
-	for _, tt := range cases{
-		t.Run(tt.name, func(t *testing.T){
+	for _, tt := range cases {
+		t.Run(tt.name, func(t *testing.T) {
 			response := hbs.CustomMutationImports(tt.customMutation)
-			if tt.customMutation{
+			if tt.customMutation {
 				assert.Equal(t, true, strings.Contains(response, "import"))
 			} else {
 				assert.Equal(t, true, strings.Contains(response, ""))
@@ -249,8 +249,8 @@ func TestCustomMutationImports(t *testing.T){
 	}
 }
 
-func TestMockFields(t *testing.T){
-	t.Run("Success", func(t *testing.T){
+func TestMockFields(t *testing.T) {
+	t.Run("Success", func(t *testing.T) {
 		response := hbs.MockFields(
 			[]string{"field1", "field2", "field3", "field4", "field5", "field6"},
 			[]string{"GraphQLID", "GraphQLInt", "GraphQLString", "GraphQLFloat", "GraphQLBoolean", "GraphQLDateTime"},
@@ -259,24 +259,24 @@ func TestMockFields(t *testing.T){
 	})
 }
 
-func TestMockImports(t *testing.T){
-	cases := []struct{
-		name string
-		req []string
+func TestMockImports(t *testing.T) {
+	cases := []struct {
+		name        string
+		req         []string
 		graphqlType bool
 	}{
 		{
-			name: "Success",
-			req: []string{"GraphQLString"},
+			name:        "Success",
+			req:         []string{"GraphQLString"},
 			graphqlType: true,
 		},
 		{
 			name: "Success",
-			req: []string{"fieldType"},
+			req:  []string{"fieldType"},
 		},
 	}
 	for _, tt := range cases {
-		t.Run(tt.name, func(t *testing.T){
+		t.Run(tt.name, func(t *testing.T) {
 			response := hbs.MockImports(tt.req)
 			if tt.graphqlType {
 				assert.Equal(t, true, strings.Contains(response, "import"))

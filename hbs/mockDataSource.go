@@ -15,7 +15,7 @@ export const {{pluralModel}}Table = range(1, 10).map((_, index) => ({
 	if err != nil {
 		return err
 	}
-	fileUtils.WriteToFile(path, file, tpl)
+	fileUtils.WriteToFile(path, file, tpl) // nolint:errcheck
 
 	return nil
 }

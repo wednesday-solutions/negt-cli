@@ -7,7 +7,7 @@ import (
 )
 
 func FindDirectory(dirName string) string {
-	path, _ := filepath.Abs(".")
+	path, _ := filepath.Abs(".") // nolint:errcheck
 	return path
 }
 
@@ -28,7 +28,7 @@ func MakeFile(path string, fileName string) error {
 }
 
 func DirExists(dirName string) bool {
-	path, _ := filepath.Abs(".")
+	path, _ := filepath.Abs(".") // nolint:errcheck
 	_, err := os.Stat(fmt.Sprintf("%s/%s", path, dirName))
 
 	return err == nil

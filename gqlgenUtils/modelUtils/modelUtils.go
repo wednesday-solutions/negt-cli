@@ -130,7 +130,7 @@ func CreateNewModel() error {
 	}
 
 	path := fileUtils.CurrentDirectory()
-	
+
 	cmd := exec.Command("npx", "eslint", path, "--fix")
 	data, err := cmd.CombinedOutput()
 	if err != nil {

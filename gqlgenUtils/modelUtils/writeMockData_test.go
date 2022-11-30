@@ -23,11 +23,11 @@ func TestWriteMockData(t *testing.T) {
 		customMutation bool
 	}
 	cases := []struct {
-		name          string
-		req           args
-    IsExists bool
-    makeFileErr bool
-    hbsErr bool
+		name        string
+		req         args
+		IsExists    bool
+		makeFileErr bool
+		hbsErr      bool
 	}{
 		{
 			name: "Success",
@@ -39,9 +39,9 @@ func TestWriteMockData(t *testing.T) {
 				nullFields:     []bool{true, false},
 				customMutation: true,
 			},
-      IsExists: true,
+			IsExists: true,
 		},
-    {
+		{
 			name: "Success-negt",
 			req: args{
 				modelName:      "model",
@@ -51,9 +51,9 @@ func TestWriteMockData(t *testing.T) {
 				nullFields:     []bool{true, false},
 				customMutation: true,
 			},
-      IsExists: false,
+			IsExists: false,
 		},
-    {
+		{
 			name: "Fail-makeFile",
 			req: args{
 				modelName:      "model",
@@ -63,10 +63,10 @@ func TestWriteMockData(t *testing.T) {
 				nullFields:     []bool{true, false},
 				customMutation: true,
 			},
-      IsExists: true,
-      makeFileErr: true,
+			IsExists:    true,
+			makeFileErr: true,
 		},
-    {
+		{
 			name: "Fail-mockData",
 			req: args{
 				modelName:      "model",
@@ -76,8 +76,8 @@ func TestWriteMockData(t *testing.T) {
 				nullFields:     []bool{true, false},
 				customMutation: true,
 			},
-      IsExists: true,
-      hbsErr: true,
+			IsExists: true,
+			hbsErr:   true,
 		},
 	}
 
@@ -105,7 +105,7 @@ func TestWriteMockData(t *testing.T) {
 		patchMakeDirectory := gomonkey.ApplyFunc(
 			fileUtils.MakeDirectory,
 			func(string, string) error {
-        return nil
+				return nil
 			},
 		)
 		defer patchMakeDirectory.Reset()
@@ -122,18 +122,18 @@ func TestWriteMockData(t *testing.T) {
 		)
 		defer patchMakeFile.Reset()
 
-    patchFieldUtils := gomonkey.ApplyFunc(
+		patchFieldUtils := gomonkey.ApplyFunc(
 			modelUtils.FieldUtils,
 			func(string, []string, []string, []bool, bool) map[string]interface{} {
-        return map[string]interface{}{}
+				return map[string]interface{}{}
 			},
 		)
 		defer patchFieldUtils.Reset()
 
-    patchMockDataSource := gomonkey.ApplyFunc(
+		patchMockDataSource := gomonkey.ApplyFunc(
 			hbs.MockDataSource,
 			func(string, string, string, map[string]interface{}) error {
-        if tt.hbsErr {
+				if tt.hbsErr {
 					return fmt.Errorf("Error in MockDataSource")
 				} else {
 					return nil
@@ -155,9 +155,9 @@ func TestWriteMockData(t *testing.T) {
 				assert.Equal(t, true, err != nil)
 				if tt.makeFileErr {
 					assert.Equal(t, true, strings.Contains(err.Error(), "Error in MakeFile"))
-				} else if tt.hbsErr{
+				} else if tt.hbsErr {
 					assert.Equal(t, true, strings.Contains(err.Error(), "Error in MockDataSource"))
-        }
+				}
 			} else {
 				assert.Equal(t, true, err == nil)
 			}

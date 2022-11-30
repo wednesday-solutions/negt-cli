@@ -79,30 +79,30 @@ func TestMakeDirectory(t *testing.T) {
 	}
 }
 
-func TestMakeFile(t *testing.T){
-	type args struct{
-		path string
+func TestMakeFile(t *testing.T) {
+	type args struct {
+		path     string
 		fileName string
 	}
-	cases := []struct{
+	cases := []struct {
 		name string
-		err bool
-		req args
+		err  bool
+		req  args
 	}{
 		{
 			name: "Success",
 			req: args{
 				// path: "/Users/ijasmohamad/go-works/cli-app",
-				path: "path",
+				path:     "path",
 				fileName: "fileName",
 			},
 			err: false,
 		},
 		{
 			name: "Fail",
-			err: true,
+			err:  true,
 			req: args{
-				path: "path",
+				path:     "path",
 				fileName: "fileName",
 			},
 		},
@@ -110,7 +110,7 @@ func TestMakeFile(t *testing.T){
 	for _, tt := range cases {
 		patchCreate := gomonkey.ApplyFunc(
 			os.Create,
-			func(name string) (*os.File, error){
+			func(name string) (*os.File, error) {
 				if tt.err {
 					return nil, fmt.Errorf("no such file or directory")
 				} else {
@@ -120,7 +120,7 @@ func TestMakeFile(t *testing.T){
 		)
 		defer patchCreate.Reset()
 
-		t.Run(tt.name, func(t *testing.T){
+		t.Run(tt.name, func(t *testing.T) {
 			err := fileUtils.MakeFile(tt.req.path, tt.req.fileName)
 			if err != nil {
 				assert.Equal(t, true, strings.Contains(err.Error(), "no such file or directory"))
@@ -131,15 +131,15 @@ func TestMakeFile(t *testing.T){
 	}
 }
 
-func TestDirExists(t *testing.T){
-	cases := []struct{
+func TestDirExists(t *testing.T) {
+	cases := []struct {
 		name string
-		req string
+		req  string
 		resp bool
 	}{
 		{
 			name: "Success",
-			req: "server/gql/models",
+			req:  "server/gql/models",
 			resp: true,
 		},
 		{
@@ -151,7 +151,7 @@ func TestDirExists(t *testing.T){
 	for _, tt := range cases {
 		patchStat := gomonkey.ApplyFunc(
 			os.Stat,
-			func(string) (fs.FileInfo, error){
+			func(string) (fs.FileInfo, error) {
 				if tt.resp {
 					return nil, nil
 				} else {
@@ -161,7 +161,7 @@ func TestDirExists(t *testing.T){
 		)
 		defer patchStat.Reset()
 
-		t.Run(tt.name, func(t *testing.T){
+		t.Run(tt.name, func(t *testing.T) {
 			response := fileUtils.DirExists(tt.req)
 			if response {
 				assert.Equal(t, true, response)
@@ -172,50 +172,50 @@ func TestDirExists(t *testing.T){
 	}
 }
 
-func TestIsExists(t *testing.T){
+func TestIsExists(t *testing.T) {
 	patchStat := gomonkey.ApplyFunc(
 		os.Stat,
-		func(string) (fs.FileInfo, error){
+		func(string) (fs.FileInfo, error) {
 			return nil, nil
 		},
 	)
 	defer patchStat.Reset()
-	t.Run("Success", func(t *testing.T){
+	t.Run("Success", func(t *testing.T) {
 		response := fileUtils.IsExists("path", "dirName")
 		assert.Equal(t, true, response)
 	})
 }
 
-func TestWriteToFile(t *testing.T){
-	cases := []struct{
-		name string
-		openFileErr bool
+func TestWriteToFile(t *testing.T) {
+	cases := []struct {
+		name           string
+		openFileErr    bool
 		writeStringErr bool
-		syncErr bool
+		syncErr        bool
 	}{
 		{
-			name: "Success",
-			openFileErr: false,
+			name:           "Success",
+			openFileErr:    false,
 			writeStringErr: false,
-			syncErr: false,
+			syncErr:        false,
 		},
 		{
-			name: "Fail in openFile",
+			name:        "Fail in openFile",
 			openFileErr: true,
 		},
 		{
-			name: "Fail in writeString",
+			name:           "Fail in writeString",
 			writeStringErr: true,
 		},
 		{
-			name: "Fail in sync",
+			name:    "Fail in sync",
 			syncErr: true,
 		},
 	}
 	for _, tt := range cases {
 		patchOpenFile := gomonkey.ApplyFunc(
 			os.OpenFile,
-			func(name string, flag int, perm fs.FileMode) (*os.File, error){
+			func(name string, flag int, perm fs.FileMode) (*os.File, error) {
 				if tt.openFileErr {
 					return nil, fmt.Errorf("Error in openFile")
 				} else {
@@ -229,7 +229,7 @@ func TestWriteToFile(t *testing.T){
 		patchWriteString := gomonkey.ApplyMethod(
 			reflect.TypeOf(openFile),
 			"WriteString",
-			func(*os.File, string) (int, error){
+			func(*os.File, string) (int, error) {
 				if tt.writeStringErr {
 					return 0, fmt.Errorf("Error in writeString")
 				} else {
@@ -252,7 +252,7 @@ func TestWriteToFile(t *testing.T){
 		)
 		defer patchSync.Reset()
 
-		t.Run(tt.name, func(t *testing.T){
+		t.Run(tt.name, func(t *testing.T) {
 			err := fileUtils.WriteToFile("path", "file", "data")
 			if err != nil {
 				if tt.openFileErr {
@@ -270,17 +270,17 @@ func TestWriteToFile(t *testing.T){
 }
 
 func TestCurrentDirectory(t *testing.T) {
-	cases := []struct{
+	cases := []struct {
 		name string
-		err bool
+		err  bool
 	}{
 		{
 			name: "Success",
-			err: false,
+			err:  false,
 		},
 		{
 			name: "Fail",
-			err: true,
+			err:  true,
 		},
 	}
 
@@ -288,7 +288,7 @@ func TestCurrentDirectory(t *testing.T) {
 
 		patchAbs := gomonkey.ApplyFunc(
 			filepath.Abs,
-			func(string) (string, error){
+			func(string) (string, error) {
 				if tt.err {
 					return "", fmt.Errorf("Error in filepathAbs")
 				} else {
@@ -297,7 +297,7 @@ func TestCurrentDirectory(t *testing.T) {
 			},
 		)
 		defer patchAbs.Reset()
-	
+
 		t.Run("Success", func(t *testing.T) {
 			response := fileUtils.CurrentDirectory()
 			if response == "" {

@@ -13,18 +13,18 @@ import (
 	"github.com/wednesday-solutions/negt/gqlgenUtils/modelUtils"
 )
 
-func TestRunModelE(t *testing.T){
-	cases := []struct{
+func TestRunModelE(t *testing.T) {
+	cases := []struct {
 		name string
-		err bool
+		err  bool
 	}{
 		{
 			name: "Success",
-			err: false,
+			err:  false,
 		},
 		{
 			name: "Fail",
-			err: true,
+			err:  true,
 		},
 	}
 	for _, tt := range cases {
@@ -40,8 +40,8 @@ func TestRunModelE(t *testing.T){
 			},
 		)
 		defer patchCreateNewModel.Reset()
-	
-		t.Run(tt.name, func(t *testing.T){
+
+		t.Run(tt.name, func(t *testing.T) {
 			err := cmd.RunModelE(&cobra.Command{}, []string{})
 			if err != nil {
 				assert.Equal(t, true, err != nil)
@@ -53,14 +53,14 @@ func TestRunModelE(t *testing.T){
 	}
 }
 
-func TestModelCmd(t *testing.T){
-	t.Run("Success", func(t *testing.T){
+func TestModelCmd(t *testing.T) {
+	t.Run("Success", func(t *testing.T) {
 		response := cmd.ModelCmd()
 		assert.Equal(t, true, response != nil)
 	})
 }
 
-func TestModelInit(t *testing.T){
+func TestModelInit(t *testing.T) {
 
 	patchCreateNewModel := gomonkey.ApplyFunc(
 		modelUtils.CreateNewModel,
@@ -71,16 +71,16 @@ func TestModelInit(t *testing.T){
 	defer patchCreateNewModel.Reset()
 
 	gqlgenCmd := &cobra.Command{
-		Run: func(cmd *cobra.Command, args []string){},
+		Run: func(cmd *cobra.Command, args []string) {},
 	}
 	pacthAddCommand := gomonkey.ApplyMethod(
 		reflect.TypeOf(gqlgenCmd),
 		"AddCommand",
-		func(*cobra.Command, ...*cobra.Command){},
+		func(*cobra.Command, ...*cobra.Command) {},
 	)
 	defer pacthAddCommand.Reset()
 
-	t.Run("Success", func(t *testing.T){
+	t.Run("Success", func(t *testing.T) {
 		testing.Init()
 	})
 }

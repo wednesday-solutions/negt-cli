@@ -17,10 +17,11 @@ func RunModelE(cmd *cobra.Command, args []string) error {
 
 // modelCmd represents the model command
 func ModelCmd() *cobra.Command {
-	
+
 	var modelCmd = &cobra.Command{
-		Use:   "model",
-		Short: "Create new graphql model",
+		Use:     "model",
+		Aliases: []string{"gqlmodel"},
+		Short:   "Create new graphql model",
 		Long: `model command for creating new graphql model. For example:
 	
 	Create gqlmodel by this command, gqlgen model. then provide the 

@@ -13,13 +13,13 @@ import (
 func TestCreateNewModel(t *testing.T) {
 
 	cases := []struct {
-		name           string
-		err            bool
-		YesOrNoInput   bool
+		name                   string
+		err                    bool
+		YesOrNoInput           bool
 		createGqlModelFilesErr bool
-		writeModelFilesErr bool
+		writeModelFilesErr     bool
 		writeModelTestFilesErr bool
-		writeMockDataErr bool
+		writeMockDataErr       bool
 	}{
 		{
 			name:         "Success-No",
@@ -32,23 +32,23 @@ func TestCreateNewModel(t *testing.T) {
 			YesOrNoInput: true,
 		},
 		{
-			name:         "Fail-CreateGqlModelFiles",
-			err:          true,
+			name:                   "Fail-CreateGqlModelFiles",
+			err:                    true,
 			createGqlModelFilesErr: true,
 		},
 		{
-			name:         "Fail-WriteModelFiles",
-			err:          true,
+			name:               "Fail-WriteModelFiles",
+			err:                true,
 			writeModelFilesErr: true,
 		},
 		{
-			name:         "Fail-WriteModelTestFiles",
-			err:          true,
+			name:                   "Fail-WriteModelTestFiles",
+			err:                    true,
 			writeModelTestFilesErr: true,
 		},
 		{
-			name:         "Fail-WriteMockData",
-			err:          true,
+			name:             "Fail-WriteMockData",
+			err:              true,
 			writeMockDataErr: true,
 		},
 	}
@@ -149,13 +149,13 @@ func TestCreateNewModel(t *testing.T) {
 			err := modelUtils.CreateNewModel()
 			if err != nil {
 				assert.Equal(t, true, err != nil)
-				if tt.createGqlModelFilesErr{
+				if tt.createGqlModelFilesErr {
 					assert.Equal(t, true, strings.Contains(err.Error(), "Error in CreateGqlModelFiles"))
-				} else if tt.writeModelFilesErr{
+				} else if tt.writeModelFilesErr {
 					assert.Equal(t, true, strings.Contains(err.Error(), "Error in WriteModelFiles"))
-				} else if tt.writeModelTestFilesErr{
+				} else if tt.writeModelTestFilesErr {
 					assert.Equal(t, true, strings.Contains(err.Error(), "Error in WriteModelTestFiles"))
-				} else if tt.writeMockDataErr{
+				} else if tt.writeMockDataErr {
 					assert.Equal(t, true, strings.Contains(err.Error(), "Error in WriteMockData"))
 				}
 			} else {
@@ -165,7 +165,7 @@ func TestCreateNewModel(t *testing.T) {
 	}
 }
 
-func TestAddField(t *testing.T){
+func TestAddField(t *testing.T) {
 
 	patchPromptGetInput := gomonkey.ApplyFunc(
 		modelUtils.PromptGetInput,
@@ -191,10 +191,10 @@ func TestAddField(t *testing.T){
 	)
 	defer patchPromptGetYesOrNo.Reset()
 
-	t.Run("Success", func(t *testing.T){
-		fields, fieldTypes, nullFields :=  modelUtils.AddField(
+	t.Run("Success", func(t *testing.T) {
+		fields, fieldTypes, nullFields := modelUtils.AddField(
 			"modelName",
-			[]string{"field"}, 
+			[]string{"field"},
 			[]string{"fieldType"},
 			[]bool{true},
 		)
@@ -204,26 +204,26 @@ func TestAddField(t *testing.T){
 	})
 }
 
-func TestAddCustomMutations(t *testing.T){
-	cases := []struct{
-		name string
-		createCustomResolverErr bool
-		writeCustomResolverErr bool
+func TestAddCustomMutations(t *testing.T) {
+	cases := []struct {
+		name                       string
+		createCustomResolverErr    bool
+		writeCustomResolverErr     bool
 		writeTestCustomResolverErr bool
 	}{
 		{
 			name: "Success",
 		},
 		{
-			name: "Fail-CreateCustomResolver",
+			name:                    "Fail-CreateCustomResolver",
 			createCustomResolverErr: true,
 		},
 		{
-			name: "Fail-WriteCustomResolver",
+			name:                   "Fail-WriteCustomResolver",
 			writeCustomResolverErr: true,
 		},
 		{
-			name: "Fail-CreateCustomResolver",
+			name:                       "Fail-CreateCustomResolver",
 			writeTestCustomResolverErr: true,
 		},
 	}
@@ -232,7 +232,7 @@ func TestAddCustomMutations(t *testing.T){
 		patchCreateCustomResolverFiles := gomonkey.ApplyFunc(
 			modelUtils.CreateCustomResolverFiles,
 			func(string, string, []string, []string) error {
-				if tt.createCustomResolverErr{
+				if tt.createCustomResolverErr {
 					return fmt.Errorf("Error in CreateCustomResolverFiles")
 				} else {
 					return nil
@@ -244,7 +244,7 @@ func TestAddCustomMutations(t *testing.T){
 		patchWriteCustomResolvers := gomonkey.ApplyFunc(
 			modelUtils.WriteCustomResolvers,
 			func(string, string, []string, []string, []string, []bool, bool) error {
-				if tt.writeCustomResolverErr{
+				if tt.writeCustomResolverErr {
 					return fmt.Errorf("Error in WriteCustomResolverFiles")
 				} else {
 					return nil
@@ -256,7 +256,7 @@ func TestAddCustomMutations(t *testing.T){
 		patchWriteTestCustomResolvers := gomonkey.ApplyFunc(
 			modelUtils.WriteTestCustomResolvers,
 			func(string, string, []string, []string, []string, []bool, bool) error {
-				if tt.writeTestCustomResolverErr{
+				if tt.writeTestCustomResolverErr {
 					return fmt.Errorf("Error in WriteTestCustomResolverFiles")
 				} else {
 					return nil
@@ -265,9 +265,9 @@ func TestAddCustomMutations(t *testing.T){
 		)
 		defer patchWriteTestCustomResolvers.Reset()
 
-		t.Run(tt.name, func(t *testing.T){
+		t.Run(tt.name, func(t *testing.T) {
 			err := modelUtils.AddCustomMutations(
-				"modelName", 
+				"modelName",
 				"dirName",
 				[]string{"field"},
 				[]string{"fieldType"},
@@ -276,11 +276,11 @@ func TestAddCustomMutations(t *testing.T){
 			)
 			if err != nil {
 				assert.Equal(t, true, err != nil)
-				if tt.createCustomResolverErr{
+				if tt.createCustomResolverErr {
 					assert.Equal(t, true, strings.Contains(err.Error(), "Error in CreateCustomResolverFiles"))
-				} else if tt.writeCustomResolverErr{
+				} else if tt.writeCustomResolverErr {
 					assert.Equal(t, true, strings.Contains(err.Error(), "Error in WriteCustomResolverFiles"))
-				} else if tt.writeTestCustomResolverErr{
+				} else if tt.writeTestCustomResolverErr {
 					assert.Equal(t, true, strings.Contains(err.Error(), "Error in WriteTestCustomResolverFiles"))
 				}
 			} else {

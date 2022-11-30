@@ -89,7 +89,7 @@ describe('{{titleSingularModel}} graphQL-server-DB mutation tests', () => {
 		return err
 	}
 
-	fileUtils.WriteToFile(path, file, tpl)
+	fileUtils.WriteToFile(path, file, tpl) // nolint:errcheck
 
 	return nil
 }

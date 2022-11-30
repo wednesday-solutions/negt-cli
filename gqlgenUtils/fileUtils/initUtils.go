@@ -6,9 +6,9 @@ import (
 	"github.com/manifoldco/promptui"
 )
 
-type PromptContent struct{
+type PromptContent struct {
 	ErrorMsg string
-	Label string
+	Label    string
 }
 
 func InitUtils() bool {
@@ -21,7 +21,6 @@ func InitUtils() bool {
 	flag := PromptGetYesOrNoInput(negtPromptContent)
 	return flag
 }
-
 
 func PromptGetYesOrNoInput(pc PromptContent) bool {
 

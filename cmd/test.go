@@ -20,7 +20,7 @@ func TestCmd() *cobra.Command {
 		Use:   "test",
 		Short: "this command is for testing",
 		Long:  `this command is for testing`,
-		RunE: RunTestCmd,
+		RunE:  RunTestCmd,
 	}
 	return testCmd
 }

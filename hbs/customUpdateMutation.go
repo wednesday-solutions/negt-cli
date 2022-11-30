@@ -12,7 +12,7 @@ func CustomUpdateMutationSource(modelName, path, file string, ctx map[string]int
 	if err != nil {
 		return err
 	}
-	fileUtils.WriteToFile(path, file, tpl)
+	fileUtils.WriteToFile(path, file, tpl) // nolint:errcheck
 
 	return nil
 }

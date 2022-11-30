@@ -11,25 +11,25 @@ import (
 	"github.com/wednesday-solutions/negt/cmd"
 )
 
-func TestRunTestCmd(t *testing.T){
-	t.Run("Success", func(t *testing.T){
-		cmd.RunTestCmd(&cobra.Command{}, []string{})
+func TestRunTestCmd(t *testing.T) {
+	t.Run("Success", func(t *testing.T) {
+		cmd.RunTestCmd(&cobra.Command{}, []string{}) // nolint:errcheck
 	})
 }
 
 func TestExecute(t *testing.T) {
 
-	cases := []struct{
+	cases := []struct {
 		name string
-		err bool
+		err  bool
 	}{
 		{
 			name: "Success",
-			err: false,
+			err:  false,
 		},
 		{
 			name: "Fail",
-			err: true,
+			err:  true,
 		},
 	}
 
@@ -40,7 +40,7 @@ func TestExecute(t *testing.T) {
 			reflect.TypeOf(rootCmd),
 			"Execute",
 			func(*cobra.Command) error {
-				if tt.err{
+				if tt.err {
 					return fmt.Errorf("Error in execute")
 				} else {
 					return nil
@@ -49,8 +49,8 @@ func TestExecute(t *testing.T) {
 		)
 		defer patchExecute.Reset()
 
-		t.Run(tt.name, func(t *testing.T){
-			err := cmd.Execute() 
+		t.Run(tt.name, func(t *testing.T) {
+			err := cmd.Execute()
 			if tt.err {
 				assert.Equal(t, true, err != nil)
 			} else {

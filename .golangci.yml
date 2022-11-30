@@ -1,0 +1,25 @@
+linters-settings:
+  errcheck:
+    check-type-assertions: true
+    check-blank: true
+    ignore: fmt:.*,io/ioutil:^Read.*
+    disable-default-exclusions: true
+    # exclude: /path/to/file.txt
+    exclude-functions:
+      - io/ioutil.ReadFile
+      - io.Copy(*bytes.Buffer)
+      - io.Copy(os.Stdout)
+  lll:
+    line-length: 300
+    tab-width: 2
+    autofix: true
+linters:
+  enable:
+    - lll
+    - errcheck
+    - gosimple
+    - govet
+    - ineffassign
+    - staticcheck
+    - typecheck
+    - unused

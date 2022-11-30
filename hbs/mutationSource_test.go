@@ -11,24 +11,24 @@ import (
 	"github.com/wednesday-solutions/negt/hbs"
 )
 
-func TestMutationSource(t *testing.T){
-	type args struct{
+func TestMutationSource(t *testing.T) {
+	type args struct {
 		modelName, path, file string
-		ctx map[string]interface{}
+		ctx                   map[string]interface{}
 	}
-	cases := []struct{
-		name string
-		req args
-		err bool
+	cases := []struct {
+		name      string
+		req       args
+		err       bool
 		genTplErr bool
 	}{
 		{
 			name: "Success",
 			req: args{
 				modelName: "modelName",
-				path: "path",
-				file: "file",
-				ctx: map[string]interface{}{},
+				path:      "path",
+				file:      "file",
+				ctx:       map[string]interface{}{},
 			},
 			err: false,
 		},
@@ -36,11 +36,11 @@ func TestMutationSource(t *testing.T){
 			name: "Fail",
 			req: args{
 				modelName: "modelName",
-				path: "path",
-				file: "file",
-				ctx: map[string]interface{}{},
+				path:      "path",
+				file:      "file",
+				ctx:       map[string]interface{}{},
 			},
-			err: true,
+			err:       true,
 			genTplErr: true,
 		},
 	}
@@ -48,8 +48,8 @@ func TestMutationSource(t *testing.T){
 	for _, tt := range cases {
 		patchGenTpl := gomonkey.ApplyFunc(
 			hbs.GenerateTemplate,
-			func(string, map[string]interface{})(string, error){
-				if tt.genTplErr{
+			func(string, map[string]interface{}) (string, error) {
+				if tt.genTplErr {
 					return "", fmt.Errorf("Error in gentpl")
 				}
 				return "source", nil
@@ -65,7 +65,7 @@ func TestMutationSource(t *testing.T){
 		)
 		defer patchWriteToFile.Reset()
 
-		t.Run(tt.name, func(t *testing.T){
+		t.Run(tt.name, func(t *testing.T) {
 			err := hbs.MutationSource(
 				tt.req.modelName,
 				tt.req.path,
@@ -74,7 +74,7 @@ func TestMutationSource(t *testing.T){
 			)
 			if err != nil {
 				assert.Equal(t, true, err != nil)
-				if tt.genTplErr{
+				if tt.genTplErr {
 					assert.Equal(t, true, strings.Contains(err.Error(), "Error in gentpl"))
 				}
 			} else {

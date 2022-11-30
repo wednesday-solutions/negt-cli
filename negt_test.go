@@ -9,25 +9,24 @@ import (
 	"github.com/wednesday-solutions/negt/cmd"
 )
 
-
 func TestMain(t *testing.T) {
-	cases := []struct{
+	cases := []struct {
 		name string
-		err bool
+		err  bool
 	}{
 		{
 			name: "Success",
-			err: false,
+			err:  false,
 		},
 		{
 			name: "Fail",
-			err: true,
+			err:  true,
 		},
 	}
 	for _, tt := range cases {
 		patchExit := gomonkey.ApplyFunc(
 			os.Exit,
-			func(int){},
+			func(int) {},
 		)
 		defer patchExit.Reset()
 
@@ -43,7 +42,7 @@ func TestMain(t *testing.T) {
 		)
 		defer patchExecute.Reset()
 
-		t.Run("Success", func(t *testing.T){
+		t.Run("Success", func(t *testing.T) {
 			main()
 		})
 	}

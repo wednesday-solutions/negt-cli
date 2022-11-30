@@ -19,16 +19,16 @@ func TestWriteCustomResolvers(t *testing.T) {
 		dirName        string
 		fields         []string
 		fieldTypes     []string
-		resolverFiles []string
+		resolverFiles  []string
 		nullFields     []bool
 		customMutation bool
 	}
 	cases := []struct {
-		name          string
-		req           args
-		createErr      bool
-		updateErr      bool
-		deleteErr       bool
+		name      string
+		req       args
+		createErr bool
+		updateErr bool
+		deleteErr bool
 	}{
 		{
 			name: "Success",
@@ -37,7 +37,7 @@ func TestWriteCustomResolvers(t *testing.T) {
 				dirName:        "dir",
 				fields:         []string{"field"},
 				fieldTypes:     []string{"fieldType"},
-				resolverFiles:          []string{"customCreateMutation.js", "customUpdateMutation.js", "customDeleteMutation.js"},
+				resolverFiles:  []string{"customCreateMutation.js", "customUpdateMutation.js", "customDeleteMutation.js"},
 				nullFields:     []bool{true, false},
 				customMutation: true,
 			},
@@ -49,7 +49,7 @@ func TestWriteCustomResolvers(t *testing.T) {
 				dirName:        "dir",
 				fields:         []string{"field"},
 				fieldTypes:     []string{"fieldType"},
-				resolverFiles:          []string{"customCreateMutation.js"},
+				resolverFiles:  []string{"customCreateMutation.js"},
 				nullFields:     []bool{true, false},
 				customMutation: true,
 			},
@@ -62,7 +62,7 @@ func TestWriteCustomResolvers(t *testing.T) {
 				dirName:        "dir",
 				fields:         []string{"field"},
 				fieldTypes:     []string{"fieldType"},
-				resolverFiles:          []string{"customUpdateMutation.js"},
+				resolverFiles:  []string{"customUpdateMutation.js"},
 				nullFields:     []bool{true, false},
 				customMutation: true,
 			},
@@ -75,7 +75,7 @@ func TestWriteCustomResolvers(t *testing.T) {
 				dirName:        "dir",
 				fields:         []string{"field"},
 				fieldTypes:     []string{"fieldType"},
-				resolverFiles:          []string{"customDeleteMutation.js"},
+				resolverFiles:  []string{"customDeleteMutation.js"},
 				nullFields:     []bool{true, false},
 				customMutation: true,
 			},
@@ -154,7 +154,7 @@ func TestWriteCustomResolvers(t *testing.T) {
 					assert.Equal(t, true, strings.Contains(err.Error(), "Error in updateSource"))
 				} else if tt.deleteErr {
 					assert.Equal(t, true, strings.Contains(err.Error(), "Error in deleteSource"))
-				} 
+				}
 			} else {
 				assert.Equal(t, true, err == nil)
 			}

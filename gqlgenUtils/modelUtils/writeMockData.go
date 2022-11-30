@@ -17,11 +17,11 @@ func WriteMockData(modelName, dirName string, fields, fieldTypes []string, nullF
 		path = fmt.Sprintf("%s/%s", path, "server")
 	}
 	if !fileUtils.IsExists(path, UTILS) {
-		_ = fileUtils.MakeDirectory(path, UTILS)
+		_ = fileUtils.MakeDirectory(path, UTILS) // nolint:errcheck
 	}
 	path = fmt.Sprintf("%s/%s", path, UTILS)
 	if !fileUtils.IsExists(path, TESTUTILS) {
-		_ = fileUtils.MakeDirectory(path, TESTUTILS)
+		_ = fileUtils.MakeDirectory(path, TESTUTILS) // nolint:errcheck
 	}
 	path = fmt.Sprintf("%s/%s", path, TESTUTILS)
 

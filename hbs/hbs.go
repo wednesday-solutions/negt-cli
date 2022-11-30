@@ -21,6 +21,7 @@ func init() {
 }
 
 var fieldsWithType []string
+
 func FieldsWithType(fields, fieldTypes []string, nullFields []bool) []string {
 
 	if len(fieldsWithType) == 0 {
@@ -38,6 +39,7 @@ func FieldsWithType(fields, fieldTypes []string, nullFields []bool) []string {
 }
 
 var testFields []string
+
 func TestFieldsWithID(fields []string, modelName string) []string {
 	if len(testFields) == 0 {
 		for _, field := range fields {
@@ -49,6 +51,7 @@ func TestFieldsWithID(fields []string, modelName string) []string {
 }
 
 var stringFields []string
+
 func InputStringFieldsWithID(fields, fieldTypes []string, modelName string) []string {
 
 	if len(stringFields) == 0 {
@@ -66,6 +69,7 @@ func InputStringFieldsWithID(fields, fieldTypes []string, modelName string) []st
 }
 
 var stringFieldsWithoutID []string
+
 func InputStringFieldsWithoutID(fields, fieldTypes []string, modelName string) []string {
 
 	if len(stringFieldsWithoutID) == 0 {
@@ -97,6 +101,7 @@ func Test(fields []string) []string {
 }
 
 var customMutationImports string
+
 func CustomMutationImports(customMutation bool) string {
 	if customMutation {
 		if customMutationImports == "" {
@@ -111,6 +116,7 @@ import { customDeleteMutation } from './customDeleteMutation';`
 }
 
 var mockFields []string
+
 func MockFields(fields, fieldTypes []string) []string {
 	if len(mockFields) == 0 {
 		for idx, field := range fields {
@@ -155,6 +161,7 @@ func ClosingBrace() string {
 }
 
 var customMutations string
+
 func CustomMutations(customMutation bool) string {
 	if customMutation {
 		if customMutations == "" {

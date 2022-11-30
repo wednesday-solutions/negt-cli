@@ -116,7 +116,7 @@ func PromptGetSelectPath(pc PromptContent) string {
 			path := fileUtils.CurrentDirectory()
 			for _, dir := range directories {
 				if !fileUtils.IsExists(path, dir) {
-					fileUtils.MakeDirectory(path, dir)
+					fileUtils.MakeDirectory(path, dir) // nolint:errcheck
 				}
 				path = fmt.Sprintf("%s/%s", path, dir)
 			}

@@ -61,7 +61,7 @@ describe('{{titleSingularModel}} graphql-server-DB pagination tests', () => {
 	if err != nil {
 		return err
 	}
-	fileUtils.WriteToFile(path, file, tpl)
+	fileUtils.WriteToFile(path, file, tpl) // nolint:errcheck
 
 	return nil
 }
