@@ -6,7 +6,7 @@ import (
 
 var gqlgenCmd = GqlgenCmd()
 
-// gqlgenCmd represents the gqlgen command
+// GqlgenCmd represents the gqlgen command
 func GqlgenCmd() *cobra.Command {
 
 	var gqlgenCmd = &cobra.Command{

@@ -1,6 +1,7 @@
 # negt
 
 <br>
+NEGT stands for Node-Express-GraphQL-Template. <br>
 CLI-App can auto generate graphql models and resolvers by your requirements.. <br>
 For example :- If you want to make graphql models and it's resolvers please provide the details for the questions.<br>
 It will auto generate graphql schema and resolvers by itself.<br><br>
@@ -23,7 +24,9 @@ It will auto generate graphql schema and resolvers by itself.<br><br>
 
 This will install the `negt` command to your `$GOPATH/bin` directory.
 
-If you want use the `negt` command for `Nodejs-Express-GraphQL-Template`, just install negt by doing this (Before this you should make sure `Go` is already installed in your machine.),
+# For Negt users
+
+If you want use the `negt` command for `Node-Express-GraphQL-Template`, just install negt by doing this (Before this you should make sure `Go` is already installed in your machine.),
 
         go install github.com/wednesday-solutions/negt@latest
 

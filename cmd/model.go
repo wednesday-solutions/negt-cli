@@ -7,6 +7,7 @@ import (
 
 var modelCmd = ModelCmd()
 
+// RunModelE represents the run function for model command
 func RunModelE(cmd *cobra.Command, args []string) error {
 	err := modelUtils.CreateNewModel()
 	if err != nil {

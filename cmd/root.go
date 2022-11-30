@@ -5,7 +5,7 @@ import "github.com/spf13/cobra"
 var rootCmd = RootCmd()
 var version = "1.1.3"
 
-// rootCmd represents the base command when called without any subcommands
+// RootCmd represents the base command when called without any subcommands
 func RootCmd() *cobra.Command {
 
 	var cmd = &cobra.Command{

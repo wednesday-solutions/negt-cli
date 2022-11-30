@@ -6,11 +6,13 @@ import (
 	"path/filepath"
 )
 
+// FindDirectory will give the path of an input.
 func FindDirectory(dirName string) string {
 	path, _ := filepath.Abs(".") // nolint:errcheck
 	return path
 }
 
+// MakeDirectory will make directory according to input.
 func MakeDirectory(path string, dirName string) error {
 	err := os.Mkdir(path+"/"+dirName, 0755)
 	if err != nil {

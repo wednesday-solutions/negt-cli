@@ -13,7 +13,7 @@ func RunTestCmd(cmd *cobra.Command, args []string) error {
 	return nil
 }
 
-// testCmd represents the test command
+// TestCmd represents the test command
 func TestCmd() *cobra.Command {
 
 	var testCmd = &cobra.Command{

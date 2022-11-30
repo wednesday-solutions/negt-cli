@@ -10,6 +10,7 @@ import (
 
 var initCmd = InitCmd()
 
+// RunInitE represents the run function for init command
 func RunInitE(cmd *cobra.Command, args []string) error {
 	var (
 		SERVER = "server"
@@ -50,7 +51,7 @@ func RunInitE(cmd *cobra.Command, args []string) error {
 	return nil
 }
 
-// initCmd represents the init command
+// InitCmd represents the init command
 func InitCmd() *cobra.Command {
 
 	var initCmd = &cobra.Command{
