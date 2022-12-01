@@ -25,11 +25,10 @@ jobs:
           DRY_RUN: true
           WITH_V: true
           VERBOSE: true
-        run: |
-          git push --tags
 
       - name: Publish go-pkg
         run: |
+          git push --tags
           echo ${{ steps.bump.outputs.new_tag }}
           echo ${{ steps.bump.outputs.tag }}
           echo ${{ steps.bump.outputs.part }}
