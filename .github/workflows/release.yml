@@ -30,7 +30,6 @@ jobs:
         run: |
           git config --global user.email "ijas@wednesday.is"
           git config --global user.name "Ijas Mohamad"
-          git commit -m "negt: changes for new tag"
           git push origin ${{ steps.bump.outputs.new_tag }}
           echo ${{ steps.bump.outputs.new_tag }}
           echo ${{ steps.bump.outputs.tag }}
@@ -40,3 +39,4 @@ jobs:
           PKG="github.com/wednesday-solutions/negt@$TAG"
           echo $PKG
           GOPROXY=proxy.golang.org go list -m $PKG
+# git commit -m "negt: changes for new tag"
