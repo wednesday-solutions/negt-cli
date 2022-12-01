@@ -32,4 +32,8 @@ jobs:
           echo ${{ steps.bump.outputs.new_tag }}
           echo ${{ steps.bump.outputs.tag }}
           echo ${{ steps.bump.outputs.part }}
-          GOPROXY=proxy.golang.org go list -m github.com/wednesday-solutions/negt@${{ steps.bump.outputs.new_tag }}
+          TAG=${{ steps.bump.outputs.new_tag }}
+          echo $TAG
+          PKG="github.com/wednesday-solutions/negt@$TAG"
+          echo $PKG
+          GOPROXY=proxy.golang.org go list -m $PKG
