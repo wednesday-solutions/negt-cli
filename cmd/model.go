@@ -8,7 +8,7 @@ import (
 var modelCmd = ModelCmd()
 
 // RunModelE represents the run function for model command
-func RunModelE(cmd *cobra.Command, args []string) error {
+func RunModelE(*cobra.Command, []string) error {
 	err := modelUtils.CreateNewModel()
 	if err != nil {
 		return err
@@ -16,7 +16,7 @@ func RunModelE(cmd *cobra.Command, args []string) error {
 	return nil
 }
 
-// modelCmd represents the model command
+// ModelCmd represents the model command
 func ModelCmd() *cobra.Command {
 
 	var modelCmd = &cobra.Command{
@@ -31,6 +31,20 @@ func ModelCmd() *cobra.Command {
 	}
 	return modelCmd
 }
+
+// func SubModelCmd() *cobra.Command {
+
+// 	var subModelCmd = &cobra.Command{
+// 		Use:   "gqlmodel",
+// 		Short: "Alias for negt gqlgen model",
+// 		RunE: func(cmd *cobra.Command, args []string) error {
+// 			fmt.Println("Alias for negt gqlgen model")
+// 			modelCmd.Run(cmd, args)
+// 			return nil
+// 		},
+// 	}
+// 	return subModelCmd
+// }
 
 func init() {
 	gqlgenCmd.AddCommand(modelCmd)

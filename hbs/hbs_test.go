@@ -112,7 +112,7 @@ func TestInitHbs(t *testing.T) {
 		)
 		defer patchRegisterHelper.Reset()
 
-		t.Run(tt.name, func(t *testing.T) {
+		t.Run(tt.name, func(*testing.T) {
 			testing.Init()
 		})
 	}

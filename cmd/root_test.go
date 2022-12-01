@@ -12,7 +12,7 @@ import (
 )
 
 func TestRunTestCmd(t *testing.T) {
-	t.Run("Success", func(t *testing.T) {
+	t.Run("Success", func(*testing.T) {
 		cmd.RunTestCmd(&cobra.Command{}, []string{}) // nolint:errcheck
 	})
 }

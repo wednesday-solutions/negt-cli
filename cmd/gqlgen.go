@@ -6,6 +6,9 @@ import (
 
 var gqlgenCmd = GqlgenCmd()
 
+// alias for 'gqlgen model'
+// var subModelCmd = SubModelCmd()
+
 // GqlgenCmd represents the gqlgen command
 func GqlgenCmd() *cobra.Command {
 
@@ -29,4 +32,7 @@ func init() {
 
 	// negt gqlgen only give suggestions
 	gqlgenCmd.Flags().BoolP("help", "h", false, "Help for gqlgen")
+
+	// alias for 'gqlgen model'
+	// rootCmd.AddCommand(subModelCmd)
 }

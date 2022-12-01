@@ -96,7 +96,7 @@ func TestInitInit(t *testing.T) {
 	)
 	defer patchInitCmd.Reset()
 
-	t.Run("Success", func(t *testing.T) {
+	t.Run("Success", func(*testing.T) {
 		testing.Init()
 	})
 }

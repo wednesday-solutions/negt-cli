@@ -16,7 +16,7 @@
   "[go]": {
     "editor.insertSpaces": true,
     "editor.formatOnSave": true,
-    "editor.defaultFormatter": "golang.go"
+    "editor.defaultFormatter": "golang.go-nightly"
   },
   "go.testFlags": ["-gcflags=all=-l"]
 }

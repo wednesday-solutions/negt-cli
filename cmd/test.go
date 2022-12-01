@@ -8,7 +8,7 @@ import (
 
 var testCmd = TestCmd()
 
-func RunTestCmd(cmd *cobra.Command, args []string) error {
+func RunTestCmd(*cobra.Command, []string) error {
 	fmt.Print("this command is for testing\n")
 	return nil
 }

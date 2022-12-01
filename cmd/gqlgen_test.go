@@ -8,7 +8,7 @@ import (
 )
 
 func TestInitGqlgen(t *testing.T) {
-	t.Run("Success", func(t *testing.T) {
+	t.Run("Success", func(*testing.T) {
 		testing.Init()
 	})
 }

@@ -80,7 +80,7 @@ func TestModelInit(t *testing.T) {
 	)
 	defer pacthAddCommand.Reset()
 
-	t.Run("Success", func(t *testing.T) {
+	t.Run("Success", func(*testing.T) {
 		testing.Init()
 	})
 }

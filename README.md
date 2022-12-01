@@ -28,7 +28,7 @@ This will install the `negt` command to your `$GOPATH/bin` directory.
 
 If you want use the `negt` command for `Node-Express-GraphQL-Template`, just install negt by doing this (Before this you should make sure `Go` is already installed in your machine.),
 
-        go install github.com/wednesday-solutions/negt@latest
+    go install github.com/wednesday-solutions/negt@latest
 
 # Usage
     
@@ -84,4 +84,4 @@ It will create its test files also in `gql/models/<modelName>/tests` directory.
 
 Also, it will create mockData file for the model in `utils/testUtils` directory.
 
-<h3>Wednesday Solutions &copy;</h3>
+This project is released under the <a href="https://github.com/wednesday-solutions/negt/LICENCE">MIT License</a>.

@@ -11,7 +11,7 @@ import (
 var initCmd = InitCmd()
 
 // RunInitE represents the run function for init command
-func RunInitE(cmd *cobra.Command, args []string) error {
+func RunInitE(*cobra.Command, []string) error {
 	var (
 		SERVER = "server"
 		GQL    = "gql"

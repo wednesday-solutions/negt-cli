@@ -1,0 +1,46 @@
+name: Publish package in go-pkg
+
+on:
+  push:
+    branches: [develop]
+
+jobs:
+
+  semantic-release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Install Go
+        uses: actions/setup-go@v3
+        with:
+          go-version: 1.19
+
+      # - name: Semantic release
+      #   uses: cycjimmy/semantic-release-action@v3
+      #   id: semantic
+      #   env:
+      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      # - name: Publish go-pkg
+      #   if: steps.semantic.outputs.new_release_published == 'true'
+      #   run: |
+      #     echo ${{ steps.semantic.outputs.new_release_version }}
+      #     GOPROXY=proxy.golang.org go list -m github.com/wednesday-solutions/negt@steps.semantic.outputs.new_release_version
+
+      - name: Bump version and push tag
+        uses: anothrNick/github-tag-action@v1
+        id: bump
+        env: 
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          DEFAULT_BUMP: patch
+          DRY_RUN: true
+          WITH_V: true
+          VERBOSE: true
+
+      - name: Publish go-pkg
+        run: |
+          echo ${{ steps.bump.outputs.new_tag }}
+          echo ${{ steps.bump.outputs.tag }}
+          echo ${{ steps.bump.outputs.part }}
