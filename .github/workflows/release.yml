@@ -6,7 +6,7 @@ on:
 
 jobs:
 
-  semantic-release:
+  Release-go-pkg:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -16,18 +16,6 @@ jobs:
         uses: actions/setup-go@v3
         with:
           go-version: 1.19
-
-      # - name: Semantic release
-      #   uses: cycjimmy/semantic-release-action@v3
-      #   id: semantic
-      #   env:
-      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      # - name: Publish go-pkg
-      #   if: steps.semantic.outputs.new_release_published == 'true'
-      #   run: |
-      #     echo ${{ steps.semantic.outputs.new_release_version }}
-      #     GOPROXY=proxy.golang.org go list -m github.com/wednesday-solutions/negt@steps.semantic.outputs.new_release_version
 
       - name: Bump version and push tag
         uses: anothrNick/github-tag-action@v1
@@ -44,3 +32,4 @@ jobs:
           echo ${{ steps.bump.outputs.new_tag }}
           echo ${{ steps.bump.outputs.tag }}
           echo ${{ steps.bump.outputs.part }}
+          GOPROXY=proxy.golang.org go list -m github.com/wednesday-solutions/negt@{{ steps.bump.outputs.new_tag }}
