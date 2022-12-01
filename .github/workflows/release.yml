@@ -5,7 +5,6 @@ on:
     branches: [develop]
 
 jobs:
-
   Release-go-pkg:
     runs-on: ubuntu-latest
     steps:
@@ -20,12 +19,14 @@ jobs:
       - name: Bump version and push tag
         uses: anothrNick/github-tag-action@v1
         id: bump
-        env: 
+        env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           DEFAULT_BUMP: patch
           DRY_RUN: true
           WITH_V: true
           VERBOSE: true
+        run: |
+          git push --tags
 
       - name: Publish go-pkg
         run: |
