@@ -28,7 +28,8 @@ jobs:
 
       - name: Publish go-pkg
         run: |
-          git push --tags
+          git commit -m "negt: changes for new tag"
+          git push origin ${{ steps.bump.outputs.new_tag }}
           echo ${{ steps.bump.outputs.new_tag }}
           echo ${{ steps.bump.outputs.tag }}
           echo ${{ steps.bump.outputs.part }}
