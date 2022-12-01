@@ -30,11 +30,12 @@ jobs:
         run: |
           git config --global user.email "ijas@wednesday.is"
           git config --global user.name "Ijas Mohamad"
-          git push origin ${{ steps.bump.outputs.new_tag }}
+          TAG=${{ steps.bump.outputs.new_tag }}
+          git tag $TAG
+          git push origin $TAG
           echo ${{ steps.bump.outputs.new_tag }}
           echo ${{ steps.bump.outputs.tag }}
           echo ${{ steps.bump.outputs.part }}
-          TAG=${{ steps.bump.outputs.new_tag }}
           echo $TAG
           PKG="github.com/wednesday-solutions/negt@$TAG"
           echo $PKG
