@@ -36,37 +36,37 @@ jobs:
       - name: Create release note
         id: release-note
         run: |
-          COMMIT_MSG=${{ steps.commit-message.outputs.commit_msg }}
+          # COMMIT_MSG=${{ steps.commit-message.outputs.commit_msg }}
           NOTE="New Version"
-          if [[ $COMMIT_MSG == 'feat'* ]]; then
+          if [[ {{ steps.commit-message.outputs.commit_msg }} == 'feat'* ]]; then
             NOTE="New Features"
-          elif [[ $COMMIT_MSG == 'fix'* ]]; then
+          elif [[ {{ steps.commit-message.outputs.commit_msg }} == 'fix'* ]]; then
             NOTE="Bug Fixes"
-          elif [[ $COMMIT_MSG == 'chore'* ]]; then
+          elif [[ {{ steps.commit-message.outputs.commit_msg }} == 'chore'* ]]; then
             NOTE="Changes to build process or aux tools"
-          elif [[ $COMMIT_MSG == 'revert'* ]]; then
+          elif [[ {{ steps.commit-message.outputs.commit_msg }} == 'revert'* ]]; then
             NOTE="Revert Commits"
-          elif [[ $COMMIT_MSG == 'build'* ]]; then
+          elif [[ {{ steps.commit-message.outputs.commit_msg }} == 'build'* ]]; then
             NOTE="Build"
-          elif [[ $COMMIT_MSG == 'docs'* ]]; then
+          elif [[ {{ steps.commit-message.outputs.commit_msg }} == 'docs'* ]]; then
             NOTE="Documentation"
-          elif [[ $COMMIT_MSG == 'perf'* ]]; then
+          elif [[ {{ steps.commit-message.outputs.commit_msg }} == 'perf'* ]]; then
             NOTE="Performance Enhancements"
-          elif [[ $COMMIT_MSG == 'refactor'* ]]; then
+          elif [[ {{ steps.commit-message.outputs.commit_msg }} == 'refactor'* ]]; then
             NOTE="Refactored"
-          elif [[ $COMMIT_MSG == 'style'* ]]; then
+          elif [[ {{ steps.commit-message.outputs.commit_msg }} == 'style'* ]]; then
             NOTE="Changed Style"
-          elif [[ $COMMIT_MSG == 'temp'* ]]; then
+          elif [[ {{ steps.commit-message.outputs.commit_msg }} == 'temp'* ]]; then
             NOTE="Temporary Commit"
-          elif [[ $COMMIT_MSG == 'test'* ]]; then
+          elif [[ {{ steps.commit-message.outputs.commit_msg }} == 'test'* ]]; then
             NOTE="Added Tests"
-          elif [[ $COMMIT_MSG == 'ci'* ]]; then
+          elif [[ {{ steps.commit-message.outputs.commit_msg }} == 'ci'* ]]; then
             NOTE="Changes to CI config"
-          elif [[ $COMMIT_MSG == 'other'* ]]; then
+          elif [[ {{ steps.commit-message.outputs.commit_msg }} == 'other'* ]]; then
             NOTE="Others"
           fi
 
-          echo $COMMIT_MSG
+          echo {{ steps.commit-message.outputs.commit_msg }}
           echo $NOTE
 
       - name: Push tag to GitHub
