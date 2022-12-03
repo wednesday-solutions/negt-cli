@@ -26,18 +26,69 @@ jobs:
           WITH_V: true
           VERBOSE: true
 
-      - name: Publish go-pkg
+      - name: Get commit messages
+        id: commit-message
         run: |
-          git config --global user.email "ijas@wednesday.is"
-          git config --global user.name "Ijas Mohamad"
+          commit_msg=$(git show-branch --no-name HEAD)
+          echo "commit_msg=$commit_msg" >> $GITHUB_OUTPUT
+          COMMIT_MSG=${{ steps.commit-message.outputs.commit_msg }}
+
+      - name: Create release note
+        id: release-note
+        run: |
+          NOTE="New Version"
+          if [[ $COMMIT_MSG == 'feat'* ]]; then
+            NOTE="New Features"
+          elif [[ $COMMIT_MSG == 'fix'* ]]; then
+            NOTE="Bug Fixes"
+          elif [[ $COMMIT_MSG == 'chore'* ]]; then
+            NOTE="Changes to build process or aux tools"
+          elif [[ $COMMIT_MSG == 'revert'* ]]; then
+            NOTE="Revert Commits"
+          elif [[ $COMMIT_MSG == 'build'* ]]; then
+            NOTE="Build"
+          elif [[ $COMMIT_MSG == 'docs'* ]]; then
+            NOTE="Documentation"
+          elif [[ $COMMIT_MSG == 'perf'* ]]; then
+            NOTE="Performance Enhancements"
+          elif [[ $COMMIT_MSG == 'refactor'* ]]; then
+            NOTE="Refactored"
+          elif [[ $COMMIT_MSG == 'style'* ]]; then
+            NOTE="Changed Style"
+          elif [[ $COMMIT_MSG == 'temp'* ]]; then
+            NOTE="Temporary Commit"
+          elif [[ $COMMIT_MSG == 'test'* ]]; then
+            NOTE="Added Tests"
+          elif [[ $COMMIT_MSG == 'ci'* ]]; then
+            NOTE="Changes to CI config"
+          elif [[ $COMMIT_MSG == 'other'* ]]; then
+            NOTE="Others"
+          fi
+
+          echo $COMMIT_MSG
+          echo $NOTE
+
+      - name: Push tag to GitHub
+        run: |
+          git config --global user.email "$GITHUB_ACTOR@users.noreply.github.com"
+          git config --global user.name "$GITHUB_ACTOR"
           TAG=${{ steps.bump.outputs.new_tag }}
           git tag $TAG
           git push origin $TAG
-          echo ${{ steps.bump.outputs.new_tag }}
-          echo ${{ steps.bump.outputs.tag }}
-          echo ${{ steps.bump.outputs.part }}
-          echo $TAG
+          echo "Old tag: ${{ steps.bump.outputs.tag }}"
+          echo "New bump part: ${{ steps.bump.outputs.part }}"
+          echo "New tag: $TAG"
+
+      - name: Publish go-pkg
+        run: |
           PKG="github.com/wednesday-solutions/negt@$TAG"
-          echo $PKG
+          echo "New package version: $PKG"
           GOPROXY=proxy.golang.org go list -m $PKG
-# git commit -m "negt: changes for new tag"
+
+      - name: Release go-pkg
+        uses: anton-yurchenko/git-release@main
+        env: 
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          args: build/*.zip
+          RELEASE_NAME: $NOTE

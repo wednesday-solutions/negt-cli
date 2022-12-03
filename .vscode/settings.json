@@ -1,7 +1,8 @@
 {
   "go.lintTool": "golangci-lint",
-  "go.lintFlags": ["--fast"],
-
+  "go.lintFlags": [
+    "--fast"
+  ],
   "go.coverOnSave": true,
   "go.coverageDecorator": {
     "type": "gutter",
@@ -16,7 +17,9 @@
   "[go]": {
     "editor.insertSpaces": true,
     "editor.formatOnSave": true,
-    "editor.defaultFormatter": "golang.go-nightly"
+    "editor.defaultFormatter": "golang.go"
   },
-  "go.testFlags": ["-gcflags=all=-l"]
+  "go.testFlags": [
+    "-gcflags=all=-l"
+  ]
 }
