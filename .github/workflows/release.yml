@@ -72,11 +72,11 @@ jobs:
         run: |
           git config --global user.email "$GITHUB_ACTOR@users.noreply.github.com"
           git config --global user.name "$GITHUB_ACTOR"
-          TAG=${{ steps.bump.outputs.new_tag }}
-          git tag $TAG
-          git push origin $TAG
-          echo "Old tag: ${{ steps.bump.outputs.tag }}"
+          git config --global push.followTags true
+          git tag {{ steps.bump.outputs.new_tag }}
+          git push --follow-tags
           echo "New bump part: ${{ steps.bump.outputs.part }}"
+          TAG=${{ steps.bump.outputs.new_tag }}
           echo "New tag: $TAG"
 
       - name: Publish go-pkg
