@@ -69,7 +69,7 @@ jobs:
           echo $commit_msg
           echo $COMMIT_MSG
           echo $NOTE
-          echo "note=<h5>$NOTE</h5>" >> $GITHUB_OUTPUT
+          echo "note=<h3>$NOTE</h3>" >> $GITHUB_OUTPUT
 
       - name: Push tag to GitHub
         id: new-tag
@@ -103,8 +103,8 @@ jobs:
           RELEASE_NAME: ${{ steps.bump.outputs.new_tag }}
           body: |
             ${{ steps.release-note.outputs.note }}
-            - @alichherawalla
-            - @ijasMohamad
+            @alichherawalla <br>
+            @ijasMohamad
           draft: false
           prerelease: false
           
