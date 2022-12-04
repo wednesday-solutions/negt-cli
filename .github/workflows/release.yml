@@ -84,7 +84,7 @@ jobs:
 
       - name: Publish go-pkg
         run: |
-          PKG="github.com/wednesday-solutions/negt@$TAG"
+          PKG="github.com/wednesday-solutions/negt@$NEW_TAG"
           echo "New package version: $PKG"
           GOPROXY=proxy.golang.org go list -m $PKG
 
