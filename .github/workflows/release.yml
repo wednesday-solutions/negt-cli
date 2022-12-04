@@ -100,3 +100,5 @@ jobs:
         with:
           args: build/*.zip
           RELEASE_NAME: ${{ steps.release-note.outputs.note }}
+          CHANGELOG_FILE: none
+          
