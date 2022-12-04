@@ -69,6 +69,7 @@ jobs:
           echo $commit_msg
           echo $COMMIT_MSG
           echo $NOTE
+          echo "note=$NOTE" >> $GITHUB_OUTPUT
 
       - name: Push tag to GitHub
         id: new-tag
@@ -98,4 +99,4 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           args: build/*.zip
-          RELEASE_NAME: $NOTE
+          RELEASE_NAME: ${{ steps.release-note.outputs.note }}
