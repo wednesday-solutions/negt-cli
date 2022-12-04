@@ -93,12 +93,14 @@ jobs:
           echo "New package version: $PKG"
           GOPROXY=proxy.golang.org go list -m $PKG
 
-      - name: Release go-pkg
-        uses: anton-yurchenko/git-release@main
+      - name: Create Release
+        uses: actions/create-release@latest
         env: 
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          args: build/*.zip
-          RELEASE_NAME: ${{ steps.release-note.outputs.note }}
-          CHANGELOG_FILE: none
+          tag_name: ${{ steps.bump.outputs.new_tag }}
+          RELEASE_NAME: v${{ steps.bump.outputs.new_tag }}
+          body: ${{ steps.release-note.outputs.note }}
+          draft: false
+          prerelease: false
           
