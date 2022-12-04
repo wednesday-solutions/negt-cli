@@ -99,7 +99,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           tag_name: ${{ steps.bump.outputs.new_tag }}
-          RELEASE_NAME: v${{ steps.bump.outputs.new_tag }}
+          RELEASE_NAME: ${{ steps.bump.outputs.new_tag }}
           body: ${{ steps.release-note.outputs.note }}
           draft: false
           prerelease: false
