@@ -36,7 +36,7 @@ jobs:
       - name: Create release note
         id: release-note
         run: |
-          COMMIT_MSG="${commit_msg}"
+          COMMIT_MSG="${{ steps.commit-message.outputs.commit_msg }}"
           NOTE="New Version"
           if [[ $COMMIT_MSG == 'feat'* ]]; then
             NOTE="New Features"
