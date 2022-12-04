@@ -69,7 +69,7 @@ jobs:
           echo $commit_msg
           echo $COMMIT_MSG
           echo $NOTE
-          echo "note=$NOTE" >> $GITHUB_OUTPUT
+          echo "note=<h5>$NOTE</h5>" >> $GITHUB_OUTPUT
 
       - name: Push tag to GitHub
         id: new-tag
@@ -91,6 +91,7 @@ jobs:
           echo "New version: $VERSION"
           PKG="github.com/wednesday-solutions/negt@$VERSION"
           echo "New package version: $PKG"
+          echo "Release note: ${{ steps.release-note.outputs.note }}"
           GOPROXY=proxy.golang.org go list -m $PKG
 
       - name: Create Release
@@ -100,7 +101,10 @@ jobs:
         with:
           tag_name: ${{ steps.bump.outputs.new_tag }}
           RELEASE_NAME: ${{ steps.bump.outputs.new_tag }}
-          body: ${{ steps.release-note.outputs.note }}
+          body: |
+            ${{ steps.release-note.outputs.note }}
+            - @alichherawalla
+            - @ijasMohamad
           draft: false
           prerelease: false
           
