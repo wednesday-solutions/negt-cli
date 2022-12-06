@@ -22,6 +22,7 @@ func init() {
 
 var fieldsWithType []string
 
+// FieldsWithType is a helper function of Hbs.
 func FieldsWithType(fields, fieldTypes []string, nullFields []bool) []string {
 
 	if len(fieldsWithType) == 0 {
@@ -40,6 +41,7 @@ func FieldsWithType(fields, fieldTypes []string, nullFields []bool) []string {
 
 var testFields []string
 
+// TestFieldsWithID is a helper function of Hbs.
 func TestFieldsWithID(fields []string, modelName string) []string {
 	if len(testFields) == 0 {
 		for _, field := range fields {
@@ -52,6 +54,7 @@ func TestFieldsWithID(fields []string, modelName string) []string {
 
 var stringFields []string
 
+// InputStringFieldsWithID is a helper function of Hbs.
 func InputStringFieldsWithID(fields, fieldTypes []string, modelName string) []string {
 
 	if len(stringFields) == 0 {
@@ -70,6 +73,7 @@ func InputStringFieldsWithID(fields, fieldTypes []string, modelName string) []st
 
 var stringFieldsWithoutID []string
 
+// InputStringFieldsWithoutID is a helper function of Hbs.
 func InputStringFieldsWithoutID(fields, fieldTypes []string, modelName string) []string {
 
 	if len(stringFieldsWithoutID) == 0 {
@@ -96,12 +100,14 @@ func InputStringFieldsWithoutID(fields, fieldTypes []string, modelName string) [
 	return stringFieldsWithoutID
 }
 
+// Test is a helper function of Hbs.
 func Test(fields []string) []string {
 	return fields
 }
 
 var customMutationImports string
 
+// CustomMutationImports is a helper function of Hbs.
 func CustomMutationImports(customMutation bool) string {
 	if customMutation {
 		if customMutationImports == "" {
@@ -117,6 +123,7 @@ import { customDeleteMutation } from './customDeleteMutation';`
 
 var mockFields []string
 
+// MockFields is a helper function of Hbs.
 func MockFields(fields, fieldTypes []string) []string {
 	if len(mockFields) == 0 {
 		for idx, field := range fields {
@@ -142,6 +149,7 @@ func MockFields(fields, fieldTypes []string) []string {
 	return mockFields
 }
 
+// MockImports is a helper function of Hbs.
 func MockImports(fieldTypes []string) string {
 	for _, fieldType := range fieldTypes {
 		if fieldType == "GraphQLString" {
@@ -152,16 +160,19 @@ func MockImports(fieldTypes []string) string {
 	return ""
 }
 
+// OpeningBrace is a helper function of Hbs.
 func OpeningBrace() string {
 	return "{"
 }
 
+// ClosingBrace is a helper function of Hbs.
 func ClosingBrace() string {
 	return "}"
 }
 
 var customMutations string
 
+// CustomMutations is a helper function of Hbs.
 func CustomMutations(customMutation bool) string {
 	if customMutation {
 		if customMutations == "" {
@@ -175,6 +186,7 @@ func CustomMutations(customMutation bool) string {
 	return ""
 }
 
+// GenerateTemplate is a helper function of Hbs.
 func GenerateTemplate(source string, ctx map[string]interface{}) (string, error) {
 
 	tpl, err := raymond.Parse(source)

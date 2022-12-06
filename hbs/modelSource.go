@@ -2,6 +2,7 @@ package hbs
 
 import "github.com/wednesday-solutions/negt/gqlgenUtils/fileUtils"
 
+// ModelSource is the source function for model file.
 func ModelSource(modelName, path, file string, ctx map[string]interface{}) error {
 
 	source := `import { getNode }  from '@server/gql/node';

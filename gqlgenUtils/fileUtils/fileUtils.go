@@ -21,6 +21,7 @@ func MakeDirectory(path string, dirName string) error {
 	return nil
 }
 
+// MakeFile will create new file according to input path and file name.
 func MakeFile(path string, fileName string) error {
 	_, err := os.Create(path + "/" + fileName)
 	if err != nil {
@@ -29,6 +30,7 @@ func MakeFile(path string, fileName string) error {
 	return nil
 }
 
+// DirExists will check the input directory is exist or not.
 func DirExists(dirName string) bool {
 	path, _ := filepath.Abs(".") // nolint:errcheck
 	_, err := os.Stat(fmt.Sprintf("%s/%s", path, dirName))
@@ -36,13 +38,14 @@ func DirExists(dirName string) bool {
 	return err == nil
 }
 
+// IsExists will check the input directory is exists in the input path.
 func IsExists(path, dirName string) bool {
 	_, err := os.Stat(fmt.Sprintf("%s/%s", path, dirName))
 	return err == nil
 }
 
+// WriteToFile for write input data into file with respect to path.
 func WriteToFile(path, file, data string) error {
-
 	// Opens file with read and write permission.
 	openFile, err := os.OpenFile(fmt.Sprintf("%s/%s", path, file), os.O_RDWR, 0644)
 	if err != nil {
@@ -66,6 +69,7 @@ func WriteToFile(path, file, data string) error {
 	return nil
 }
 
+// CurrentDirectory will give the root directory.
 func CurrentDirectory() string {
 	path, err := filepath.Abs(".")
 	if err != nil {

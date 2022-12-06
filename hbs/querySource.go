@@ -2,6 +2,7 @@ package hbs
 
 import "github.com/wednesday-solutions/negt/gqlgenUtils/fileUtils"
 
+// QuerySource is the source function for query file.
 func QuerySource(modelName, path, file string, ctx map[string]interface{}) error {
 
 	source := `import { GraphQLInt, GraphQLNonNull } from 'graphql';

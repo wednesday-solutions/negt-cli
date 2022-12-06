@@ -4,6 +4,7 @@ import (
 	"github.com/wednesday-solutions/negt/gqlgenUtils/fileUtils"
 )
 
+// IndexTestSource is the source function for index test file.
 func IndexTestSource(modelName, path, file string, ctx map[string]interface{}) error {
 
 	source := `import { GraphQL{{titleSingularModel}} } from './model';

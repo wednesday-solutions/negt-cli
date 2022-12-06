@@ -2,6 +2,7 @@ package hbs
 
 import "github.com/wednesday-solutions/negt/gqlgenUtils/fileUtils"
 
+// MockDataSource is the source function for mockData file.
 func MockDataSource(modelName, path, file string, ctx map[string]interface{}) error {
 
 	source := `import range from 'lodash/range';

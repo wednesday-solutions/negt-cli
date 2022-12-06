@@ -2,6 +2,7 @@ package hbs
 
 import "github.com/wednesday-solutions/negt/gqlgenUtils/fileUtils"
 
+// IndexSource is the source function for index file.
 func IndexSource(modelName, path, file string, ctx map[string]interface{}) error {
 
 	source := `import { GraphQL{{titleSingularModel}} } from './model';

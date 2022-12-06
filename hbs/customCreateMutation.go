@@ -2,6 +2,7 @@ package hbs
 
 import "github.com/wednesday-solutions/negt/gqlgenUtils/fileUtils"
 
+// CustomCreateMutationSource is the source function for custom create mutation file.
 func CustomCreateMutationSource(modelName, path, file string, ctx map[string]interface{}) error {
 
 	source := `export const customCreateMutation = (model, args, context) => {

@@ -55,7 +55,7 @@ func TestRunModelE(t *testing.T) {
 
 func TestModelCmd(t *testing.T) {
 	t.Run("Success", func(t *testing.T) {
-		response := cmd.ModelCmd()
+		response := cmd.ModelCmdFn()
 		assert.Equal(t, true, response != nil)
 	})
 }

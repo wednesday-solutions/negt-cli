@@ -7,6 +7,7 @@ import (
 	"github.com/wednesday-solutions/negt/hbs"
 )
 
+// WriteMockData is the function for write data into mock data files.
 func WriteMockData(modelName, dirName string, fields, fieldTypes []string, nullFields []bool, customMutation bool) error {
 	UTILS := "utils"
 	TESTUTILS := "testUtils"

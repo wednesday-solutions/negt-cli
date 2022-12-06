@@ -2,6 +2,7 @@ package hbs
 
 import "github.com/wednesday-solutions/negt/gqlgenUtils/fileUtils"
 
+// MutationSource is the source function for mutation file.
 func MutationSource(modelName, path, file string, ctx map[string]interface{}) error {
 	source := `import { GraphQLID, GraphQLNonNull{{#if graphqlInt}}, {{graphqlInt}}{{/if}}{{#if graphqlString}}, {{graphqlString}}{{/if}}{{#if graphqlFloat}}, {{graphqlFloat}}{{/if}}{{#if graphqlBoolean}}, {{graphqlBoolean}}{{/if}}{{#if graphqlDateTime}}, {{graphqlDateTime}}{{/if}} } from 'graphql'; 
 import { GraphQL{{titleSingularModel}} } from './model';

@@ -6,11 +6,13 @@ import (
 	"github.com/manifoldco/promptui"
 )
 
+// PromptContent is the type of Prompt.
 type PromptContent struct {
 	ErrorMsg string
 	Label    string
 }
 
+// InitUtils will ask question in the CLI.
 func InitUtils() bool {
 
 	negtPromptContent := PromptContent{
@@ -22,6 +24,7 @@ func InitUtils() bool {
 	return flag
 }
 
+// PromptGetYesOrNoInput will return boolean value with respect to User input.
 func PromptGetYesOrNoInput(pc PromptContent) bool {
 
 	items := []string{"Yes", "No"}

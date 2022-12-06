@@ -8,7 +8,8 @@ import (
 	"github.com/wednesday-solutions/negt/gqlgenUtils/fileUtils"
 )
 
-var initCmd = InitCmd()
+// InitCmd is the command variable init command.
+var InitCmd = InitCmdFn()
 
 // RunInitE represents the run function for init command
 func RunInitE(*cobra.Command, []string) error {
@@ -52,7 +53,7 @@ func RunInitE(*cobra.Command, []string) error {
 }
 
 // InitCmd represents the init command
-func InitCmd() *cobra.Command {
+func InitCmdFn() *cobra.Command {
 
 	var initCmd = &cobra.Command{
 		Use:   "init",
@@ -68,5 +69,5 @@ func InitCmd() *cobra.Command {
 }
 
 func init() {
-	gqlgenCmd.AddCommand(initCmd)
+	GqlgenCmd.AddCommand(InitCmd)
 }

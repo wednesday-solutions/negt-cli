@@ -33,6 +33,12 @@ jobs:
           echo "commit_msg=$commit_msg" >> $GITHUB_OUTPUT
           echo $commit_msg
 
+      - name: Get pull request
+        uses: actions-ecosystem/action-get-merged-pull-request
+        id: pull-request
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
       - name: Create release note
         id: release-note
         run: |
@@ -65,11 +71,27 @@ jobs:
           elif [[ $COMMIT_MSG == 'other'* ]]; then
             NOTE="Others"
           fi
-
           echo $commit_msg
           echo $COMMIT_MSG
           echo $NOTE
           echo "note=<h2>$NOTE</h2>" >> $GITHUB_OUTPUT
+
+          PR_TITLE="#${{ steps.pull-request.outputs.number }}${{ steps.pull-request.outputs.title }}
+          echo $PR_TITLE
+          echo "pr_title=<h3>$PR_TITLE</h3>" >> $GITHUB_OUTPUT
+
+          PR_BODY="${{ steps.pull-request.outputs.body }}"
+          echo $PR_BODY
+          echo "pr_body=<h4>$PR_BODY</h4>" >> $GITHUB_OUTPUT
+
+          PR_LABELS="${{ steps.pull-request.outputs.labels }}"
+          echo $PR_LABELS
+          echo "pr_labels=<h5>$PR_LABELS</h5>" >> $GITHUB_OUTPUT
+
+          PR_ASSIGNEES="${{ steps.pull-request.outputs.assignees }}"
+          echo $PR_ASSIGNEES
+          echo "pr_assignees=<h5>$PR_ASSIGNEES</h5>" >> $GITHUB_OUTPUT 
+
 
       - name: Push tag to GitHub
         id: new-tag
@@ -103,6 +125,11 @@ jobs:
           RELEASE_NAME: ${{ steps.bump.outputs.new_tag }}
           body: |
             ${{ steps.release-note.outputs.note }}
+            ${{ steps.release-note.outputs.pr_title }}
+            ${{ steps.release-note.outputs.pr_body }}
+            ${{ steps.release-note.outputs.pr_labels }}
+            ${{ steps.release-note.outputs.pr_assignees }}
+
             @alichherawalla <br>
             @ijasMohamad
           draft: false
