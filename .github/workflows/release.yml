@@ -3,8 +3,6 @@ name: Publish package in go-pkg
 on:
   push:
     branches: [develop]
-  pull_request:
-    branches: [develop]
 
 jobs:
   Release-go-pkg:
@@ -94,49 +92,50 @@ jobs:
 
           PR_BODY="${{ steps.pull-request.outputs.body }}"
           echo $PR_BODY
-          echo "pr_body=<ul>$PR_BODY</ul>" >> $GITHUB_OUTPUT
+          echo pr_body=$PR_BODY >> $GITHUB_OUTPUT
 
           PR_COMMITS="${{ steps.pr-commit.outputs.pr_commits }}"
           echo $PR_COMMITS
-          echo "pr_commit=<ul>$PR_COMMITS</ul>" >> $GITHUB_OUTPUT
+          echo pr_commit=$PR_COMMITS >> $GITHUB_OUTPUT
 
-      # - name: Push tag to GitHub
-      #   id: new-tag
-      #   run: |
-      #     git config --global user.email "$GITHUB_ACTOR@users.noreply.github.com"
-      #     git config --global user.name "$GITHUB_ACTOR"
-      #     git config --global push.followTags true
-      #     NEW_TAG=${{ steps.bump.outputs.new_tag }}
-      #     echo "New Tag: $NEW_TAG"
-      #     git tag $NEW_TAG
-      #     git push origin $NEW_TAG
-      #     echo "New bump part: ${{ steps.bump.outputs.part }}"
-      #     echo "$NEW_TAG Tag pushed successfully."
-      #     echo "new_tag=$NEW_TAG" >> $GITHUB_OUTPUT
+      - name: Push tag to GitHub
+        id: new-tag
+        run: |
+          git config --global user.email "$GITHUB_ACTOR@users.noreply.github.com"
+          git config --global user.name "$GITHUB_ACTOR"
+          git config --global push.followTags true
+          NEW_TAG=${{ steps.bump.outputs.new_tag }}
+          echo "New Tag: $NEW_TAG"
+          git tag $NEW_TAG
+          git push origin $NEW_TAG
+          echo "New bump part: ${{ steps.bump.outputs.part }}"
+          echo "$NEW_TAG Tag pushed successfully."
+          echo "new_tag=$NEW_TAG" >> $GITHUB_OUTPUT
 
-      # - name: Publish go-pkg
-      #   run: |
-      #     VERSION=${{ steps.new-tag.outputs.new_tag }}
-      #     echo "New version: $VERSION"
-      #     PKG="github.com/wednesday-solutions/negt@$VERSION"
-      #     echo "New package version: $PKG"
-      #     echo "Release note: ${{ steps.release-note.outputs.note }}"
-      #     GOPROXY=proxy.golang.org go list -m $PKG
+      - name: Publish go-pkg
+        run: |
+          VERSION=${{ steps.new-tag.outputs.new_tag }}
+          echo "New version: $VERSION"
+          PKG="github.com/wednesday-solutions/negt@$VERSION"
+          echo "New package version: $PKG"
+          echo "Release note: ${{ steps.release-note.outputs.note }}"
+          GOPROXY=proxy.golang.org go list -m $PKG
 
-      # - name: Create Release
-      #   uses: actions/create-release@latest
-      #   env: 
-      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      #   with:
-      #     tag_name: ${{ steps.bump.outputs.new_tag }}
-      #     RELEASE_NAME: ${{ steps.bump.outputs.new_tag }}
-      #     body: |
-      #       ${{ steps.release-note.outputs.note }}
-      #       ${{ steps.release-note.outputs.pr_title }}
-      #       ${{ steps.release-note.outputs.pr_body }}
+      - name: Create Release
+        uses: actions/create-release@latest
+        env: 
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ steps.bump.outputs.new_tag }}
+          RELEASE_NAME: ${{ steps.bump.outputs.new_tag }}
+          body: |
+            ${{ steps.release-note.outputs.note }}
+            ${{ steps.release-note.outputs.pr_title }}
+            ${{ steps.release-note.outputs.pr_body }}
+            ${{ steps.release-note.outputs.pr_commit }}
 
-      #       @alichherawalla 
-      #       @ijasMohamad
-      #     draft: false
-      #     prerelease: false
+            @alichherawalla 
+            @ijasMohamad
+          draft: false
+          prerelease: false
           
