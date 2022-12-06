@@ -3,8 +3,8 @@ name: Negt-CliApp
 on:
   push:
     branches: [ "develop" ]
-  pull_request:
-    branches: [ "develop" ]
+  # pull_request:
+  #   branches: [ "develop" ]
 
 jobs:
 

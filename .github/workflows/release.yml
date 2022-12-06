@@ -3,6 +3,8 @@ name: Publish package in go-pkg
 on:
   push:
     branches: [develop]
+  pull_request:
+    branches: [develop]
 
 jobs:
   Release-go-pkg:
@@ -38,6 +40,17 @@ jobs:
         id: pull-request
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Get branch name 
+        uses: tj-actions/branch-names@v6
+        id: branch-name 
+
+      - name: Get PR commits 
+        id: pr-commit
+        run: |
+          pr_commits=$(git cherry -v ${{ steps.branch-name.outputs.base_ref_branch }} ${{ steps.branch-name.outputs.head_ref_branch }})
+          echo "PR_COMMITS=$pr_commits" >> $GITHUB_OUTPUT
+          echo $pr_commits
 
       - name: Create release note
         id: release-note
@@ -83,43 +96,47 @@ jobs:
           echo $PR_BODY
           echo "pr_body=<ul>$PR_BODY</ul>" >> $GITHUB_OUTPUT
 
-      - name: Push tag to GitHub
-        id: new-tag
-        run: |
-          git config --global user.email "$GITHUB_ACTOR@users.noreply.github.com"
-          git config --global user.name "$GITHUB_ACTOR"
-          git config --global push.followTags true
-          NEW_TAG=${{ steps.bump.outputs.new_tag }}
-          echo "New Tag: $NEW_TAG"
-          git tag $NEW_TAG
-          git push origin $NEW_TAG
-          echo "New bump part: ${{ steps.bump.outputs.part }}"
-          echo "$NEW_TAG Tag pushed successfully."
-          echo "new_tag=$NEW_TAG" >> $GITHUB_OUTPUT
+          PR_COMMITS="${{ steps.pr-commit.outputs.pr_commits }}"
+          echo $PR_COMMITS
+          echo "pr_commit=<ul>$PR_COMMITS</ul>" >> $GITHUB_OUTPUT
 
-      - name: Publish go-pkg
-        run: |
-          VERSION=${{ steps.new-tag.outputs.new_tag }}
-          echo "New version: $VERSION"
-          PKG="github.com/wednesday-solutions/negt@$VERSION"
-          echo "New package version: $PKG"
-          echo "Release note: ${{ steps.release-note.outputs.note }}"
-          GOPROXY=proxy.golang.org go list -m $PKG
+      # - name: Push tag to GitHub
+      #   id: new-tag
+      #   run: |
+      #     git config --global user.email "$GITHUB_ACTOR@users.noreply.github.com"
+      #     git config --global user.name "$GITHUB_ACTOR"
+      #     git config --global push.followTags true
+      #     NEW_TAG=${{ steps.bump.outputs.new_tag }}
+      #     echo "New Tag: $NEW_TAG"
+      #     git tag $NEW_TAG
+      #     git push origin $NEW_TAG
+      #     echo "New bump part: ${{ steps.bump.outputs.part }}"
+      #     echo "$NEW_TAG Tag pushed successfully."
+      #     echo "new_tag=$NEW_TAG" >> $GITHUB_OUTPUT
 
-      - name: Create Release
-        uses: actions/create-release@latest
-        env: 
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          tag_name: ${{ steps.bump.outputs.new_tag }}
-          RELEASE_NAME: ${{ steps.bump.outputs.new_tag }}
-          body: |
-            ${{ steps.release-note.outputs.note }}
-            ${{ steps.release-note.outputs.pr_title }}
-            ${{ steps.release-note.outputs.pr_body }}
+      # - name: Publish go-pkg
+      #   run: |
+      #     VERSION=${{ steps.new-tag.outputs.new_tag }}
+      #     echo "New version: $VERSION"
+      #     PKG="github.com/wednesday-solutions/negt@$VERSION"
+      #     echo "New package version: $PKG"
+      #     echo "Release note: ${{ steps.release-note.outputs.note }}"
+      #     GOPROXY=proxy.golang.org go list -m $PKG
 
-            @alichherawalla <br>
-            @ijasMohamad
-          draft: false
-          prerelease: false
+      # - name: Create Release
+      #   uses: actions/create-release@latest
+      #   env: 
+      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      #   with:
+      #     tag_name: ${{ steps.bump.outputs.new_tag }}
+      #     RELEASE_NAME: ${{ steps.bump.outputs.new_tag }}
+      #     body: |
+      #       ${{ steps.release-note.outputs.note }}
+      #       ${{ steps.release-note.outputs.pr_title }}
+      #       ${{ steps.release-note.outputs.pr_body }}
+
+      #       @alichherawalla 
+      #       @ijasMohamad
+      #     draft: false
+      #     prerelease: false
           
