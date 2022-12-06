@@ -81,7 +81,7 @@ jobs:
 
           PR_BODY="${{ steps.pull-request.outputs.body }}"
           echo $PR_BODY
-          echo "pr_body=<h4>$PR_BODY</h4>" >> $GITHUB_OUTPUT
+          echo "pr_body=$PR_BODY" >> $GITHUB_OUTPUT
 
       - name: Push tag to GitHub
         id: new-tag
