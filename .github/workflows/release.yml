@@ -34,7 +34,7 @@ jobs:
           echo $commit_msg
 
       - name: Get pull request
-        uses: actions-ecosystem/action-get-merged-pull-request
+        uses: actions-ecosystem/action-get-merged-pull-request@v1.0.1
         id: pull-request
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
