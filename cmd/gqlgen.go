@@ -4,13 +4,11 @@ import (
 	"github.com/spf13/cobra"
 )
 
-var gqlgenCmd = GqlgenCmd()
-
-// alias for 'gqlgen model'
-// var subModelCmd = SubModelCmd()
+// GqlgenCmd is the command variable of gqlgen.
+var GqlgenCmd = GqlgenCmdFn()
 
 // GqlgenCmd represents the gqlgen command
-func GqlgenCmd() *cobra.Command {
+func GqlgenCmdFn() *cobra.Command {
 
 	var gqlgenCmd = &cobra.Command{
 		Use:   "gqlgen",
@@ -28,11 +26,8 @@ func GqlgenCmd() *cobra.Command {
 
 func init() {
 
-	rootCmd.AddCommand(gqlgenCmd)
+	RootCmd.AddCommand(GqlgenCmd)
 
 	// negt gqlgen only give suggestions
-	gqlgenCmd.Flags().BoolP("help", "h", false, "Help for gqlgen")
-
-	// alias for 'gqlgen model'
-	// rootCmd.AddCommand(subModelCmd)
+	GqlgenCmd.Flags().BoolP("help", "h", false, "Help for gqlgen")
 }

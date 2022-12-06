@@ -6,6 +6,7 @@ import (
 	"github.com/wednesday-solutions/negt/gqlgenUtils/fileUtils"
 )
 
+// CreateGqlModelFiles will create GraphQl model files.
 func CreateGqlModelFiles(modelName, dirName string, files, testFiles []string) error {
 
 	path := fileUtils.FindDirectory(dirName)
@@ -39,6 +40,7 @@ func CreateGqlModelFiles(modelName, dirName string, files, testFiles []string) e
 	return nil
 }
 
+// CreateCustomResolverFiles will create GraphQl model custom resolver files.
 func CreateCustomResolverFiles(modelName, dirName string, resolverFiles, resolverTestFiles []string) error {
 
 	path := fileUtils.FindDirectory(dirName)

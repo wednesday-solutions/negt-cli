@@ -10,6 +10,7 @@ import (
 	"github.com/wednesday-solutions/negt/gqlgenUtils/fileUtils"
 )
 
+// PromptValidate is the validation function.
 func PromptValidate(input string) error {
 	if len(input) <= 2 {
 		return errors.New("Invalid input.")
@@ -17,6 +18,7 @@ func PromptValidate(input string) error {
 	return nil
 }
 
+// PromptGetInput is the promptui function for taking action according to CLI questions.
 func PromptGetInput(pc PromptContent) string {
 	validate := PromptValidate
 	templates := &promptui.PromptTemplates{
@@ -38,6 +40,7 @@ func PromptGetInput(pc PromptContent) string {
 	return result
 }
 
+// PromptGetYesOrNOInput is the promptui function for taking action according to Yes or No CLI questions.
 func PromptGetYesOrNoInput(pc PromptContent) bool {
 
 	items := []string{"Yes", "No"}
@@ -61,6 +64,7 @@ func PromptGetYesOrNoInput(pc PromptContent) bool {
 	}
 }
 
+// PromptGetSelect is the promptui function for taking action according to dropdown CLI questions.
 func PromptGetSelect(pc PromptContent) string {
 	items := []string{"ID", "Int", "Float", "String", "Boolean", "DateTime"}
 	index := -1
@@ -86,6 +90,7 @@ func PromptGetSelect(pc PromptContent) string {
 	return result
 }
 
+// PromptGetSelect is the promptui function for taking action of selecting the path according to CLI questions.
 func PromptGetSelectPath(pc PromptContent) string {
 	items := []string{"gql/models", "server/gql/models"}
 	index := -1

@@ -5,7 +5,8 @@ import (
 	"github.com/wednesday-solutions/negt/gqlgenUtils/modelUtils"
 )
 
-var modelCmd = ModelCmd()
+// ModelCmd is the command variable of model command.
+var ModelCmd = ModelCmdFn()
 
 // RunModelE represents the run function for model command
 func RunModelE(*cobra.Command, []string) error {
@@ -17,7 +18,7 @@ func RunModelE(*cobra.Command, []string) error {
 }
 
 // ModelCmd represents the model command
-func ModelCmd() *cobra.Command {
+func ModelCmdFn() *cobra.Command {
 
 	var modelCmd = &cobra.Command{
 		Use:     "model",
@@ -32,20 +33,6 @@ func ModelCmd() *cobra.Command {
 	return modelCmd
 }
 
-// func SubModelCmd() *cobra.Command {
-
-// 	var subModelCmd = &cobra.Command{
-// 		Use:   "gqlmodel",
-// 		Short: "Alias for negt gqlgen model",
-// 		RunE: func(cmd *cobra.Command, args []string) error {
-// 			fmt.Println("Alias for negt gqlgen model")
-// 			modelCmd.Run(cmd, args)
-// 			return nil
-// 		},
-// 	}
-// 	return subModelCmd
-// }
-
 func init() {
-	gqlgenCmd.AddCommand(modelCmd)
+	GqlgenCmd.AddCommand(ModelCmd)
 }

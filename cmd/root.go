@@ -2,11 +2,12 @@ package cmd
 
 import "github.com/spf13/cobra"
 
-var rootCmd = RootCmd()
+// RootCmd is the command variable of root command negt.
+var RootCmd = RootCmdFn()
 var version = "1.1.3"
 
 // RootCmd represents the base command when called without any subcommands
-func RootCmd() *cobra.Command {
+func RootCmdFn() *cobra.Command {
 
 	var cmd = &cobra.Command{
 		Use:     "negt",
@@ -29,9 +30,9 @@ func RootCmd() *cobra.Command {
 // Execute adds all child commands to the root command and sets flags appropriately.
 // This is called by main.main(). It only needs to happen once to the rootCmd.
 func Execute() error {
-	rootCmd.CompletionOptions.DisableDefaultCmd = true
+	RootCmd.CompletionOptions.DisableDefaultCmd = true
 
-	err := rootCmd.Execute()
+	err := RootCmd.Execute()
 	if err != nil {
 		return err
 	}

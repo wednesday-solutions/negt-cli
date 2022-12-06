@@ -6,6 +6,7 @@ import (
 	"github.com/wednesday-solutions/negt/gqlgenUtils/fileUtils"
 )
 
+// ModelTestSource is the source function for model test file.
 func ModelTestSource(modelName, path, file string, ctx map[string]interface{}) error {
 
 	source := fmt.Sprintf(`import get from 'lodash/get';

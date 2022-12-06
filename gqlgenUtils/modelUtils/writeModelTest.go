@@ -7,6 +7,7 @@ import (
 	"github.com/wednesday-solutions/negt/hbs"
 )
 
+// WriteModelTestFiles is the function for write data into model test files.
 func WriteModelTestFiles(
 	modelName, dirName string,
 	fields, fieldTypes, testFiles []string,

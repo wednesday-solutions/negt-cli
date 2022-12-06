@@ -15,7 +15,7 @@ func TestInitGqlgen(t *testing.T) {
 
 func TestGqlgenCmd(t *testing.T) {
 	t.Run("Success", func(t *testing.T) {
-		response := cmd.GqlgenCmd()
+		response := cmd.GqlgenCmdFn()
 		assert.Equal(t, true, response != nil)
 	})
 }

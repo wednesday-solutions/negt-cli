@@ -81,7 +81,7 @@ func TestRunInitE(t *testing.T) {
 
 func TestInitCmd(t *testing.T) {
 	t.Run("Success", func(t *testing.T) {
-		response := cmd.InitCmd()
+		response := cmd.InitCmdFn()
 		assert.Equal(t, true, response != nil)
 	})
 }

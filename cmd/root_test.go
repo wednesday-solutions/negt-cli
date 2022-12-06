@@ -11,12 +11,6 @@ import (
 	"github.com/wednesday-solutions/negt/cmd"
 )
 
-func TestRunTestCmd(t *testing.T) {
-	t.Run("Success", func(*testing.T) {
-		cmd.RunTestCmd(&cobra.Command{}, []string{}) // nolint:errcheck
-	})
-}
-
 func TestExecute(t *testing.T) {
 
 	cases := []struct {

@@ -2,6 +2,7 @@ package hbs
 
 import "github.com/wednesday-solutions/negt/gqlgenUtils/fileUtils"
 
+// ListSource is the source function for list file.
 func ListSource(modelName, path, file string, ctx map[string]interface{}) error {
 	source := `import { createConnection } from 'graphql-sequelize';
 import db from '@database/models';

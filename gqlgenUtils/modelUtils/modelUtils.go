@@ -10,11 +10,13 @@ import (
 	"github.com/wednesday-solutions/negt/gqlgenUtils/fileUtils"
 )
 
+// PromptContent is the type of Prompt.
 type PromptContent struct {
 	ErrorMsg string
 	Label    string
 }
 
+// CreateNewModel represent all the CLI questions.
 func CreateNewModel() error {
 	dirNamePromptContent := PromptContent{
 		"In which directory you want to create GraphQL model? ",
@@ -140,6 +142,7 @@ func CreateNewModel() error {
 	return nil
 }
 
+// AddField for adding extra fields.
 func AddField(
 	modelName string,
 	fields, fieldTypes []string,
@@ -171,6 +174,7 @@ func AddField(
 	return fields, fieldTypes, nullFields
 }
 
+// AddCustomMutations for creating custom mutation files.
 func AddCustomMutations(
 	modelName, dirName string,
 	fields, fieldTypes []string,

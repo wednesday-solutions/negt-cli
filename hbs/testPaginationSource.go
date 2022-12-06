@@ -6,6 +6,7 @@ import (
 	"github.com/wednesday-solutions/negt/gqlgenUtils/fileUtils"
 )
 
+// PaginationTestSource is the source function for pagination test file.
 func PaginationTestSource(modelName, path, file string, ctx map[string]interface{}) error {
 
 	source := fmt.Sprintf(`import get from 'lodash/get';

@@ -7,6 +7,7 @@ import (
 	"github.com/wednesday-solutions/negt/hbs"
 )
 
+// WriteModelFiles is the function for write data into model files.
 func WriteModelFiles(modelName, dirName string, fields, fieldTypes, files []string, nullFields []bool, customMutation bool) error {
 
 	path := fileUtils.FindDirectory(dirName)

@@ -6,6 +6,7 @@ import (
 	"golang.org/x/text/language"
 )
 
+// FieldUtils will give all details of models.
 func FieldUtils(modelName string, fields, fieldTypes []string, nullFields []bool, customMutation bool) map[string]interface{} {
 
 	pluralize := pluralize.NewClient()

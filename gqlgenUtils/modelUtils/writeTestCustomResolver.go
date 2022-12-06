@@ -7,6 +7,7 @@ import (
 	"github.com/wednesday-solutions/negt/hbs"
 )
 
+// WriteTestCustomResolvers is the function for write data into custom resolver test files.
 func WriteTestCustomResolvers(
 	modelName, dirName string,
 	fields, fieldTypes, resolverTestFiles []string,

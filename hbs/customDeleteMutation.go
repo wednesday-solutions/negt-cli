@@ -2,6 +2,7 @@ package hbs
 
 import "github.com/wednesday-solutions/negt/gqlgenUtils/fileUtils"
 
+// CustomDeleteMutationSource is the source function for custom delete mutation file.
 func CustomDeleteMutationSource(modelName, path, file string, ctx map[string]interface{}) error {
 
 	source := `export const customDeleteMutation = (model, args, context) => {
