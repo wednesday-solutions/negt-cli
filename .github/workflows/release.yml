@@ -44,31 +44,31 @@ jobs:
         run: |
           COMMIT_MSG="${{ steps.commit-message.outputs.commit_msg }}"
           NOTE="New Version"
-          if [[ $COMMIT_MSG == 'feat'* ]]; then
+          if [[ $COMMIT_MSG == *'feat'* ]]; then
             NOTE="New Features"
-          elif [[ $COMMIT_MSG == 'fix'* ]]; then
+          elif [[ $COMMIT_MSG == *'fix'* ]]; then
             NOTE="Bug Fixes"
-          elif [[ $COMMIT_MSG == 'chore'* ]]; then
+          elif [[ $COMMIT_MSG == *'chore'* ]]; then
             NOTE="Changes to build process or aux tools"
-          elif [[ $COMMIT_MSG == 'revert'* ]]; then
+          elif [[ $COMMIT_MSG == *'revert'* ]]; then
             NOTE="Revert Commits"
-          elif [[ $COMMIT_MSG == 'build'* ]]; then
+          elif [[ $COMMIT_MSG == *'build'* ]]; then
             NOTE="Build"
-          elif [[ $COMMIT_MSG == 'docs'* ]]; then
+          elif [[ $COMMIT_MSG == *'docs'* ]]; then
             NOTE="Documentation"
-          elif [[ $COMMIT_MSG == 'perf'* ]]; then
+          elif [[ $COMMIT_MSG == *'perf'* ]]; then
             NOTE="Performance Enhancements"
-          elif [[ $COMMIT_MSG == 'refactor'* ]]; then
+          elif [[ $COMMIT_MSG == *'refactor'* ]]; then
             NOTE="Refactored"
-          elif [[ $COMMIT_MSG == 'style'* ]]; then
+          elif [[ $COMMIT_MSG == *'style'* ]]; then
             NOTE="Changed Style"
-          elif [[ $COMMIT_MSG == 'temp'* ]]; then
+          elif [[ $COMMIT_MSG == *'temp'* ]]; then
             NOTE="Temporary Commit"
-          elif [[ $COMMIT_MSG == 'test'* ]]; then
+          elif [[ $COMMIT_MSG == *'test'* ]]; then
             NOTE="Added Tests"
-          elif [[ $COMMIT_MSG == 'ci'* ]]; then
+          elif [[ $COMMIT_MSG == *'ci'* ]]; then
             NOTE="Changes to CI config"
-          elif [[ $COMMIT_MSG == 'other'* ]]; then
+          elif [[ $COMMIT_MSG == *'other'* ]]; then
             NOTE="Others"
           fi
           echo $commit_msg
@@ -76,7 +76,7 @@ jobs:
           echo $NOTE
           echo "note=<h2>$NOTE</h2>" >> $GITHUB_OUTPUT
 
-          PR_TITLE="#${{ steps.pull-request.outputs.number }}${{ steps.pull-request.outputs.title }}
+          PR_TITLE="#${{ steps.pull-request.outputs.number }}${{ steps.pull-request.outputs.title }}"
           echo $PR_TITLE
           echo "pr_title=<h3>$PR_TITLE</h3>" >> $GITHUB_OUTPUT
 
