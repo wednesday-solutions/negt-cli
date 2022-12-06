@@ -39,6 +39,17 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
 
+      - name: Get branch name 
+        uses: tj-actions/branch-names@v6
+        id: branch-name 
+
+      - name: Get PR commits 
+        id: pr-commit
+        run: |
+          pr_commits=$(git cherry -v origin/${{ steps.branch-name.outputs.base_ref_branch }} origin/${{ steps.branch-name.outputs.head_ref_branch }})
+          echo PR_COMMITS=$pr_commits >> $GITHUB_OUTPUT
+          echo $pr_commits
+
       - name: Create release note
         id: release-note
         run: |
@@ -81,7 +92,11 @@ jobs:
 
           PR_BODY="${{ steps.pull-request.outputs.body }}"
           echo $PR_BODY
-          echo "pr_body=<ul>$PR_BODY</ul>" >> $GITHUB_OUTPUT
+          echo pr_body=$PR_BODY >> $GITHUB_OUTPUT
+
+          PR_COMMITS="${{ steps.pr-commit.outputs.pr_commits }}"
+          echo $PR_COMMITS
+          echo pr_commit=$PR_COMMITS >> $GITHUB_OUTPUT
 
       - name: Push tag to GitHub
         id: new-tag
@@ -117,8 +132,9 @@ jobs:
             ${{ steps.release-note.outputs.note }}
             ${{ steps.release-note.outputs.pr_title }}
             ${{ steps.release-note.outputs.pr_body }}
+            ${{ steps.release-note.outputs.pr_commit }}
 
-            @alichherawalla <br>
+            @alichherawalla 
             @ijasMohamad
           draft: false
           prerelease: false
