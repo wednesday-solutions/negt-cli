@@ -50,9 +50,11 @@ jobs:
       - name: Get PR commits 
         id: pr-commit
         run: |
-          pr_commits=$(git show-branch --sha1-name HEAD^1 HEAD^2)
+          pr_commits=$(git show-branch --sha1-name HEAD HEAD^1)
           echo PR_COMMITS=$pr_commits >> $GITHUB_OUTPUT
           echo $pr_commits
+          pr_commits2=$(git log --format=%h $(git merge-base HEAD HEAD^1)..HEAD^1)
+          echo $pr_commits2
 # pr_commits=$(git log --pretty=format:'%h %s' --no-merges HEAD^1.. HEAD^2)
 # pr_commits=$(git log --format=%h $(git merge-base HEAD^1 HEAD^2)..HEAD^2)
 # pr_commits=$(git cherry -v origin/${{ steps.branch-name.outputs.default_branch }} HEAD)
