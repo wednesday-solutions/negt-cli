@@ -49,7 +49,7 @@ jobs:
         id: pr-commit
         run: |
           pr_commits=$(git cherry -v origin/${{ steps.branch-name.outputs.base_ref_branch }} origin/${{ steps.branch-name.outputs.head_ref_branch }})
-          echo "PR_COMMITS=$pr_commits" >> $GITHUB_OUTPUT
+          echo PR_COMMITS=$pr_commits >> $GITHUB_OUTPUT
           echo $pr_commits
 
       - name: Create release note
