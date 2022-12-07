@@ -1,61 +1,98 @@
-# negt
+<img align="left" src="https://github.com/wednesday-solutions/negt/blob/develop/negt-cli-preview.png" width="610" height="500" />
 
-<br>
-NEGT stands for Node-Express-GraphQL-Template. <br>
-CLI-App can auto generate graphql models and resolvers by your requirements.. <br>
-For example :- If you want to make graphql models and it's resolvers please provide the details for the questions.<br>
-It will auto generate graphql schema and resolvers by itself.<br><br>
+<div>
+  <a href="https://www.wednesday.is?utm_source=gthb&utm_medium=repo&utm_campaign=serverless" align="left" style="margin-left: 0;">
+    <img src="https://uploads-ssl.webflow.com/5ee36ce1473112550f1e1739/5f5879492fafecdb3e5b0e75_wednesday_logo.svg">
+  </a>
+  <p>
+    <h1 align="left">NEGT CLI
+    </h1>
+  </p>
 
-# Quick Start
+  <p>
+A CLI tool that works with the Node Express GraphQL Template and allows you to create queries, mutations and its scaffold tests for graphql models and stitches them all together preventing wastage of time in setup and boilerplate code.
+  </p>
 
-1.  <a href="https://golang.org/doc/tutorial/create-module">Initailise a new go module</a>
+---
 
-        mkdir example
-        cd example
-        go mod init example
+  <p>
+    <h4>
+      Expert teams of digital product strategists, developers, and designers.
+    </h4>
+  </p>
 
-2.  Add negt package to your module.
+  <div>
+    <a href="https://www.wednesday.is/contact-us?utm_source=gthb&utm_medium=repo&utm_campaign=serverless" target="_blank">
+      <img src="https://uploads-ssl.webflow.com/5ee36ce1473112550f1e1739/5f6ae88b9005f9ed382fb2a5_button_get_in_touch.svg" width="121" height="34">
+    </a>
+    <a href="https://github.com/wednesday-solutions/" target="_blank">
+      <img src="https://uploads-ssl.webflow.com/5ee36ce1473112550f1e1739/5f6ae88bb1958c3253756c39_button_follow_on_github.svg" width="168" height="34">
+    </a>
+  </div>
 
-        go get github.com/wednesday-solutions/negt@latest
+---
 
-3.  For installing negt,
+  <p>
+    <h3 align="left">Built using <a href="https://github.com/wednesday-solutions/" target="_blank">Node Express GraphQL Template</a>
+    </h3>
+  </p>
 
-        go install github.com/wednesday-solutions/negt@latest
+</div>
 
-This will install the `negt` command to your `$GOPATH/bin` directory.
+---
 
-# For Negt users
 
-If you want use the `negt` command for `Node-Express-GraphQL-Template`, just install negt by doing this (Before this you should make sure `Go` is already installed in your machine.),
+## Installation
 
     go install github.com/wednesday-solutions/negt@latest
-
-# Usage
     
-1. For seeing the command options in the terminal,
-  
-        negt
+## Examples of generated files
 
-        negt help
+<ul>
+  <li><a href=gitub.com/wednesday-solutions/negt/blob/develop/generated-files/models></a>models</li>
+  <li><a href=gitub.com/wednesday-solutions/negt/blob/develop/generated-files/models/tests></a>tests</li>
+  <li><a href=gitub.com/wednesday-solutions/negt/blob/develop/generated-files/mockData></a>mock data</li>
+</ul>
 
-        negt gqlgen
+## Generating GraphQL models and tests
 
-2.  Then for initializing GraphQL models
+    image
 
-        negt gqlgen init
+## Documentation
 
-If you are using Node-Express-GraphQL-Template, it will create directories `server/gql/models` otherwise `gql/models`.
+<h3>Help</h3>
 
-3.  Then for creating new GraphQL model
+<p>To get a list of commands and usage hints use</p>
 
-        negt gqlgen model
+    negt --help
+    
+    negt gqlgen
+    
+## Creating a new NEGT Application
 
-You will get some questions, please answer to the the questions.<br>
-If you are using Node-Express-GraphQL-Template, then select `server/gql/models` otherwise `gql/models`.<br>
-It will create GraphQL Model files in `gql/models/<modelName>`.<br>
-Or if you want to make in different directory, select `Others`.
+     negt gqlgen init
+     
+demo
 
-# Generating files
+     image
+
+<p>Hint: If you are using Node-Express-GraphQL-Template, it will create directories `server/gql/models` otherwise `gql/models`.</p>
+
+## Creating GraphQL models
+
+    negt gqlgen model
+    
+demo
+    
+    video
+
+## Projects using it
+
+<h3><ul><li><a href="https://github.com/wednesday-solutions/node-express-graphql-template">Node Express GraphQL Template</a></li></ul></h3>
+
+---
+
+## Generated files contain the following
 
     Files :-
         1. index.js                 - It contains all relations of the gql model.
@@ -84,4 +121,7 @@ It will create its test files also in `gql/models/<modelName>/tests` directory.
 
 Also, it will create mockData file for the model in `utils/testUtils` directory.
 
-This project is released under the <a href="https://github.com/wednesday-solutions/negt/LICENCE">MIT License</a>.
+---
+
+<p>This project is released under the <a href="https://github.com/wednesday-solutions/negt/blob/develop/LICENCE">MIT License</a>.</p>
+
