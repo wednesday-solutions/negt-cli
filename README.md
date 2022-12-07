@@ -5,8 +5,7 @@
     <img src="https://uploads-ssl.webflow.com/5ee36ce1473112550f1e1739/5f5879492fafecdb3e5b0e75_wednesday_logo.svg">
   </a>
   <p>
-    <h1 align="left">NEGT CLI
-    </h1>
+    <h1 align="left">NEGT CLI</h1>
   </p>
 
   <p>
@@ -30,7 +29,7 @@ A CLI tool that works with the Node Express GraphQL Template and allows you to c
     </a>
   </div>
 
----
+##
 
   <p>
     <h3 align="left">Built using <a href="https://github.com/wednesday-solutions/" target="_blank">Node Express GraphQL Template</a>
