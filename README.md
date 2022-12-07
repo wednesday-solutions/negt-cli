@@ -90,8 +90,6 @@ demo
 
 <h3><ul><li><a href="https://github.com/wednesday-solutions/node-express-graphql-template">Node Express GraphQL Template</a></li></ul></h3>
 
----
-
 ## Generated files contain the following
 
     Files :-
@@ -121,7 +119,7 @@ It will create its test files also in `gql/models/<modelName>/tests` directory.
 
 Also, it will create mockData file for the model in `utils/testUtils` directory.
 
----
+##
 
 <p>This project is released under the <a href="https://github.com/wednesday-solutions/negt/blob/develop/LICENCE">MIT License</a>.</p>
 
