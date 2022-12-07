@@ -39,7 +39,7 @@ A CLI tool that works with the Node Express GraphQL Template and allows you to c
 
 </div>
 
----
+##
 
 
 ## Installation
