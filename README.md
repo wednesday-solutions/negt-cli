@@ -1,4 +1,4 @@
-<img align="left" src="https://github.com/wednesday-solutions/negt/blob/develop/negt-cli-preview.png" width="500" height="450" />
+<img align="left" src="https://github.com/wednesday-solutions/negt/blob/develop/docs/negt-cli-preview.png" width="500" height="450" />
 
 <div>
   <a href="https://www.wednesday.is?utm_source=gthb&utm_medium=repo&utm_campaign=serverless" align="left" style="margin-left: 0;">
@@ -55,7 +55,7 @@ A CLI tool that works with the Node Express GraphQL Template and allows you to c
 
 ## Generating GraphQL models and tests
 
-    image
+<img align="left" src="https://github.com/wednesday-solutions/negt/blob/develop/docs/negt-cli-model-sample.png"/>
 
 ## Documentation
 
@@ -71,9 +71,9 @@ A CLI tool that works with the Node Express GraphQL Template and allows you to c
 
      negt gqlgen init
      
-demo
+demo:
 
-     image
+<img align="left" src="https://github.com/wednesday-solutions/negt/blob/develop/docs/negt-cli-init-sample.png"/>
 
 <p>Hint: If you are using Node-Express-GraphQL-Template, it will create directories `server/gql/models` otherwise `gql/models`.</p>
 
@@ -81,9 +81,13 @@ demo
 
     negt gqlgen model
     
-demo
+demo:
     
-    video
+<video width="320" height="240" autoplay>
+  <source src="https://github.com/wednesday-solutions/negt/blob/develop/docs/negt-cli-init-sample.png" type="video/mp4">
+  <source src="movie.ogg" type="video/ogg">
+Your browser does not support the video tag.
+</video>
 
 ## Projects using it
 

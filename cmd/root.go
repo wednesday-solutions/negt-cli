@@ -4,7 +4,7 @@ import "github.com/spf13/cobra"
 
 // RootCmd is the command variable of root command negt.
 var RootCmd = RootCmdFn()
-var version = "1.1.3"
+var version = "1.3.8"
 
 // RootCmd represents the base command when called without any subcommands
 func RootCmdFn() *cobra.Command {
