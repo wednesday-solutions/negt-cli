@@ -24,7 +24,6 @@ func RunInitE(*cobra.Command, []string) error {
 
 	if flag {
 		if !fileUtils.IsExists(path, SERVER) {
-			fmt.Println("IsExists")
 			_ = fileUtils.MakeDirectory(path, SERVER) // nolint:errcheck
 		}
 		path = fmt.Sprintf("%s/%s", path, SERVER)

@@ -32,7 +32,7 @@ A CLI tool that works with the Node Express GraphQL Template and allows you to c
 ##
 
   <p>
-    <h3 align="left">Built using <a href="https://github.com/wednesday-solutions/" target="_blank">Node Express GraphQL Template</a>
+    <h3 align="left">Built using <a href="https://github.com/wednesday-solutions/node-express-graphql-template/blob/develop/README.md" target="_blank">Node Express GraphQL Template</a>
     </h3>
   </p>
 
@@ -65,7 +65,7 @@ A CLI tool that works with the Node Express GraphQL Template and allows you to c
 
     negt --help
     
-    negt gqlgen
+    negt gqlgen --help
     
 ## Creating a new NEGT Application
 

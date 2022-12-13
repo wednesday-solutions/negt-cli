@@ -134,9 +134,11 @@ func CreateNewModel() error {
 	path := fileUtils.CurrentDirectory()
 
 	cmd := exec.Command("npx", "eslint", path, "--fix")
-	data, err := cmd.CombinedOutput()
+	_, err = cmd.CombinedOutput()
 	if err != nil {
-		fmt.Println("Error while executing lint command: ", string(data), err)
+		fmt.Println("You are not inside of js module.")
+	} else {
+		fmt.Println("Lint fixed")
 	}
 	fmt.Printf("New GraphQL model %s created!", modelName)
 	return nil
