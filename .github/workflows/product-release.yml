@@ -62,7 +62,7 @@ jobs:
             then 
               msg+="${categoryTitle[others]}${category[others]}"
             fi 
-            echo "New Release Note: ${msg}"
+            echo "New Release Note: $msg"
             echo "COMMIT_MESSAGE=${msg}" >> $GITHUB_ENV
 
       - name: Bump Version
