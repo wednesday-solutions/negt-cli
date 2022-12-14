@@ -72,7 +72,6 @@ A CLI tool that works with the Node Express GraphQL Template and allows you to c
      negt gqlgen init
      
 <img align="left" src="https://github.com/wednesday-solutions/negt/blob/develop/docs/negt-cli-init-sample.png"/>
-<br>
 
 Hint: If you are using Node-Express-GraphQL-Template, it will create directories `server/gql/models` otherwise `gql/models`.
 
@@ -85,10 +84,6 @@ Hint: If you are using Node-Express-GraphQL-Template, it will create directories
   <source src="movie.ogg" type="video/ogg">
 Your browser does not support the video.
 </video>
-
-## Projects using it
-
-<h3><ul><li><a href="https://github.com/wednesday-solutions/node-express-graphql-template">Node Express GraphQL Template</a></li></ul></h3>
 
 ## Generated files contain the following
 
@@ -118,6 +113,10 @@ It will create its test files also in `gql/models/<modelName>/tests` directory.
         9. customDeleteMutation.test.js - It contains the test case of custom delete mutation resolver.
 
 Also, it will create mockData file for the model in `utils/testUtils` directory.
+
+## Projects using it
+
+<h3><ul><li><a href="https://github.com/wednesday-solutions/node-express-graphql-template">Node Express GraphQL Template</a></li></ul></h3>
 
 ## Licence
 

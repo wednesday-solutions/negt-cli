@@ -140,7 +140,7 @@ func CreateNewModel() error {
 	} else {
 		fmt.Println("Lint fixed")
 	}
-	fmt.Printf("New GraphQL model %s created!", modelName)
+	fmt.Printf("New GraphQL model %s created!\n", modelName)
 	return nil
 }
 
