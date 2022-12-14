@@ -105,7 +105,7 @@ jobs:
           RELEASE_NAME: ${{ steps.bump.outputs.new_tag }}
           body: |
             ${{ env.COMMIT_MESSAGE }}
-            <br><br>
+            <br>
             @alichherawalla
             @ijasMohamad
           draft: false
