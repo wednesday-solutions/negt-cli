@@ -78,12 +78,8 @@ A CLI tool that works with the Node Express GraphQL Template and allows you to c
 ## Creating GraphQL models
 
     negt gqlgen model
-    
-<video width="320" height="240" autoplay>
-  <source src="https://github.com/wednesday-solutions/negt/blob/develop/docs/negt-cli-create-models.mp4" type="video/mp4">
-  <source src="movie.ogg" type="video/ogg">
-Your browser does not support the video.
-</video>
+
+https://user-images.githubusercontent.com/114065489/207503280-004171e6-2efe-4f52-9b6f-842e202cf171.mp4
 
 ## Projects using it
 
