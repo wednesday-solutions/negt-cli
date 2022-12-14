@@ -48,9 +48,9 @@ A CLI tool that works with the Node Express GraphQL Template and allows you to c
 ## Examples of generated files
 
 <ul>
-  <li><a href="https://gitub.com/wednesday-solutions/negt/blob/develop/generated-files/models"></a>models</li>
-  <li><a href="https://gitub.com/wednesday-solutions/negt/blob/develop/generated-files/models/tests"></a>tests</li>
-  <li><a href="https://gitub.com/wednesday-solutions/negt/blob/develop/generated-files/mockData"></a>mock data</li>
+  <li><a href="https://gitub.com/wednesday-solutions/negt/blob/develop/generated-files/models">models</a></li>
+  <li><a href="https://gitub.com/wednesday-solutions/negt/blob/develop/generated-files/models/tests">tests</a></li>
+  <li><a href="https://gitub.com/wednesday-solutions/negt/blob/develop/generated-files/mockData">mock data</a></li>
 </ul>
 
 ## Generating GraphQL models and tests
@@ -73,7 +73,7 @@ A CLI tool that works with the Node Express GraphQL Template and allows you to c
      
 <img align="left" src="https://github.com/wednesday-solutions/negt/blob/develop/docs/negt-cli-init-sample.png"/>
 
-<p>Hint: If you are using Node-Express-GraphQL-Template, it will create directories `server/gql/models` otherwise `gql/models`.</p>
+Hint: If you are using Node-Express-GraphQL-Template, it will create directories `server/gql/models` otherwise `gql/models`.
 
 ## Creating GraphQL models
 
