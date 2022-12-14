@@ -37,15 +37,15 @@ func RunInitE(*cobra.Command, []string) error {
 	if !fileUtils.IsExists(path, MODELS) {
 		_ = fileUtils.MakeDirectory(path, MODELS) // nolint:errcheck
 		if flag {
-			fmt.Printf("New directory '%s/%s/%s' created.", SERVER, GQL, MODELS)
+			fmt.Printf("New directory '%s/%s/%s' created.\n", SERVER, GQL, MODELS)
 		} else {
-			fmt.Printf("New directory '%s/%s' created.", GQL, MODELS)
+			fmt.Printf("New directory '%s/%s' created.\n", GQL, MODELS)
 		}
 	} else {
 		if flag {
-			fmt.Printf("Already initialised '%s/%s/%s'.", SERVER, GQL, MODELS)
+			fmt.Printf("Already initialised '%s/%s/%s'.\n", SERVER, GQL, MODELS)
 		} else {
-			fmt.Printf("Already initialised '%s/%s'.", GQL, MODELS)
+			fmt.Printf("Already initialised '%s/%s'.\n", GQL, MODELS)
 		}
 	}
 	return nil
