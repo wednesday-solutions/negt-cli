@@ -118,7 +118,7 @@ It will create its test files also in `gql/models/<modelName>/tests` directory.
 
 Also, it will create mockData file for the model in `utils/testUtils` directory.
 
-##
+## Licence
 
 <p>This project is released under the <a href="https://github.com/wednesday-solutions/negt/blob/develop/LICENCE">MIT License</a>.</p>
 
