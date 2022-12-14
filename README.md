@@ -48,9 +48,9 @@ A CLI tool that works with the Node Express GraphQL Template and allows you to c
 ## Examples of generated files
 
 <ul>
-  <li><a href=gitub.com/wednesday-solutions/negt/blob/develop/generated-files/models></a>models</li>
-  <li><a href=gitub.com/wednesday-solutions/negt/blob/develop/generated-files/models/tests></a>tests</li>
-  <li><a href=gitub.com/wednesday-solutions/negt/blob/develop/generated-files/mockData></a>mock data</li>
+  <li><a href="https://gitub.com/wednesday-solutions/negt/blob/develop/generated-files/models"></a>models</li>
+  <li><a href="https://gitub.com/wednesday-solutions/negt/blob/develop/generated-files/models/tests"></a>tests</li>
+  <li><a href="https://gitub.com/wednesday-solutions/negt/blob/develop/generated-files/mockData"></a>mock data</li>
 </ul>
 
 ## Generating GraphQL models and tests
@@ -71,8 +71,6 @@ A CLI tool that works with the Node Express GraphQL Template and allows you to c
 
      negt gqlgen init
      
-demo:
-
 <img align="left" src="https://github.com/wednesday-solutions/negt/blob/develop/docs/negt-cli-init-sample.png"/>
 
 <p>Hint: If you are using Node-Express-GraphQL-Template, it will create directories `server/gql/models` otherwise `gql/models`.</p>
@@ -81,12 +79,10 @@ demo:
 
     negt gqlgen model
     
-demo:
-    
 <video width="320" height="240" autoplay>
-  <source src="https://github.com/wednesday-solutions/negt/blob/develop/docs/negt-cli-init-sample.png" type="video/mp4">
+  <source src="https://github.com/wednesday-solutions/negt/blob/develop/docs/negt-cli-create-models.mp4" type="video/mp4">
   <source src="movie.ogg" type="video/ogg">
-Your browser does not support the video tag.
+Your browser does not support the video.
 </video>
 
 ## Projects using it
