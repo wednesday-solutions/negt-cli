@@ -29,8 +29,8 @@ jobs:
       - name: Get Commit Message
         run: |
           declare -A category=( [fix]="" [chore]="" [revert]="" [build]="" [docs]="" [feat]="" [perf]="" [refactor]="" [style]="" [temp]="" [test]="" [ci]="" [others]="")
-          declare -A category=( [fix]="<h5>Bug Fixes</h5>" [chore]="<h5>Changes to build process or aux tools</h5>" [revert]="<h5>Revert Commits</h5>" [build]="<h5>Build</h5>" [docs]="<h5>Documentation</h5>" [feat]="<h5>New Features</h5>" [perf]="<h5>Performace Enhancements</h5>" [refactor]="<h5>Refactored</h5>" [style]="<h5>Changed Style</h5>" [temp]="<h5>Temporary Commit</h5>" [test]="<h5>Added Tests</h5>" [ci]="<h5>Changes to CI config</h5>" [others]="<h5>Others</h5>")
-          msg="${{ steps.getMergedPR.outputs.number }} ${{ steps.getMergedPR.outputs.title }}"
+          declare -A categoryTitle=( [fix]="<h5>Bug Fixes</h5>" [chore]="<h5>Changes to build process or aux tools</h5>" [revert]="<h5>Revert Commits</h5>" [build]="<h5>Build</h5>" [docs]="<h5>Documentation</h5>" [feat]="<h5>New Features</h5>" [perf]="<h5>Performace Enhancements</h5>" [refactor]="<h5>Refactored</h5>" [style]="<h5>Changed Style</h5>" [temp]="<h5>Temporary Commit</h5>" [test]="<h5>Added Tests</h5>" [ci]="<h5>Changes to CI config</h5>" [others]="<h5>Others</h5>")
+          msg="#${{ steps.getMergedPR.outputs.number }} ${{ steps.getMergedPR.outputs.title }}"
           for i in $(git log --format=%h $(git merge-base HEAD^1 HEAD^2)..HEAD^2)
           do 
             IFS=":" read -r type cmmsg <<< $(git log --format=%B -n 1 $i)
@@ -46,13 +46,13 @@ jobs:
                 break
               fi
             done
-              if [ $flag -eq q ]
+              if [ $flag -eq 1 ]
               then 
-                category[others]+="$[text_msg}"
+                category[others]+="${text_msg}"
               fi
             done
             for i in "${!category[@]}"
-            do 
+            do
               if [ ! -z "${category[$i]}" ] && [ "others" != "$i" ]
                 then 
                 msg+="${categoryTitle[$i]}${category[$i]}"
@@ -61,7 +61,8 @@ jobs:
             if [ ! -z "${category[others]}" ]
             then 
               msg+="${categoryTitle[others]}${category[others]}"
-            fi 
+            fi
+            echo "New Release Note: $msg" 
             echo "COMMIT_MESSAGE=${msg}" >> $GITHUB_ENV
 
       - name: Bump Version
