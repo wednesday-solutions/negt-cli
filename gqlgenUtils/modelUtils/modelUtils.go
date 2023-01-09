@@ -48,11 +48,11 @@ func CreateNewModel() error {
 	}
 	fieldType := PromptGetSelect(typePromptContent)
 
-	nullabilitylPromptContent := PromptContent{
+	nullabilityPromptContent := PromptContent{
 		fmt.Sprintf("If the '%s' field is Non-null, then select 'Yes', else select 'No'? ", field),
 		fmt.Sprintf("Do you want to make this '%s' field as Non null? ", field),
 	}
-	nullField := PromptGetYesOrNoInput(nullabilitylPromptContent)
+	nullField := PromptGetYesOrNoInput(nullabilityPromptContent)
 
 	yesOrNoPromptContent := PromptContent{
 		"Do you want to add more fields to your model? ",
@@ -163,11 +163,11 @@ func AddField(
 	}
 	fieldType := PromptGetSelect(typePromptContent)
 
-	nullabilitylPromptContent := PromptContent{
+	nullabilityPromptContent := PromptContent{
 		fmt.Sprintf("If the '%s' field is Non-null, then select 'Yes', else select 'No'? ", field),
 		fmt.Sprintf("Do you want to make this '%s' field as Non null? ", field),
 	}
-	nullField := PromptGetYesOrNoInput(nullabilitylPromptContent)
+	nullField := PromptGetYesOrNoInput(nullabilityPromptContent)
 
 	fields = append(fields, field)
 	fieldTypes = append(fieldTypes, fieldType)

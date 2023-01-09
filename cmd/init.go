@@ -43,9 +43,9 @@ func RunInitE(*cobra.Command, []string) error {
 		}
 	} else {
 		if flag {
-			fmt.Printf("Already initialised '%s/%s/%s'.\n", SERVER, GQL, MODELS)
+			fmt.Printf("Already initialized '%s/%s/%s'.\n", SERVER, GQL, MODELS)
 		} else {
-			fmt.Printf("Already initialised '%s/%s'.\n", GQL, MODELS)
+			fmt.Printf("Already initialized '%s/%s'.\n", GQL, MODELS)
 		}
 	}
 	return nil
