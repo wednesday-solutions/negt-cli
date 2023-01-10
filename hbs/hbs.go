@@ -139,7 +139,7 @@ func MockFields(fields, fieldTypes []string) []string {
 			} else if fieldTypes[idx] == "GraphQLBoolean" {
 				fieldType = "true"
 			} else if fieldTypes[idx] == "GraphQLDateTime" {
-				fieldType = "2022-02-02"
+				fieldType = `'2022-02-02'`
 			}
 
 			mockFields = append(mockFields, fmt.Sprintf(`,

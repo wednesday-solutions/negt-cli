@@ -15,11 +15,11 @@ func GqlgenCmdFn() *cobra.Command {
 		Short: "Generate graphql models",
 		Long: `It is for generating graphql models.
 		
-	If you want to make graphql models and it's resolvers please provide the details for the questions.
-	It will auto generate graphql schema and resolvers by itself.
+If you want to make graphql models and it's resolvers please provide the details for the questions.
+It will auto generate graphql schema and resolvers by itself.
 	
-	If you are using Node-Express-GraphQL-Template, select "server/gql/models" directory for creating GraphQL Models.
-	`,
+If you are using Node-Express-GraphQL-Template, select "server/gql/models" directory for creating GraphQL Models.
+`,
 	}
 	return gqlgenCmd
 }

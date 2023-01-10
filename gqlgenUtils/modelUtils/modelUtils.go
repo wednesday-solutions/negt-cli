@@ -136,7 +136,7 @@ func CreateNewModel() error {
 	cmd := exec.Command("npx", "eslint", path, "--fix")
 	_, err = cmd.CombinedOutput()
 	if err != nil {
-		fmt.Println("You are not inside of js module.")
+		fmt.Println("Lint not fixed")
 	} else {
 		fmt.Println("Lint fixed")
 	}
