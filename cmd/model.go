@@ -26,8 +26,8 @@ func ModelCmdFn() *cobra.Command {
 		Short:   "Create new graphql model",
 		Long: `model command for creating new graphql model. For example:
 	
-	Create gqlmodel by this command, gqlgen model. then provide the 
-	appropriate answers for the questions.`,
+Create gqlmodel by this command, gqlgen model. then provide the 
+appropriate answers for the questions.`,
 		RunE: RunModelE,
 	}
 	return modelCmd
