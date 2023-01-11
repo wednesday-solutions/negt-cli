@@ -9,7 +9,7 @@ func MockDataSource(modelName, path, file string, ctx map[string]interface{}) er
 {{{mockImports fieldTypes}}}
 
 export const {{pluralModel}}Table = range(1, 10).map((_, index) => ({
-	id: (index + 1).toString(){{mockFields fields fieldTypes}}
+	id: (index + 1).toString(){{{mockFields fields fieldTypes}}}
 }));
 `
 	tpl, err := GenerateTemplate(source, ctx)
