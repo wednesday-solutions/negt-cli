@@ -1,4 +1,4 @@
-name: Negt-CliApp
+name: Negt CI
 
 on:
   push:

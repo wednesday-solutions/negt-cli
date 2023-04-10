@@ -38,7 +38,7 @@ A CLI tool that works with the Node Express GraphQL Template and allows you to c
 
 </div>
 
-##
+[![Go Report Card](https://goreportcard.com/badge/github.com/wednesday-solutions/negt)](https://goreportcard.com/report/github.com/wednesday-solutions/negt) ![example workflow](https://github.com/wednesday-solutions/negt-cli/actions/workflows/ci.yml/badge.svg) ![example workflow](https://github.com/wednesday-solutions/negt-cli/actions/workflows/product-release.yml/badge.svg) [![GoDoc](https://godoc.org/github.com/wednesday-solutions/negt?status.svg)](https://godoc.org/github.com/wednesday-solutions/negt)
 
 
 ## Installation
